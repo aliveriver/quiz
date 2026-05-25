@@ -1,0 +1,26 @@
+# 前端游戏配置
+
+# 态度冲突检测配置
+conflict:
+  # 在第几次冲突后开始显示提示
+  warning_threshold: 3
+  # 提示文本透明度 (0-1)
+  warning_opacity: 0.15
+  # 提示显示位置
+  warning_position: "bottom-right"
+  # 提示文本大小 (rem)
+  warning_font_size: 0.75
+
+# Meta 特效配置
+meta:
+  # 基础触发概率
+  base_probability: 0.05
+  # 偏执因子
+  obsession_factor: 0.003
+
+# 游戏流程配置
+game:
+  # 每轮题目数量
+  questions_per_round: 20
+  # 冲突检测滑动窗口大小
+  conflict_window_size: 5

@@ -1,0 +1,19 @@
+/* 文字雨 */
+
+.text-rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.text-rain-drop {
+  position: absolute;
+  top: -2rem;
+  color: var(--phase-accent, #e82050);
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  animation: rain linear forwards;
+  text-shadow: 0 0 8px var(--phase-accent-glow);
+  user-select: none;
+}

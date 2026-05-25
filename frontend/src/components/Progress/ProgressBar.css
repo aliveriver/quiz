@@ -1,0 +1,49 @@
+/* 进度条 */
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-overlay, 100);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--phase-bg-secondary);
+  border-bottom: 1px solid var(--phase-border);
+  transition: all var(--duration-phase, 1s) ease;
+}
+
+.progress-track {
+  flex: 1;
+  height: 3px;
+  background: var(--phase-progress-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--phase-progress);
+  border-radius: var(--radius-full);
+  transition: width 600ms var(--ease-out, ease);
+  box-shadow: 0 0 8px var(--phase-accent-glow);
+  animation: progressPulse 3s ease-in-out infinite;
+}
+
+.progress-text {
+  font-size: var(--text-xs);
+  color: var(--phase-text-muted);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  min-width: 3rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 阶段：breaking */
+[data-phase="breaking"] .progress-fill {
+  animation: progressPulse 1s ease-in-out infinite;
+}

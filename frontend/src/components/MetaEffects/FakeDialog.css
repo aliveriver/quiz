@@ -1,0 +1,75 @@
+/* FakeDialog - 模拟系统对话框 */
+
+.fake-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: all;
+  animation: fadeIn 0.15s ease;
+}
+
+.fake-dialog {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  min-width: 280px;
+  max-width: 360px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  color: #222;
+  animation: dropIn 0.3s ease;
+}
+
+.fake-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.fake-dialog-icon {
+  font-size: 1.25rem;
+}
+
+.fake-dialog-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.fake-dialog-body {
+  font-size: 0.8125rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.fake-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fake-dialog-btn {
+  padding: 0.375rem 1.25rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #fff 0%, #e8e8e8 100%);
+  color: #333;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.fake-dialog-btn:hover {
+  background: linear-gradient(180deg, #f8f8f8 0%, #ddd 100%);
+}
+
+.fake-dialog-btn:active {
+  background: #d0d0d0;
+}

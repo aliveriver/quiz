@@ -1,0 +1,113 @@
+/* MetaLayer - 全屏特效覆盖层 */
+
+.meta-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  animation: fadeIn 0.1s ease;
+}
+
+/* ---- 屏幕闪烁 ---- */
+.meta-flicker {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.06);
+  animation: metaFlicker 0.3s steps(2) forwards;
+}
+
+@keyframes metaFlicker {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  20%  { opacity: 0; }
+  30%  { opacity: 0.8; }
+  40%  { opacity: 0; }
+  50%  { opacity: 0.5; }
+  60%  { opacity: 0; }
+  70%  { opacity: 0.3; }
+  80%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ---- 呼吸 ---- */
+.meta-breathe {
+  position: absolute;
+  inset: 0;
+  animation: metaBreathe 3s ease-in-out;
+}
+
+@keyframes metaBreathe {
+  0%, 100% { transform: scale(1); opacity: 0; }
+  50%      { transform: scale(1.03); opacity: 0.15; background: var(--phase-accent-soft); }
+}
+
+/* ---- 颜色偏移 ---- */
+.meta-color-shift {
+  position: absolute;
+  inset: 0;
+  animation: metaColorShift 2s ease forwards;
+}
+
+@keyframes metaColorShift {
+  0%   { background: transparent; }
+  15%  { background: rgba(200, 50, 80, 0.08); }
+  30%  { background: rgba(80, 50, 200, 0.06); }
+  50%  { background: rgba(200, 50, 80, 0.04); }
+  100% { background: transparent; }
+}
+
+/* ---- 光标漂移 ---- */
+.meta-cursor-drift {
+  position: absolute;
+  inset: 0;
+}
+
+.meta-cursor-trail {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--phase-accent-glow);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* ---- 故障叠层 ---- */
+.meta-glitch {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.meta-glitch-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.08);
+  animation: metaGlitchLine 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes metaGlitchLine {
+  0%   { transform: translateX(-5%); opacity: 0.8; }
+  100% { transform: translateX(5%);  opacity: 0.3; }
+}
+
+.meta-glitch-color {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+  animation: metaGlitchColor 0.5s steps(3) infinite;
+}
+
+@keyframes metaGlitchColor {
+  0%   { background: rgba(255, 0, 0, 0.03); }
+  33%  { background: rgba(0, 255, 0, 0.02); }
+  66%  { background: rgba(0, 0, 255, 0.03); }
+  100% { background: rgba(255, 0, 0, 0.02); }
+}
+
+/* ---- 抖动触发器（通过 JS class 应用）---- */
+.meta-shake-trigger ~ * {
+  animation: shake 0.5s ease-in-out;
+}
