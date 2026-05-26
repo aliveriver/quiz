@@ -17,6 +17,7 @@ import (
 	"ghost-relationship-test/internal/config"
 	"ghost-relationship-test/internal/handler"
 	"ghost-relationship-test/internal/llm"
+	"ghost-relationship-test/internal/metrics"
 	"ghost-relationship-test/internal/middleware"
 	"ghost-relationship-test/internal/service"
 )
@@ -45,7 +46,9 @@ func main() {
 	})
 
 	monologueSvc := service.NewMonologueService(llmClient)
+	m := metrics.New()
 	h := handler.New(monologueSvc, cfg.Game)
+	sh := handler.NewStreamHandler(monologueSvc, m)
 
 	// ---- Router ----
 
@@ -64,6 +67,7 @@ func main() {
 	r.Get("/api/game-config", h.GameConfig)
 	r.Post("/api/generate-monologue", h.GenerateMonologue)
 	r.Post("/api/generate-confrontation", h.GenerateConfrontation)
+	r.Post("/api/stream-monologue", sh.StreamMonologue)
 
 	// ---- Server ----
 

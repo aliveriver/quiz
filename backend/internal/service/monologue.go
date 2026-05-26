@@ -20,15 +20,35 @@ type EmotionalProfile struct {
 	Dependency     int `json:"dependency"`
 }
 
-// DeviceInfo 保存通过 navigator APIs 收集的非敏感设备元数据，
-// 这些 API 不需要用户授权。
+// DeviceInfo 保存通过 navigator APIs 收集的非敏感设备元数据。
+// 结构匹配前端 deviceProbe.js 的 collectDeviceInfo() 返回值。
 type DeviceInfo struct {
-	BatteryLevel        *float64 `json:"battery_level,omitempty"` // 0.0 - 1.0
-	ScreenWidth         int      `json:"screen_width,omitempty"`
-	ScreenHeight        int      `json:"screen_height,omitempty"`
-	HardwareConcurrency int      `json:"hardware_concurrency,omitempty"`
-	UserAgent           string   `json:"user_agent,omitempty"`
-	Language            string   `json:"language,omitempty"`
+	Battery struct {
+		Level    int  `json:"level,omitempty"`
+		Charging bool `json:"charging,omitempty"`
+	} `json:"battery,omitempty"`
+	Screen struct {
+		Width      int     `json:"width,omitempty"`
+		Height     int     `json:"height,omitempty"`
+		PixelRatio float64 `json:"pixelRatio,omitempty"`
+		ColorDepth int     `json:"colorDepth,omitempty"`
+	} `json:"screen,omitempty"`
+	HardwareConcurrency int `json:"hardwareConcurrency,omitempty"`
+	UserAgent           struct {
+		Raw        string `json:"raw,omitempty"`
+		DeviceType string `json:"deviceType,omitempty"`
+		Browser    string `json:"browser,omitempty"`
+	} `json:"userAgent,omitempty"`
+	Language struct {
+		Language  string   `json:"language,omitempty"`
+		Languages []string `json:"languages,omitempty"`
+	} `json:"language,omitempty"`
+	Time struct {
+		Hour        int    `json:"hour,omitempty"`
+		IsLateNight bool   `json:"isLateNight,omitempty"`
+		IsWeekend   bool   `json:"isWeekend,omitempty"`
+		Timestamp   string `json:"timestamp,omitempty"`
+	} `json:"time,omitempty"`
 }
 
 // MonologueRequest 打包生成 monologue 所需的全部内容。
@@ -90,6 +110,22 @@ func (s *MonologueService) Generate(ctx context.Context, req MonologueRequest) (
 	return &MonologueResponse{Monologue: strings.TrimSpace(text)}, nil
 }
 
+// GenerateStream 以流式方式生成 monologue，每个文本片段通过 onChunk 回调推送。
+func (s *MonologueService) GenerateStream(ctx context.Context, req MonologueRequest, onChunk func(text string)) error {
+	systemPrompt := buildMonologueSystemPrompt()
+	userPrompt := buildMonologueUserPrompt(req)
+
+	messages := []llm.Message{
+		{Role: "system", Content: systemPrompt},
+		{Role: "user", Content: userPrompt},
+	}
+
+	if err := s.client.CompleteStream(ctx, messages, onChunk); err != nil {
+		return fmt.Errorf("monologue: generate stream: %w", err)
+	}
+	return nil
+}
+
 // GenerateConfrontation 会在态度冲突系统检测到玩家前后不一致时，
 // 生成一个 confrontation 问题。
 func (s *MonologueService) GenerateConfrontation(ctx context.Context, req ConfrontationRequest) (*ConfrontationResponse, error) {
@@ -142,22 +178,27 @@ func buildMonologueUserPrompt(req MonologueRequest) string {
 
 	sb.WriteString("\n玩家的设备信息（请自然融入独白中）：\n")
 
-	if req.Device.BatteryLevel != nil {
-		pct := int(*req.Device.BatteryLevel * 100)
-		sb.WriteString(fmt.Sprintf("- 电量：%d%%\n", pct))
+	if req.Device.Battery.Level > 0 {
+		sb.WriteString(fmt.Sprintf("- 电量：%d%%\n", req.Device.Battery.Level))
+		if req.Device.Battery.Charging {
+			sb.WriteString("- 正在充电\n")
+		}
 	}
-	if req.Device.ScreenWidth > 0 && req.Device.ScreenHeight > 0 {
-		sb.WriteString(fmt.Sprintf("- 屏幕分辨率：%dx%d\n", req.Device.ScreenWidth, req.Device.ScreenHeight))
+	if req.Device.Screen.Width > 0 && req.Device.Screen.Height > 0 {
+		sb.WriteString(fmt.Sprintf("- 屏幕分辨率：%dx%d\n", req.Device.Screen.Width, req.Device.Screen.Height))
 	}
 	if req.Device.HardwareConcurrency > 0 {
 		sb.WriteString(fmt.Sprintf("- 处理器核心数：%d\n", req.Device.HardwareConcurrency))
 	}
-	if req.Device.Language != "" {
-		sb.WriteString(fmt.Sprintf("- 系统语言：%s\n", req.Device.Language))
+	if req.Device.Language.Language != "" {
+		sb.WriteString(fmt.Sprintf("- 系统语言：%s\n", req.Device.Language.Language))
 	}
-	if req.Device.UserAgent != "" {
-		device := classifyDevice(req.Device.UserAgent)
+	if req.Device.UserAgent.Raw != "" {
+		device := classifyDevice(req.Device.UserAgent.Raw)
 		sb.WriteString(fmt.Sprintf("- 设备类型：%s\n", device))
+	}
+	if req.Device.Time.IsLateNight {
+		sb.WriteString(fmt.Sprintf("- 当前时间：深夜 %d 点\n", req.Device.Time.Hour))
 	}
 
 	return sb.String()

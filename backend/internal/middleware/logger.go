@@ -17,6 +17,13 @@ func (sw *statusWriter) WriteHeader(code int) {
 	sw.ResponseWriter.WriteHeader(code)
 }
 
+// Flush 实现 http.Flusher 接口，将写入内容立即发送到客户端（SSE 必需）。
+func (sw *statusWriter) Flush() {
+	if f, ok := sw.ResponseWriter.(http.Flusher); ok {
+		f.Flush()
+	}
+}
+
 // Logger 返回一个 middleware，用于记录每个请求的 method、path、
 // status code、duration 和 client IP。
 func Logger(next http.Handler) http.Handler {

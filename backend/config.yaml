@@ -1,17 +1,17 @@
 server:
   port: 8080
   read_timeout: 15
-  write_timeout: 15
+  write_timeout: 120
   cors_origins:
     - "http://localhost:5173"
     - "http://localhost:3000"
 
 llm:
   provider: "openai"
-  model: "gpt-4o-mini"
-  max_tokens: 500
+  model: "Pro/moonshotai/Kimi-K2.6"
+  max_tokens: 2048
   temperature: 0.9
-  timeout: 30
+  timeout: 500
 
 rate_limit:
   requests_per_second: 5

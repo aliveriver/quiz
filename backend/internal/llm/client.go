@@ -1,61 +1,21 @@
 // Package llm 提供一个面向 OpenAI 兼容 chat completion
-// API 的 HTTP 客户端。它负责请求构造、错误映射和响应解析，
-// 让调用方只需要处理普通的 Go 类型。
+// API 的客户端封装。使用 sashabaranov/go-openai 库处理底层通信。
 package llm
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"time"
+
+	openai "github.com/sashabaranov/go-openai"
 )
 
 // Message 表示一条 chat 消息。
 type Message struct {
 	Role    string `json:"role"`
 	Content string `json:"content"`
-}
-
-// ChatRequest 是发送到 completions endpoint 的负载。
-type ChatRequest struct {
-	Model       string    `json:"model"`
-	Messages    []Message `json:"messages"`
-	MaxTokens   int       `json:"max_tokens,omitempty"`
-	Temperature float64   `json:"temperature,omitempty"`
-}
-
-// ChatResponse 是 API 的顶层响应。
-type ChatResponse struct {
-	ID      string   `json:"id"`
-	Choices []Choice `json:"choices"`
-	Usage   Usage    `json:"usage"`
-}
-
-// Choice 表示一个 completion 选项。
-type Choice struct {
-	Index        int     `json:"index"`
-	Message      Message `json:"message"`
-	FinishReason string  `json:"finish_reason"`
-}
-
-// Usage 记录 token 消耗情况。
-type Usage struct {
-	PromptTokens     int `json:"prompt_tokens"`
-	CompletionTokens int `json:"completion_tokens"`
-	TotalTokens      int `json:"total_tokens"`
-}
-
-// APIError 表示来自 LLM API 的错误响应。
-type APIError struct {
-	StatusCode int
-	Body       string
-}
-
-func (e *APIError) Error() string {
-	return fmt.Sprintf("llm: API returned status %d: %s", e.StatusCode, e.Body)
 }
 
 // ClientConfig 保存创建 LLM 客户端所需的参数。
@@ -70,29 +30,33 @@ type ClientConfig struct {
 
 // Client 负责与 OpenAI 兼容的 chat completions API 通信。
 type Client struct {
-	httpClient  *http.Client
-	baseURL     string
-	apiKey      string
-	model       string
-	maxTokens   int
-	temperature float64
+	openaiClient *openai.Client
+	model        string
+	maxTokens    int
+	temperature  float64
+	timeout      time.Duration
 }
 
 // NewClient 根据给定配置创建 Client。
 func NewClient(cfg ClientConfig) *Client {
+	config := openai.DefaultConfig(cfg.APIKey)
+	config.BaseURL = cfg.BaseURL
+	config.HTTPClient = &http.Client{}
+
 	return &Client{
-		httpClient:  &http.Client{Timeout: cfg.Timeout},
-		baseURL:     cfg.BaseURL,
-		apiKey:      cfg.APIKey,
-		model:       cfg.Model,
-		maxTokens:   cfg.MaxTokens,
-		temperature: cfg.Temperature,
+		openaiClient: openai.NewClientWithConfig(config),
+		model:        cfg.Model,
+		maxTokens:    cfg.MaxTokens,
+		temperature:  cfg.Temperature,
+		timeout:      cfg.Timeout,
 	}
 }
 
 // Complete 发送 chat completion 请求并返回 assistant 的
 // 回复文本。它会使用客户端默认的 model/tokens/temperature。
 func (c *Client) Complete(ctx context.Context, messages []Message) (string, error) {
+	ctx, cancel := context.WithTimeout(ctx, c.timeout)
+	defer cancel()
 	return c.CompleteWithParams(ctx, messages, c.model, c.maxTokens, c.temperature)
 }
 
@@ -105,53 +69,90 @@ func (c *Client) CompleteWithParams(
 	maxTokens int,
 	temperature float64,
 ) (string, error) {
-	reqBody := ChatRequest{
-		Model:       model,
-		Messages:    messages,
-		MaxTokens:   maxTokens,
-		Temperature: temperature,
-	}
-
-	payload, err := json.Marshal(reqBody)
-	if err != nil {
-		return "", fmt.Errorf("llm: marshal request: %w", err)
-	}
-
-	endpoint := c.baseURL + "/chat/completions"
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, endpoint, bytes.NewReader(payload))
-	if err != nil {
-		return "", fmt.Errorf("llm: build request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+c.apiKey)
-
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return "", fmt.Errorf("llm: send request: %w", err)
-	}
-	defer resp.Body.Close()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("llm: read response: %w", err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		return "", &APIError{
-			StatusCode: resp.StatusCode,
-			Body:       string(body),
+	// 转换自定义 Message 类型到 openai.ChatCompletionMessage
+	openaiMessages := make([]openai.ChatCompletionMessage, len(messages))
+	for i, msg := range messages {
+		openaiMessages[i] = openai.ChatCompletionMessage{
+			Role:    msg.Role,
+			Content: msg.Content,
 		}
 	}
 
-	var chatResp ChatResponse
-	if err := json.Unmarshal(body, &chatResp); err != nil {
-		return "", fmt.Errorf("llm: parse response: %w", err)
+	// 构建请求
+	req := openai.ChatCompletionRequest{
+		Model:       model,
+		Messages:    openaiMessages,
+		MaxTokens:   maxTokens,
+		Temperature: float32(temperature),
 	}
 
-	if len(chatResp.Choices) == 0 {
+	// 发送请求
+	resp, err := c.openaiClient.CreateChatCompletion(ctx, req)
+	if err != nil {
+		return "", fmt.Errorf("llm: create chat completion: %w", err)
+	}
+
+	// 检查响应
+	if len(resp.Choices) == 0 {
 		return "", fmt.Errorf("llm: response contained no choices")
 	}
 
-	return chatResp.Choices[0].Message.Content, nil
+	return resp.Choices[0].Message.Content, nil
+}
+
+// CompleteStream 以流式方式调用 LLM，通过回调逐 chunk 返回生成的文本。
+func (c *Client) CompleteStream(
+	ctx context.Context,
+	messages []Message,
+	onChunk func(delta string),
+) error {
+	return c.CompleteStreamWithParams(ctx, messages, c.model, c.maxTokens, c.temperature, onChunk)
+}
+
+// CompleteStreamWithParams 是 CompleteStream 的参数化版本。
+func (c *Client) CompleteStreamWithParams(
+	ctx context.Context,
+	messages []Message,
+	model string,
+	maxTokens int,
+	temperature float64,
+	onChunk func(delta string),
+) error {
+	openaiMessages := make([]openai.ChatCompletionMessage, len(messages))
+	for i, msg := range messages {
+		openaiMessages[i] = openai.ChatCompletionMessage{
+			Role:    msg.Role,
+			Content: msg.Content,
+		}
+	}
+
+	req := openai.ChatCompletionRequest{
+		Model:       model,
+		Messages:    openaiMessages,
+		MaxTokens:   maxTokens,
+		Temperature: float32(temperature),
+		Stream:      true,
+	}
+
+	stream, err := c.openaiClient.CreateChatCompletionStream(ctx, req)
+	if err != nil {
+		return fmt.Errorf("llm: create stream: %w", err)
+	}
+	defer stream.Close()
+
+	for {
+		resp, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			return fmt.Errorf("llm: stream recv: %w", err)
+		}
+		if len(resp.Choices) > 0 {
+			delta := resp.Choices[0].Delta.Content
+			if delta != "" {
+				onChunk(delta)
+			}
+		}
+	}
 }

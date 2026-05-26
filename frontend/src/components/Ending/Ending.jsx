@@ -1,35 +1,11 @@
-import { useState, useEffect } from 'react';
 import './Ending.css';
 
 /**
  * 结局演出组件
  * 游戏结束时的总结展示，打破第四面墙的独白
+ * monologue 由父组件通过 SSE 流式填充，本组件直接渲染即可
  */
-export default function Ending({ stats, monologue, deviceInfo, phase }) {
-  const [typedText, setTypedText] = useState('');
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-
-  // 打字机效果
-  useEffect(() => {
-    if (!monologue) return;
-
-    let i = 0;
-    const speed = 60;
-    
-    const typeWriter = () => {
-      if (i < monologue.length) {
-        setTypedText(monologue.slice(0, i + 1));
-        i++;
-        setTimeout(typeWriter, speed + (Math.random() * 50));
-      } else {
-        setIsTypingComplete(true);
-      }
-    };
-
-    const timer = setTimeout(typeWriter, 1000);
-    return () => clearTimeout(timer);
-  }, [monologue]);
-
+export default function Ending({ monologue, deviceInfo, escapeAttempts, monologueComplete }) {
   const handleRestart = () => {
     window.location.reload();
   };
@@ -46,17 +22,17 @@ export default function Ending({ stats, monologue, deviceInfo, phase }) {
   return (
     <div className="ending-screen">
       <div className="ending-content">
-        
-        {/* 独白文本 */}
+
+        {/* 独白文本 — 随 SSE 流式增长 */}
         <div className="ending-monologue-container">
           <p className="ending-monologue">
-            {typedText}
-            {!isTypingComplete && <span className="ending-cursor" />}
+            {monologue}
+            {!monologueComplete && <span className="ending-cursor" />}
           </p>
         </div>
 
-        {/* 重新开始按钮 */}
-        {isTypingComplete && (
+        {/* 流式结束后显示重新开始按钮 */}
+        {monologueComplete && (
           <div className="ending-actions" style={{ marginTop: '3rem', textAlign: 'center' }}>
             <button className="ending-btn" onClick={handleRestart}>
               重新开始
@@ -65,7 +41,7 @@ export default function Ending({ stats, monologue, deviceInfo, phase }) {
         )}
 
       </div>
-      
+
       {/* 噪点背景层 */}
       <div className="ending-noise" />
     </div>

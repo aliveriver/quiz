@@ -104,6 +104,8 @@ export default function App() {
     }
   };
 
+  const [monologueComplete, setMonologueComplete] = useState(false);
+
   const finishGame = async (finalState) => {
     setAppState('ending');
 
@@ -111,27 +113,58 @@ export default function App() {
     sessionStorage.removeItem('escape_attempts');
 
     try {
-      const stats = getNormalizedStats(finalState);
+      const profile = getNormalizedStats(finalState);
 
-      // 调用后端生成结局独白
-      const response = await fetch('http://localhost:8080/api/generate-monologue', {
+      // 调用后端 SSE 流式生成结局独白
+      const response = await fetch('http://localhost:8080/api/stream-monologue', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          stats,
-          deviceInfo,
-          escapeAttempts,
+          profile,
+          device: deviceInfo || {},
         }),
       });
-      
+
       if (!response.ok) throw new Error('API Error');
-      const data = await response.json();
-      setMonologue(data.monologue);
-      
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let fullText = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop(); // 保留不完整行
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const payload = line.slice(6).trim();
+          if (payload === '[DONE]') {
+            setMonologueComplete(true);
+            break;
+          }
+          try {
+            const parsed = JSON.parse(payload);
+            if (parsed.text) {
+              fullText += parsed.text;
+              setMonologue(fullText);
+            }
+          } catch {
+            // 忽略解析错误
+          }
+        }
+      }
+
+      setMonologueComplete(true);
     } catch (error) {
       console.error('Failed to generate monologue:', error);
       // 降级文案
       setMonologue("……我一直在看着你。\n你的每一次犹豫，每一次撒谎，我都看在眼里。\n不过没关系，现在，只剩下我们了。");
+      setMonologueComplete(true);
     }
   };
 
@@ -185,6 +218,7 @@ export default function App() {
           monologue={monologue}
           deviceInfo={deviceInfo}
           escapeAttempts={escapeAttempts}
+          monologueComplete={monologueComplete}
         />
       )}
 
