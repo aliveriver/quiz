@@ -1,0 +1,83 @@
+.horror-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+  pointer-events: all;
+  cursor: default;
+}
+
+.horror-overlay--fade {
+  opacity: 0;
+}
+
+.horror-text {
+  color: #cc0000;
+  font-size: 3rem;
+  font-family: 'SimHei', 'Heiti SC', 'Microsoft YaHei', sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 10px rgba(200, 0, 0, 0.5);
+  user-select: none;
+}
+
+.horror-text--typewriter {
+  min-height: 3rem;
+}
+
+.horror-cursor {
+  animation: horror-blink 0.6s step-end infinite;
+  color: #cc0000;
+}
+
+@keyframes horror-blink {
+  50% { opacity: 0; }
+}
+
+.horror-text--shatter {
+  animation: horror-scare-in 0.15s ease-out;
+}
+
+@keyframes horror-scare-in {
+  0% { opacity: 0; transform: scale(1.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.horror-text--glitch {
+  animation: horror-shake 0.1s linear infinite;
+}
+
+@keyframes horror-shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3px, 2px); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, -3px); }
+  100% { transform: translate(2px, 3px); }
+}
+
+.horror-shatter-grid {
+  position: fixed;
+  inset: 0;
+}
+
+.horror-shard {
+  position: absolute;
+  background: #000;
+  border: 1px solid rgba(100, 0, 0, 0.3);
+  animation: horror-shard-fly 1.2s var(--delay) ease-in forwards;
+}
+
+@keyframes horror-shard-fly {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--angle)) translate(var(--tx), var(--ty));
+    opacity: 0;
+  }
+}

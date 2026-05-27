@@ -1,9 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Warning from './components/Warning/Warning';
 import QuizCard from './components/Quiz/QuizCard';
 import ProgressBar from './components/Progress/ProgressBar';
 import MetaLayer from './components/MetaEffects/MetaLayer';
 import Ending from './components/Ending/Ending';
+import HorrorScreen from './components/HorrorScreen/HorrorScreen';
+import CornerWhisper from './components/CornerWhisper/CornerWhisper';
 import {
   createInitialState,
   applyEffects,
@@ -36,6 +38,57 @@ export default function App() {
   const [conflictCount, setConflictCount] = useState(0);
   const [showConflictWarning, setShowConflictWarning] = useState(false);
 
+  // 刷新追踪 & 恐怖效果
+  const [horrorType, setHorrorType] = useState(null);
+  const [horrorText, setHorrorText] = useState('');
+  const [showCornerWhisper, setShowCornerWhisper] = useState(false);
+  const refreshCheckedRef = useRef(false);
+
+  useEffect(() => {
+    // StrictMode 下 useEffect 会执行两次，用 ref 防止重复计数
+    if (refreshCheckedRef.current) return;
+    refreshCheckedRef.current = true;
+
+    // 检测是否曾被恐怖关闭
+    if (localStorage.getItem('horror_closed') === 'true') {
+      setShowCornerWhisper(true);
+    }
+
+    // 检测是否处于问卷进行中（刷新检测）
+    if (localStorage.getItem('quiz_started') === 'true') {
+      const count = parseInt(localStorage.getItem('refresh_count') || '0', 10) + 1;
+      localStorage.setItem('refresh_count', String(count));
+
+      if (count === 1) {
+        // 首次刷新：静默断点续答
+        setQuestions(drawQuestions(QUESTIONS_PER_ROUND));
+        setAppState('quiz');
+      } else if (count === 2) {
+        setHorrorType('typewriter');
+        setHorrorText('亲爱的，你以为刷新就能逃脱吗？');
+        setQuestions(drawQuestions(QUESTIONS_PER_ROUND));
+        setAppState('quiz');
+      } else if (count >= 3) {
+        setHorrorType('shatter');
+        setHorrorText('不会让你逃掉的，亲爱的');
+      }
+    }
+  }, []);
+
+  const handleHorrorDone = () => {
+    if (horrorType === 'shatter') {
+      localStorage.setItem('horror_closed', 'true');
+      localStorage.removeItem('quiz_started');
+      localStorage.removeItem('refresh_count');
+      // 尝试关闭页面，若浏览器阻止则跳转空白
+      window.close();
+      setTimeout(() => { window.location.href = 'about:blank'; }, 200);
+      return;
+    }
+    setHorrorType(null);
+    setHorrorText('');
+  };
+
   // 配置: 冲突警告阈值
   const CONFLICT_WARNING_THRESHOLD = 3;
 
@@ -43,7 +96,8 @@ export default function App() {
     setMetaEnabled(!disableMeta);
     setQuestions(drawQuestions(QUESTIONS_PER_ROUND));
     setAppState('quiz');
-    
+    localStorage.setItem('quiz_started', 'true');
+
     // 提前在后台收集设备信息用于结局
     collectDeviceInfo().then(info => setDeviceInfo(info));
   };
@@ -111,6 +165,8 @@ export default function App() {
 
     // 清除逃离次数记录
     sessionStorage.removeItem('escape_attempts');
+    localStorage.removeItem('quiz_started');
+    localStorage.removeItem('refresh_count');
 
     try {
       const profile = getNormalizedStats(finalState);
@@ -170,6 +226,12 @@ export default function App() {
 
   return (
     <>
+      {horrorType && (
+        <HorrorScreen type={horrorType} text={horrorText} onDone={handleHorrorDone} />
+      )}
+
+      {showCornerWhisper && <CornerWhisper />}
+
       {appState === 'warning' && (
         <Warning
           onStart={() => handleStart(false)}
