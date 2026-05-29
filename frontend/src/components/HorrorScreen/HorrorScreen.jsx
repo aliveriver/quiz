@@ -5,12 +5,14 @@ import './HorrorScreen.css';
  * 恐怖黑屏组件
  * type: 'typewriter' — 打字机逐字显示文本后回调 onDone
  * type: 'shatter' — 文字瞬间出现 → 屏幕破碎 → 回调 onDone
+ * type: 'perfunctory' — 网页卡死(隐藏指针) → 题目像沙子掉落 → 中央敲字 → 回调 onDone
  */
-export default function HorrorScreen({ type, text, onDone }) {
+export default function HorrorScreen({ type, text, sandText = '', onDone }) {
   const [displayedText, setDisplayedText] = useState('');
   const [fadingOut, setFadingOut] = useState(false);
   const [shattering, setShattering] = useState(false);
   const [glitching, setGlitching] = useState(false);
+  const [sandFalling, setSandFalling] = useState(false);
   const timerRef = useRef(null);
 
   const COLS = 8;
@@ -32,6 +34,19 @@ export default function HorrorScreen({ type, text, onDone }) {
       };
     });
   }, []);
+
+  // 将题目文本拆成单字"沙粒"，每个字随机重力下落参数
+  const sandChars = useMemo(() => {
+    const chars = (sandText || '问卷').split('');
+    return chars.map((ch, i) => ({
+      id: i,
+      ch: ch === ' ' ? ' ' : ch,
+      tx: `${(Math.random() - 0.5) * 240}px`,
+      rot: `${(Math.random() - 0.5) * 540}deg`,
+      delay: `${i * 0.04 + Math.random() * 0.3}s`,
+      dur: `${1.6 + Math.random() * 1.4}s`,
+    }));
+  }, [sandText]);
 
   useEffect(() => {
     const blockKeys = (e) => { e.preventDefault(); e.stopPropagation(); };
@@ -69,10 +84,43 @@ export default function HorrorScreen({ type, text, onDone }) {
       const t3 = setTimeout(() => onDone?.(), 4500);
       return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
     }
+
+    if (type === 'perfunctory') {
+      // 阶段 1: 网页"卡死"——画面凝固、指针隐藏（覆盖层默认即冻结输入）。停顿一下制造卡死感。
+      // 阶段 2: 题目文字像沙子一样掉落
+      const tSand = setTimeout(() => setSandFalling(true), 1400);
+
+      // 阶段 3: 沙子落完后，中央缓慢敲出质问文字
+      let typeTimer = null;
+      const tType = setTimeout(() => {
+        let i = 0;
+        typeTimer = setInterval(() => {
+          if (i < text.length) {
+            setDisplayedText(text.slice(0, i + 1));
+            i++;
+          } else {
+            clearInterval(typeTimer);
+            // 阶段 4: 停留后关闭网页
+            setTimeout(() => {
+              setFadingOut(true);
+              setTimeout(() => onDone?.(), 1200);
+            }, 2600);
+          }
+        }, 220); // 缓慢敲字
+      }, 3400);
+
+      return () => {
+        clearTimeout(tSand);
+        clearTimeout(tType);
+        if (typeTimer) clearInterval(typeTimer);
+      };
+    }
   }, [type, text, onDone]);
 
   return (
-    <div className={`horror-overlay ${fadingOut ? 'horror-overlay--fade' : ''}`}>
+    <div
+      className={`horror-overlay ${fadingOut ? 'horror-overlay--fade' : ''} ${type === 'perfunctory' ? 'horror-overlay--frozen' : ''}`}
+    >
       {type === 'typewriter' && (
         <div className="horror-text horror-text--typewriter">
           {displayedText}<span className="horror-cursor">|</span>
@@ -104,6 +152,35 @@ export default function HorrorScreen({ type, text, onDone }) {
             />
           ))}
         </div>
+      )}
+
+      {type === 'perfunctory' && (
+        <>
+          {/* 题目像沙子一样掉落 */}
+          <div className="horror-sand">
+            {sandChars.map((c) => (
+              <span
+                key={c.id}
+                className={`horror-sand-char ${sandFalling ? 'horror-sand-char--fall' : ''}`}
+                style={{
+                  '--tx': c.tx,
+                  '--rot': c.rot,
+                  '--delay': c.delay,
+                  '--dur': c.dur,
+                }}
+              >
+                {c.ch === ' ' ? ' ' : c.ch}
+              </span>
+            ))}
+          </div>
+
+          {/* 中央缓慢敲出的质问文字 */}
+          {displayedText && (
+            <div className="horror-text horror-text--accuse">
+              {displayedText}<span className="horror-cursor">|</span>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

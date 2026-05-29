@@ -44,6 +44,15 @@ export default function App() {
   const [showCornerWhisper, setShowCornerWhisper] = useState(false);
   const refreshCheckedRef = useRef(false);
 
+  // 敷衍检测：连续点同一选项 + 过题极快
+  const perfunctoryRef = useRef({
+    lastOption: null,   // 上一次选择的选项下标
+    streak: 0,          // 连续点同一选项且很快的次数
+    lastAnswerTime: 0,  // 上一题回答时间戳
+  });
+  const PERFUNCTORY_FAST_MS = 1500;  // 小于此间隔视为"过题很快"
+  const PERFUNCTORY_THRESHOLD = 3;   // 超过此次数触发演出
+
   useEffect(() => {
     // StrictMode 下 useEffect 会执行两次，用 ref 防止重复计数
     if (refreshCheckedRef.current) return;
@@ -76,7 +85,7 @@ export default function App() {
   }, []);
 
   const handleHorrorDone = () => {
-    if (horrorType === 'shatter') {
+    if (horrorType === 'shatter' || horrorType === 'perfunctory') {
       localStorage.setItem('horror_closed', 'true');
       localStorage.removeItem('quiz_started');
       localStorage.removeItem('refresh_count');
@@ -103,6 +112,28 @@ export default function App() {
   };
 
   const handleAnswerSelect = useCallback((optionIndex, optionData) => {
+    // 0. 敷衍检测：连续点击同一固定选项 + 过题速度极快
+    const now = Date.now();
+    const p = perfunctoryRef.current;
+    const fast = p.lastAnswerTime !== 0 && (now - p.lastAnswerTime) < PERFUNCTORY_FAST_MS;
+    const sameOption = p.lastOption === optionIndex;
+
+    if (fast && sameOption) {
+      p.streak += 1;
+    } else {
+      p.streak = 0;
+    }
+    p.lastOption = optionIndex;
+    p.lastAnswerTime = now;
+
+    if (p.streak >= PERFUNCTORY_THRESHOLD) {
+      p.streak = 0;
+      // 触发"敷衍"演出：网页卡死 → 题目像沙子掉落 → 中央敲字 → 关闭
+      setHorrorType('perfunctory');
+      setHorrorText('你连看都不看一眼，是在敷衍我吗？');
+      return;
+    }
+
     // 1. 态度冲突检测
     const conflictResult = detectConflict(gameState.history, optionData.attitude_tag);
     
@@ -227,7 +258,12 @@ export default function App() {
   return (
     <>
       {horrorType && (
-        <HorrorScreen type={horrorType} text={horrorText} onDone={handleHorrorDone} />
+        <HorrorScreen
+          type={horrorType}
+          text={horrorText}
+          sandText={horrorType === 'perfunctory' ? (questions[currentQuestionIndex]?.question || '') : ''}
+          onDone={handleHorrorDone}
+        />
       )}
 
       {showCornerWhisper && <CornerWhisper />}

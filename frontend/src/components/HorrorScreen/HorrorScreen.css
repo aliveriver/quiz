@@ -15,6 +15,15 @@
   opacity: 0;
 }
 
+/* 敷衍演出：网页"卡死"——强制隐藏系统鼠标指针，屏蔽一切交互 */
+.horror-overlay--frozen,
+.horror-overlay--frozen * {
+  cursor: none !important;
+}
+.horror-overlay--frozen {
+  pointer-events: all;
+}
+
 .horror-text {
   color: #cc0000;
   font-size: 3rem;
@@ -80,4 +89,68 @@
     transform: rotate(var(--angle)) translate(var(--tx), var(--ty));
     opacity: 0;
   }
+}
+
+/* ===== 敷衍演出：题目像沙子掉落 ===== */
+.horror-sand {
+  position: fixed;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.05em;
+  pointer-events: none;
+}
+
+.horror-sand-char {
+  display: inline-block;
+  color: rgba(220, 220, 220, 0.85);
+  font-size: 1.8rem;
+  font-family: 'SimHei', 'Heiti SC', 'Microsoft YaHei', sans-serif;
+  letter-spacing: 0.04em;
+  white-space: pre;
+  will-change: transform, opacity, filter;
+}
+
+/* 重力下落：加速下坠 + 旋转 + 渐隐崩解 */
+.horror-sand-char--fall {
+  animation: horror-sand-fall var(--dur) var(--delay) cubic-bezier(0.6, 0, 0.9, 0.3) forwards;
+}
+
+@keyframes horror-sand-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  70% {
+    opacity: 0.8;
+    filter: blur(0.5px);
+  }
+  100% {
+    transform: translate(var(--tx), 90vh) rotate(var(--rot));
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+/* ===== 敷衍演出：中央缓慢敲出的质问 ===== */
+.horror-text--accuse {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 80vw;
+  font-size: 2rem;
+  color: #cc0000;
+  animation: horror-accuse-in 0.6s ease-out;
+}
+
+@keyframes horror-accuse-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
