@@ -3,6 +3,7 @@ import Warning from './components/Warning/Warning';
 import QuizCard from './components/Quiz/QuizCard';
 import ProgressBar from './components/Progress/ProgressBar';
 import MetaLayer from './components/MetaEffects/MetaLayer';
+import TabAwayWatcher from './components/MetaEffects/TabAwayWatcher';
 import Ending from './components/Ending/Ending';
 import HorrorScreen from './components/HorrorScreen/HorrorScreen';
 import CornerWhisper from './components/CornerWhisper/CornerWhisper';
@@ -44,13 +45,12 @@ export default function App() {
   const [showCornerWhisper, setShowCornerWhisper] = useState(false);
   const refreshCheckedRef = useRef(false);
 
-  // 敷衍检测：连续点同一选项 + 过题极快
+  // 敷衍检测：过题速度极快（不看题秒选）
   const perfunctoryRef = useRef({
-    lastOption: null,   // 上一次选择的选项下标
-    streak: 0,          // 连续点同一选项且很快的次数
+    streak: 0,          // 连续"过题很快"的次数
     lastAnswerTime: 0,  // 上一题回答时间戳
   });
-  const PERFUNCTORY_FAST_MS = 1500;  // 小于此间隔视为"过题很快"
+  const PERFUNCTORY_FAST_MS = 1500;  // 小于此间隔视为"过题很快/敷衍"
   const PERFUNCTORY_THRESHOLD = 3;   // 超过此次数触发演出
 
   useEffect(() => {
@@ -98,6 +98,20 @@ export default function App() {
     setHorrorText('');
   };
 
+  // 切屏重度惩罚：清空所有题目与选项
+  const handleTabHeavyPunish = useCallback(() => {
+    setQuestions([]);
+  }, []);
+
+  // 强制关闭页面（切屏重度演出结束）
+  const forceClosePage = useCallback(() => {
+    localStorage.setItem('horror_closed', 'true');
+    localStorage.removeItem('quiz_started');
+    localStorage.removeItem('refresh_count');
+    window.close();
+    setTimeout(() => { window.location.href = 'about:blank'; }, 200);
+  }, []);
+
   // 配置: 冲突警告阈值
   const CONFLICT_WARNING_THRESHOLD = 3;
 
@@ -112,18 +126,16 @@ export default function App() {
   };
 
   const handleAnswerSelect = useCallback((optionIndex, optionData) => {
-    // 0. 敷衍检测：连续点击同一固定选项 + 过题速度极快
+    // 0. 敷衍检测：过题速度极快（不看题秒选）
     const now = Date.now();
     const p = perfunctoryRef.current;
     const fast = p.lastAnswerTime !== 0 && (now - p.lastAnswerTime) < PERFUNCTORY_FAST_MS;
-    const sameOption = p.lastOption === optionIndex;
 
-    if (fast && sameOption) {
+    if (fast) {
       p.streak += 1;
     } else {
       p.streak = 0;
     }
-    p.lastOption = optionIndex;
     p.lastAnswerTime = now;
 
     if (p.streak >= PERFUNCTORY_THRESHOLD) {
@@ -277,6 +289,11 @@ export default function App() {
 
       {appState === 'quiz' && (
         <>
+          <TabAwayWatcher
+            active={metaEnabled}
+            onHeavyPunish={handleTabHeavyPunish}
+            onClose={forceClosePage}
+          />
           <ProgressBar
             current={currentQuestionIndex + 1}
             total={questions.length}

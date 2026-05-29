@@ -1,0 +1,156 @@
+/* TabAwayWatcher - 切屏惩罚演出 */
+
+/* ===== 中度：递进破碎覆盖层（SVG 玻璃裂纹）===== */
+.tab-crack {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  pointer-events: none;
+  /* 撞击瞬间整屏猛地一震，然后回稳 */
+  animation: tab-crack-impact 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  /* 撞击点周围轻微压暗，模拟应力 */
+  background: radial-gradient(
+    circle at 50% 44%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+}
+
+.tab-crack-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* 裂纹线条：用 stroke-dash 做"瞬间炸裂蔓延"的描边动画 */
+.crack-stroke {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: crack-draw 0.18s ease-out var(--draw-delay, 0s) forwards;
+}
+
+.crack-stroke--main {
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 1.4px;
+  filter: drop-shadow(0 0 1px rgba(180, 210, 255, 0.6));
+}
+
+.crack-stroke--fine {
+  stroke: rgba(210, 225, 255, 0.5);
+  stroke-width: 0.7px;
+}
+
+@keyframes crack-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.crack-impact {
+  fill: #fff;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: crack-impact-flash 0.5s ease-out forwards;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+}
+
+@keyframes crack-impact-flash {
+  0% { opacity: 0; transform: scale(2.4); }
+  18% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.85; transform: scale(1); }
+}
+
+/* 撞击震屏：先重击位移，迅速收敛 */
+@keyframes tab-crack-impact {
+  0%   { transform: translate(0, 0); }
+  6%   { transform: translate(7px, -5px); }
+  12%  { transform: translate(-6px, 6px); }
+  20%  { transform: translate(5px, 3px); }
+  30%  { transform: translate(-4px, -3px); }
+  42%  { transform: translate(3px, 2px); }
+  56%  { transform: translate(-2px, 1px); }
+  72%  { transform: translate(1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* 等级递进：裂纹整体亮度 / 压暗程度 */
+.tab-crack--1 { opacity: 0.85; }
+.tab-crack--2 { opacity: 0.92; }
+.tab-crack--3 {
+  opacity: 1;
+  background: radial-gradient(circle at 50% 44%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,0.28) 100%);
+}
+.tab-crack--4 {
+  opacity: 1;
+  background: radial-gradient(circle at 50% 44%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 18%, rgba(10,0,0,0.4) 100%);
+}
+
+/* ===== 中度：右下角隐约质问 ===== */
+.tab-whisper {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 820;
+  pointer-events: none;
+  color: rgba(200, 40, 60, 0.0);
+  font-size: 0.95rem;
+  font-family: 'STKaiti', 'KaiTi', 'SimHei', serif;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px rgba(200, 0, 0, 0.4);
+  animation: tab-whisper-life 4.2s ease-in-out forwards;
+}
+
+@keyframes tab-whisper-life {
+  0% { opacity: 0; transform: translateY(8px); }
+  20% { opacity: 0.55; transform: translateY(0); }
+  75% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
+/* ===== 重度：横向逐行刷满的红字 ===== */
+.tab-heavy {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  animation: tab-heavy-in 0.25s ease-out forwards;
+}
+
+@keyframes tab-heavy-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.tab-heavy-line {
+  flex: 0 0 auto;
+  width: 100%;
+  line-height: 1.15;
+  color: #d00000;
+  font-family: 'SimHei', 'Heiti SC', 'Microsoft YaHei', sans-serif;
+  font-weight: bold;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 6px rgba(220, 0, 0, 0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+  /* 每行从左侧刷入 */
+  animation: tab-heavy-line-in 0.22s ease-out forwards;
+}
+
+@keyframes tab-heavy-line-in {
+  0% { opacity: 0; transform: translateX(-3%); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
