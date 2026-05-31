@@ -21,6 +21,6 @@ meta:
 # 游戏流程配置
 game:
   # 每轮题目数量
-  questions_per_round: 20
+  questions_per_round: 1
   # 冲突检测滑动窗口大小
   conflict_window_size: 5

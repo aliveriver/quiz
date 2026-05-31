@@ -18,8 +18,9 @@ import { detectConflict, getConflictMessage } from './core/conflictDetector';
 import { drawQuestions, getConfrontationQuestion } from './core/questionPool';
 import { tryTriggerEffect, forceTriggerEffect } from './core/metaEngine';
 import { collectDeviceInfo } from './core/deviceProbe';
+import { runtimeConfig } from './core/runtimeConfig';
 
-const QUESTIONS_PER_ROUND = 20;
+const QUESTIONS_PER_ROUND = runtimeConfig.game.questions_per_round;
 
 export default function App() {
   const [appState, setAppState] = useState('warning'); // 警告、答题、结局
@@ -44,6 +45,29 @@ export default function App() {
   const [horrorText, setHorrorText] = useState('');
   const [showCornerWhisper, setShowCornerWhisper] = useState(false);
   const refreshCheckedRef = useRef(false);
+
+  // ── DEBUG 后门：在浏览器控制台执行 window.__debugEnding('A') 直接跳到指定结局 ──
+  useEffect(() => {
+    window.__debugEnding = (id) => {
+      const validIds = ['A', 'B', 'C', 'D', 'E', 'F'];
+      const endingId = String(id).toUpperCase();
+      if (!validIds.includes(endingId)) {
+        console.warn('[Debug] 无效结局 ID，可选值：A B C D E F');
+        return;
+      }
+      // 在 URL 上打上标记，让 Ending 组件直接读取
+      const url = new URL(window.location.href);
+      url.searchParams.set('debug_ending', endingId);
+      window.history.replaceState(null, '', url.toString());
+      // 跳过问卷直接进结局
+      setMonologue('【Debug】这是调试独白。\n结局ID：' + endingId);
+      setMonologueComplete(true);
+      setAppState('ending');
+      console.info('[Debug] 已跳转到结局', endingId);
+    };
+    console.info('[Debug] 结局调试后门已就绪。用法：window.__debugEnding("A") // A-F');
+    return () => { delete window.__debugEnding; };
+  }, []);
 
   // 敷衍检测：过题速度极快（不看题秒选）
   const perfunctoryRef = useRef({
@@ -334,6 +358,7 @@ export default function App() {
           deviceInfo={deviceInfo}
           escapeAttempts={escapeAttempts}
           monologueComplete={monologueComplete}
+          stats={getNormalizedStats(gameState)}
         />
       )}
 

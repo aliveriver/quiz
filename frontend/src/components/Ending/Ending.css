@@ -1,15 +1,18 @@
-/* 结局屏幕 */
+/* ════════════════════════════════════════════════════════
+   结局演出 — 共用基础样式
+════════════════════════════════════════════════════════ */
 
 .ending-screen {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--phase-bg-primary);
-  padding: var(--space-8) var(--space-4);
+  padding: 2rem 1rem;
   position: relative;
   overflow: hidden;
-  animation: fadeIn 2s ease forwards;
+  animation: fadeIn 1.5s ease forwards;
+  background: #0a0a0f;
+  color: #e0e0e0;
 }
 
 .ending-loading {
@@ -18,23 +21,30 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-6);
-  background: var(--phase-bg-primary);
-  color: var(--phase-text-muted);
+  gap: 1.5rem;
+  background: #0a0a0f;
+  color: #666;
+}
+
+.ending-loading-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: #666;
+  padding: 3rem;
 }
 
 .ending-spinner {
   width: 32px;
   height: 32px;
-  border: 2px solid var(--phase-border);
-  border-top-color: var(--phase-accent);
+  border: 2px solid #333;
+  border-top-color: #e86bad;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .ending-content {
   max-width: 42rem;
@@ -43,167 +53,677 @@
   z-index: 10;
 }
 
-/* 独白 */
 .ending-monologue-container {
-  min-height: 16rem;
+  min-height: 14rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: 2rem;
 }
 
 .ending-monologue {
-  font-size: var(--text-lg);
-  line-height: var(--leading-relaxed);
-  color: var(--phase-text-primary);
+  font-size: 1.1rem;
+  line-height: 2;
+  color: #e0e0e0;
   text-align: center;
   white-space: pre-wrap;
-  transition: color 1s ease;
-}
-
-[data-phase="breaking"] .ending-monologue {
-  color: var(--phase-accent);
-  text-shadow: 0 0 12px var(--phase-accent-glow);
 }
 
 .ending-cursor {
   display: inline-block;
   width: 2px;
   height: 1.2em;
-  background: var(--phase-accent);
+  background: currentColor;
   vertical-align: text-bottom;
   margin-left: 2px;
-  animation: typewriter-cursor 1s infinite;
+  animation: blink 1s infinite;
 }
 
-/* 统计区域 */
-.ending-stats {
-  opacity: 0;
-  transform: translateY(2rem);
-  transition: all 1.5s var(--ease-out, ease);
-  pointer-events: none;
-}
+@keyframes blink { 50% { opacity: 0; } }
 
-.ending-stats--visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
-}
-
-.ending-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--phase-border-hover),
-    transparent
-  );
-  margin-bottom: var(--space-8);
-}
-
-.ending-stats-title {
-  text-align: center;
-  font-size: var(--text-sm);
-  color: var(--phase-text-muted);
-  letter-spacing: 0.2em;
-  margin-bottom: var(--space-8);
-}
-
-.ending-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6) var(--space-10);
-  margin-bottom: var(--space-12);
-}
-
-/* 统计条目 */
-.ending-stat-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.ending-stat-label {
-  font-size: var(--text-sm);
-  color: var(--phase-text-secondary);
-  font-weight: var(--weight-medium);
-}
-
-.ending-stat-bar-container {
-  width: 100%;
-  height: 4px;
-  background: var(--phase-bg-secondary);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.ending-stat-bar {
-  height: 100%;
-  width: 0; /* 通过 inline style 动画展开 */
-  background: var(--phase-text-muted);
-  border-radius: var(--radius-full);
-  transition: width 1.5s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1));
-}
-
-/* 统计强度变化 */
-.ending-stat--high .ending-stat-bar {
-  background: var(--phase-accent);
-  box-shadow: 0 0 8px var(--phase-accent-glow);
-}
-
-.ending-stat--medium .ending-stat-bar {
-  background: var(--phase-accent-secondary);
-}
-
-/* 按钮 */
-.ending-actions {
-  display: flex;
-  justify-content: center;
-}
-
-.ending-btn {
-  padding: var(--space-3) var(--space-8);
-  border: 1px solid var(--phase-border);
-  background: transparent;
-  color: var(--phase-text-secondary);
-  border-radius: var(--radius-full);
-  font-size: var(--text-sm);
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
-}
-
-.ending-btn:hover {
-  background: var(--phase-accent-soft);
-  color: var(--phase-text-primary);
-  border-color: var(--phase-accent);
-}
-
-/* 背景噪点 */
 .ending-noise {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-[data-phase="breaking"] .ending-noise {
-  opacity: 0.08;
-  mix-blend-mode: overlay;
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ════════════════════════════════════════════════════════
+   结局 A — 溺爱窒息线（粉色 / 花瓣 / 合同）
+════════════════════════════════════════════════════════ */
+
+.ending-a {
+  background: radial-gradient(ellipse at center, #1a0a14 0%, #0a0508 100%);
 }
+
+/* 花瓣雨 */
+.ending-a-petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  left: calc(var(--i) * 5.8%);
+  width: 10px;
+  height: 10px;
+  background: rgba(232, 107, 173, 0.6);
+  border-radius: 50% 0 50% 0;
+  animation: petalFall calc(4s + var(--i) * 0.3s) linear infinite;
+  animation-delay: calc(var(--i) * -0.4s);
+}
+
+@keyframes petalFall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* 合同 */
+.ending-a-contract {
+  background: rgba(255, 240, 248, 0.04);
+  border: 1px solid rgba(232, 107, 173, 0.3);
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.ending-a-contract-title {
+  font-size: 1.4rem;
+  color: #f0aed0;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.2em;
+}
+
+.ending-a-evidence {
+  text-align: left;
+  background: rgba(232, 107, 173, 0.05);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ending-a-evidence-title {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-bottom: 0.8rem;
+}
+
+.ending-a-evidence ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ending-a-evidence li {
+  font-size: 0.9rem;
+  color: #ccc;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.ending-a-evidence li::before {
+  content: '♥';
+  position: absolute;
+  left: 0;
+  color: #e86bad;
+  font-size: 0.7rem;
+  top: 0.15em;
+}
+
+.ending-a-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 3rem;
+}
+
+.ending-a-btn-accept {
+  padding: 0.8rem 3rem;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #e86bad, #c94a8c);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(232, 107, 173, 0.4);
+}
+
+.ending-a-btn-accept:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(232, 107, 173, 0.6);
+}
+
+.ending-a-btn-reject {
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  background: transparent;
+  color: #555;
+  border: 1px solid #444;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.ending-a-accepted {
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+.ending-a-big {
+  font-size: 2rem;
+  color: #f0aed0;
+  margin-bottom: 1rem;
+}
+
+.ending-a-sub {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+/* ════════════════════════════════════════════════════════
+   结局 B — 寄生共生线（绿藤蔓 / UI溶解）
+════════════════════════════════════════════════════════ */
+
+.ending-b {
+  background: radial-gradient(ellipse at center, #050f08 0%, #020705 100%);
+  transition: filter 2s ease;
+}
+
+.ending-b--dissolved {
+  filter: blur(0.5px) hue-rotate(10deg);
+}
+
+.ending-b-vines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vine {
+  position: absolute;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, rgba(80, 200, 120, 0.5), transparent);
+  border-radius: 3px;
+  animation: vineGrow calc(3s + var(--i) * 0.5s) ease-in-out infinite alternate;
+  left: calc(var(--i) * 8.5%);
+  bottom: 0;
+  height: 0;
+  transform-origin: bottom center;
+}
+
+@keyframes vineGrow {
+  to { height: calc(20% + var(--i) * 8%); opacity: 0.7; }
+}
+
+.ending-b--dissolved .vine {
+  opacity: 0.9;
+  animation-duration: 1.5s;
+}
+
+.ending-b-pwa {
+  margin-top: 2rem;
+  text-align: center;
+  color: #7ecf90;
+  line-height: 1.8;
+  animation: fadeIn 1s ease;
+}
+
+.ending-b-pwa-btn {
+  margin-top: 1.5rem;
+  padding: 0.7rem 2rem;
+  border: 1px solid #3a8a50;
+  background: rgba(80, 200, 120, 0.1);
+  color: #7ecf90;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.ending-b-pwa-btn:hover {
+  background: rgba(80, 200, 120, 0.2);
+  box-shadow: 0 0 20px rgba(80, 200, 120, 0.3);
+}
+
+/* ════════════════════════════════════════════════════════
+   结局 C — 偏执囚禁线（白屏 CAPTCHA 死循环）
+════════════════════════════════════════════════════════ */
+
+.ending-c {
+  background: #0a0a0f;
+}
+
+.ending-c--white {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.ending-c--white .ending-monologue {
+  color: #333;
+}
+
+.ending-c-captcha {
+  background: white;
+  color: #333;
+  border-radius: 4px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  padding: 1.5rem;
+  width: min(400px, 95vw);
+  z-index: 20;
+}
+
+.ending-c-captcha-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #555;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.ending-c-captcha-prompt {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.ending-c-captcha-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+
+.ending-c-captcha-cell {
+  aspect-ratio: 1;
+  background: #e8e8e8;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #555;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.3rem;
+  word-break: break-all;
+  transition: border-color 0.15s;
+  user-select: none;
+}
+
+.ending-c-captcha-cell.selected {
+  border-color: #1a73e8;
+  background: #e8f0fe;
+}
+
+.ending-c-captcha-fail {
+  color: #d32f2f;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.ending-c-captcha-btn {
+  width: 100%;
+  padding: 0.6rem;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.ending-c-captcha-btn:hover { background: #1557b0; }
+
+.ending-c-captcha-footer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  margin-top: 0.8rem;
+}
+
+/* ════════════════════════════════════════════════════════
+   结局 D — 信息茧房线（假微博 / 重定向动画）
+════════════════════════════════════════════════════════ */
+
+/* 结局 D 基础层 */
+.ending-d {
+  background: #fafafa;
+  color: #333;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 键盘劫持阶段容器 */
+.ending-d-hijack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 520px;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.ending-d-hijack-label {
+  font-size: 1rem;
+  color: #666;
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* 输入框外壳 */
+.ending-d-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ending-d-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 1.2rem;
+  font-size: 1.15rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  color: #222;
+  outline: none;
+  caret-color: transparent;    /* 隐藏真实光标，用伪光标替代 */
+  font-family: inherit;
+  letter-spacing: 0.06em;
+  transition: border-color 0.3s;
+}
+
+.ending-d-input:focus {
+  border-bottom-color: #888;
+}
+
+/* 闪烁光标 */
+.ending-d-input-cursor {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  height: 1.2em;
+  background: #555;
+  animation: typewriter-cursor 1s infinite;
+}
+
+/* 情话打印完成后的尾句 */
+.ending-d-done {
+  font-size: 0.85rem;
+  color: #aaa;
+  letter-spacing: 0.08em;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+/* ════════════════════════════════════════════════════════
+   结局 E — 矛盾崩溃线（红色弹窗 / 闪烁）
+════════════════════════════════════════════════════════ */
+
+.ending-e {
+  background: #0a0a0f;
+}
+
+.ending-e--flicker {
+  animation: flickerBg 0.5s ease 3;
+}
+
+@keyframes flickerBg {
+  0%, 100% { background: #0a0a0f; }
+  50% { background: #1a0000; }
+}
+
+.ending-e-popup {
+  position: fixed;
+  background: #c0392b;
+  color: white;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 4px 20px rgba(192, 57, 43, 0.5);
+  z-index: 200;
+  min-width: 200px;
+  max-width: 260px;
+  animation: popupIn 0.3s ease;
+}
+
+@keyframes popupIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.ending-e-popup-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.ending-e-popup p {
+  margin: 0 0 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.ending-e-popup button {
+  float: right;
+  padding: 0.2rem 0.8rem;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.ending-e-apology {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  z-index: 300;
+  animation: fadeIn 0.8s ease;
+}
+
+.ending-e-apology > p {
+  font-size: 1.3rem;
+  color: #f0a0a0;
+  text-align: center;
+}
+
+.ending-e-apology-input {
+  width: min(480px, 90vw);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #800;
+  border-radius: 8px;
+  color: #eee;
+  padding: 1rem;
+  font-size: 0.95rem;
+  resize: none;
+  line-height: 1.6;
+}
+
+.ending-e-apology-btn {
+  padding: 0.7rem 2.5rem;
+  background: #8b0000;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.ending-e-apology-btn:hover { background: #a00000; }
+
+/* ════════════════════════════════════════════════════════
+   结局 F — 同归于尽线（黑屏 / 控制台 / DOM溶解）
+════════════════════════════════════════════════════════ */
+
+.ending-f {
+  background: #000;
+  align-items: flex-start;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+}
+
+.ending-f-blank {
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ending-f--dissolve {
+  animation: burnOut 3.5s ease-in forwards;
+  transform-origin: bottom center;
+}
+
+@keyframes burnOut {
+  0%   {
+    opacity: 1;
+    filter: none;
+    clip-path: inset(0 0 0 0);
+  }
+  15%  {
+    filter: brightness(1.4) sepia(0.6) hue-rotate(-20deg) saturate(3);
+  }
+  35%  {
+    filter: brightness(2) sepia(1) hue-rotate(-30deg) saturate(6) contrast(1.8);
+    clip-path: inset(0 0 0 0);
+  }
+  55%  {
+    filter: brightness(3) sepia(1) hue-rotate(-40deg) saturate(8) blur(1px) contrast(2);
+    clip-path: inset(0 0 20% 0);
+    opacity: 1;
+  }
+  75%  {
+    filter: brightness(4) sepia(1) hue-rotate(-50deg) saturate(10) blur(4px) contrast(3);
+    clip-path: inset(0 0 55% 0);
+    opacity: 0.8;
+  }
+  90%  {
+    filter: brightness(5) blur(10px) opacity(0.4);
+    clip-path: inset(0 0 85% 0);
+    opacity: 0.3;
+  }
+  100% {
+    filter: brightness(6) blur(20px);
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
+}
+
+.ending-f-console {
+  width: 100%;
+  max-width: 720px;
+  margin: 2rem auto;
+  background: #0d0d0d;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 60, 60, 0.1);
+}
+
+.ending-f-console-header {
+  background: #222;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1px solid #333;
+}
+
+.ending-f-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.ending-f-dot.red    { background: #ff5f56; }
+.ending-f-dot.yellow { background: #ffbd2e; }
+.ending-f-dot.green  { background: #27c93f; }
+
+.ending-f-console-body {
+  padding: 1rem 1.5rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ending-f-log-line {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  animation: logAppear 0.3s ease;
+}
+
+@keyframes logAppear {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.ending-f-timestamp {
+  color: #555;
+  flex-shrink: 0;
+}
+
+.ending-f-log-red {
+  color: #ff4444;
+}
+
+.ending-f-log-dim {
+  color: #888;
+}
+
+.ending-f-final-line {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ff6666;
+  letter-spacing: 0.05em;
+  border-left: 2px solid #ff4444;
+  padding-left: 1rem;
+  line-height: 1.8;
+}
+
+/* ════════════════════════════════════════════════════════
+   响应式兜底
+════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  .ending-monologue-container {
-    min-height: 12rem;
-  }
-  
-  .ending-monologue {
-    font-size: var(--text-base);
-  }
-
-  .ending-stats-grid {
-    gap: var(--space-4) var(--space-6);
-  }
+  .ending-monologue { font-size: 1rem; }
+  .ending-f-console { margin: 1rem; }
+  .ending-e-popup { min-width: 160px; max-width: 200px; font-size: 0.85rem; }
 }
