@@ -15,23 +15,25 @@
   color: #e0e0e0;
 }
 
-.ending-loading {
-  min-height: 100vh;
+.hide-cursor {
+  cursor: none !important;
+}
+
+.ending-loading, .ending-loading-inline {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  background: #0a0a0f;
   color: #666;
 }
 
+.ending-loading {
+  min-height: 100vh;
+  background: #0a0a0f;
+}
+
 .ending-loading-inline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  color: #666;
   padding: 3rem;
 }
 
@@ -67,6 +69,8 @@
   color: #e0e0e0;
   text-align: center;
   white-space: pre-wrap;
+  position: relative;
+  z-index: 10;
 }
 
 .ending-cursor {
@@ -93,29 +97,53 @@
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ════════════════════════════════════════════════════════
-   结局 A — 溺爱窒息线（粉色 / 花瓣 / 合同）
+   结局 A — 溺爱窒息线
 ════════════════════════════════════════════════════════ */
 
 .ending-a {
-  background: radial-gradient(ellipse at center, #1a0a14 0%, #0a0508 100%);
+  background: radial-gradient(ellipse at center, #2e081c 0%, #0a0508 100%);
+  transition: background 2s ease;
 }
 
-/* 花瓣雨 */
+.ending-a-cursor {
+  position: fixed;
+  color: #ff3366;
+  font-size: 1.5rem;
+  pointer-events: none;
+  z-index: 99999;
+  text-shadow: 0 0 10px rgba(255, 51, 102, 0.8);
+}
+
+.ending-a-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 40%, rgba(255,20,100,0.15) 100%);
+  animation: heartbeat 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes heartbeat {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
 .ending-a-petals {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
+  filter: blur(1px);
 }
 
 .petal {
   position: absolute;
   top: -20px;
   left: calc(var(--i) * 5.8%);
-  width: 10px;
-  height: 10px;
-  background: rgba(232, 107, 173, 0.6);
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 105, 180, 0.6);
   border-radius: 50% 0 50% 0;
   animation: petalFall calc(4s + var(--i) * 0.3s) linear infinite;
   animation-delay: calc(var(--i) * -0.4s);
@@ -126,25 +154,28 @@
   100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
 
-/* 合同 */
 .ending-a-contract {
-  background: rgba(255, 240, 248, 0.04);
-  border: 1px solid rgba(232, 107, 173, 0.3);
+  background: rgba(255, 20, 100, 0.05);
+  border: 1px solid rgba(255, 105, 180, 0.4);
   border-radius: 12px;
   padding: 2.5rem;
   text-align: center;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 30px rgba(255, 20, 100, 0.2);
 }
 
 .ending-a-contract-title {
-  font-size: 1.4rem;
-  color: #f0aed0;
+  font-size: 1.5rem;
+  color: #ff99cc;
   margin-bottom: 1.5rem;
   letter-spacing: 0.2em;
 }
 
 .ending-a-evidence {
   text-align: left;
-  background: rgba(232, 107, 173, 0.05);
+  background: rgba(255, 20, 100, 0.1);
   border-radius: 8px;
   padding: 1rem 1.5rem;
   margin-bottom: 2rem;
@@ -152,7 +183,7 @@
 
 .ending-a-evidence-title {
   font-size: 0.85rem;
-  color: #aaa;
+  color: #ffccdd;
   margin-bottom: 0.8rem;
 }
 
@@ -166,9 +197,9 @@
 }
 
 .ending-a-evidence li {
-  font-size: 0.9rem;
-  color: #ccc;
-  padding-left: 1rem;
+  font-size: 0.95rem;
+  color: #ffeeff;
+  padding-left: 1.2rem;
   position: relative;
 }
 
@@ -176,8 +207,8 @@
   content: '♥';
   position: absolute;
   left: 0;
-  color: #e86bad;
-  font-size: 0.7rem;
+  color: #ff3366;
+  font-size: 0.8rem;
   top: 0.15em;
 }
 
@@ -186,68 +217,89 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  min-height: 3rem;
+  min-height: 4rem;
 }
 
 .ending-a-btn-accept {
-  padding: 0.8rem 3rem;
-  font-size: 1.1rem;
-  background: linear-gradient(135deg, #e86bad, #c94a8c);
+  padding: 1rem 4rem;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #ff3366, #cc0033);
   color: white;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.1em;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(232, 107, 173, 0.4);
+  box-shadow: 0 4px 20px rgba(255, 51, 102, 0.6);
 }
 
 .ending-a-btn-accept:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 30px rgba(232, 107, 173, 0.6);
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(255, 51, 102, 0.8);
 }
 
 .ending-a-btn-reject {
   padding: 0.4rem 1rem;
   font-size: 0.75rem;
   background: transparent;
-  color: #555;
-  border: 1px solid #444;
+  color: #888;
+  border: 1px solid #555;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.15s;
   white-space: nowrap;
 }
 
 .ending-a-accepted {
   text-align: center;
   animation: fadeIn 1s ease;
+  z-index: 100;
+  position: relative;
 }
 
 .ending-a-big {
-  font-size: 2rem;
-  color: #f0aed0;
+  font-size: 3rem;
+  color: #ff99cc;
   margin-bottom: 1rem;
+  text-shadow: 0 0 20px #ff3366;
 }
 
 .ending-a-sub {
-  color: #aaa;
-  font-size: 1rem;
+  color: #ffccdd;
+  font-size: 1.2rem;
+}
+
+.ending-a-spam {
+  position: fixed;
+  color: rgba(255, 105, 180, 0.8);
+  font-weight: bold;
+  pointer-events: none;
+  animation: fadeInOut 3s infinite;
+  z-index: 50;
+  white-space: nowrap;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
 /* ════════════════════════════════════════════════════════
-   结局 B — 寄生共生线（绿藤蔓 / UI溶解）
+   结局 B — 寄生共生线
 ════════════════════════════════════════════════════════ */
 
 .ending-b {
-  background: radial-gradient(ellipse at center, #050f08 0%, #020705 100%);
-  transition: filter 2s ease;
+  background: radial-gradient(ellipse at center, #110505 0%, #050101 100%);
 }
 
-.ending-b--dissolved {
-  filter: blur(0.5px) hue-rotate(10deg);
+.ending-b-svg-filter {
+  position: absolute;
+  pointer-events: none;
+}
+
+.ending-b--dissolved .ending-b-gooey {
+  filter: url(#goo);
+  animation: heartbeat 3s infinite alternate;
 }
 
 .ending-b-vines {
@@ -259,10 +311,10 @@
 
 .vine {
   position: absolute;
-  width: 3px;
-  background: linear-gradient(to bottom, transparent, rgba(80, 200, 120, 0.5), transparent);
-  border-radius: 3px;
-  animation: vineGrow calc(3s + var(--i) * 0.5s) ease-in-out infinite alternate;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent, rgba(200, 30, 50, 0.5), transparent);
+  border-radius: 4px;
+  animation: vineGrow calc(4s + var(--i) * 0.5s) ease-in-out infinite alternate;
   left: calc(var(--i) * 8.5%);
   bottom: 0;
   height: 0;
@@ -270,64 +322,87 @@
 }
 
 @keyframes vineGrow {
-  to { height: calc(20% + var(--i) * 8%); opacity: 0.7; }
-}
-
-.ending-b--dissolved .vine {
-  opacity: 0.9;
-  animation-duration: 1.5s;
+  to { height: calc(30% + var(--i) * 10%); opacity: 0.8; }
 }
 
 .ending-b-pwa {
   margin-top: 2rem;
   text-align: center;
-  color: #7ecf90;
+  color: #ff6b6b;
   line-height: 1.8;
   animation: fadeIn 1s ease;
+  font-size: 1.2rem;
+}
+
+.ending-b-subtext {
+  font-size: 0.9rem;
+  color: #aa4444;
 }
 
 .ending-b-pwa-btn {
   margin-top: 1.5rem;
-  padding: 0.7rem 2rem;
-  border: 1px solid #3a8a50;
-  background: rgba(80, 200, 120, 0.1);
-  color: #7ecf90;
-  border-radius: 50px;
+  padding: 0.8rem 2.5rem;
+  border: 1px solid #ff3333;
+  background: rgba(255, 50, 50, 0.1);
+  color: #ff8888;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: all 0.3s;
+  letter-spacing: 0.1em;
 }
 
 .ending-b-pwa-btn:hover {
-  background: rgba(80, 200, 120, 0.2);
-  box-shadow: 0 0 20px rgba(80, 200, 120, 0.3);
+  background: rgba(255, 50, 50, 0.3);
+  box-shadow: 0 0 30px rgba(255, 50, 50, 0.5);
+  transform: scale(1.05);
 }
 
 /* ════════════════════════════════════════════════════════
-   结局 C — 偏执囚禁线（白屏 CAPTCHA 死循环）
+   结局 C — 偏执囚禁线
 ════════════════════════════════════════════════════════ */
 
 .ending-c {
-  background: #0a0a0f;
+  background: #050505;
 }
 
-.ending-c--white {
-  background: #f5f5f5;
-  color: #333;
+.ending-c-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 50%, rgba(255, 0, 0, 0.2) 100%);
+  animation: redAlert 1.5s infinite alternate;
+  z-index: 10;
 }
 
-.ending-c--white .ending-monologue {
-  color: #333;
+@keyframes redAlert {
+  from { opacity: 0.3; }
+  to { opacity: 0.8; }
+}
+
+.ending-c-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  border: 2px solid red;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px red;
+  transition: width 0.1s, height 0.1s;
 }
 
 .ending-c-captcha {
-  background: white;
-  color: #333;
+  background: #111;
+  color: #eee;
+  border: 1px solid #333;
   border-radius: 4px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,0,0,0.2);
   padding: 1.5rem;
   width: min(400px, 95vw);
   z-index: 20;
+  position: relative;
 }
 
 .ending-c-captcha-header {
@@ -335,15 +410,15 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: #555;
-  border-bottom: 1px solid #eee;
+  color: #ff4444;
+  border-bottom: 1px solid #333;
   padding-bottom: 0.8rem;
   margin-bottom: 1rem;
 }
 
 .ending-c-captcha-prompt {
-  font-size: 0.9rem;
-  color: #444;
+  font-size: 1rem;
+  color: #ddd;
   margin-bottom: 1rem;
 }
 
@@ -356,87 +431,165 @@
 
 .ending-c-captcha-cell {
   aspect-ratio: 1;
-  background: #e8e8e8;
+  background: #222;
   border: 2px solid transparent;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  color: #555;
+  font-size: 0.8rem;
+  color: #aaa;
   cursor: pointer;
   text-align: center;
   padding: 0.3rem;
   word-break: break-all;
-  transition: border-color 0.15s;
+  transition: all 0.2s;
   user-select: none;
 }
 
 .ending-c-captcha-cell.selected {
-  border-color: #1a73e8;
-  background: #e8f0fe;
+  border-color: #ff3333;
+  background: rgba(255, 0, 0, 0.1);
+  color: #fff;
 }
 
 .ending-c-captcha-fail {
-  color: #d32f2f;
-  font-size: 0.8rem;
+  color: #ff3333;
+  font-size: 0.85rem;
   text-align: center;
   margin-bottom: 0.5rem;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 .ending-c-captcha-btn {
   width: 100%;
-  padding: 0.6rem;
-  background: #1a73e8;
+  padding: 0.8rem;
+  background: #880000;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: background 0.2s;
 }
 
-.ending-c-captcha-btn:hover { background: #1557b0; }
+.ending-c-captcha-btn:hover { background: #aa0000; }
 
 .ending-c-captcha-footer {
   text-align: center;
   font-size: 0.7rem;
-  color: #aaa;
+  color: #555;
   margin-top: 0.8rem;
 }
 
-/* ════════════════════════════════════════════════════════
-   结局 D — 信息茧房线（假微博 / 重定向动画）
-════════════════════════════════════════════════════════ */
-
-/* 结局 D 基础层 */
-.ending-d {
-  background: #fafafa;
-  color: #333;
+.ending-c-lockdown {
+  background: #aa0000;
+  color: #fff;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  animation: lockdownFlash 0.1s 5;
 }
 
-/* 键盘劫持阶段容器 */
+@keyframes lockdownFlash {
+  0% { background: #000; }
+  100% { background: #aa0000; }
+}
+
+.lockdown-glitch-bg {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 2px, transparent 2px, transparent 4px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lockdown-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.lockdown-title {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 0 #000;
+  margin-bottom: 2rem;
+}
+
+.lockdown-eye {
+  font-size: 8rem;
+  line-height: 1;
+  margin: 1rem 0;
+  animation: heartbeat 1.5s infinite;
+}
+
+.lockdown-big {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+/* ════════════════════════════════════════════════════════
+   结局 D — 信息茧房线
+════════════════════════════════════════════════════════ */
+
+.ending-d {
+  background: #ffffff;
+  color: #000000;
+}
+
+.ending-d-mono {
+  color: #000;
+}
+
+.ending-d-watermarks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0.03;
+  font-size: 15vw;
+  font-weight: 900;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .ending-d-hijack {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   width: 100%;
-  max-width: 520px;
+  max-width: 600px;
+  z-index: 10;
+  position: relative;
   animation: fadeIn 1.2s ease forwards;
 }
 
-.ending-d-hijack-label {
-  font-size: 1rem;
-  color: #666;
-  letter-spacing: 0.04em;
+.ending-d-prompt {
+  font-size: 1.2rem;
+  color: #333;
+  letter-spacing: 0.05em;
   text-align: center;
-  line-height: 1.7;
 }
 
-/* 输入框外壳 */
 .ending-d-input-wrap {
   position: relative;
   width: 100%;
@@ -446,148 +599,93 @@
   width: 100%;
   box-sizing: border-box;
   padding: 1rem 1.2rem;
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   border: none;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #000;
   background: transparent;
-  color: #222;
+  color: #000;
   outline: none;
-  caret-color: transparent;    /* 隐藏真实光标，用伪光标替代 */
-  font-family: inherit;
-  letter-spacing: 0.06em;
-  transition: border-color 0.3s;
+  caret-color: transparent;
+  font-family: serif;
+  text-align: center;
+  resize: none;
 }
 
-.ending-d-input:focus {
-  border-bottom-color: #888;
-}
-
-/* 闪烁光标 */
-.ending-d-input-cursor {
+.ending-d-cursor-blink {
   position: absolute;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 1.5rem;
   width: 2px;
-  height: 1.2em;
-  background: #555;
+  height: 1.5em;
+  background: #000;
   animation: typewriter-cursor 1s infinite;
 }
 
-/* 情话打印完成后的尾句 */
-.ending-d-done {
-  font-size: 0.85rem;
-  color: #aaa;
-  letter-spacing: 0.08em;
-  text-align: center;
-  animation: fadeIn 1s ease;
+.ending-d-done-line {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 1rem;
 }
 
 /* ════════════════════════════════════════════════════════
-   结局 E — 矛盾崩溃线（红色弹窗 / 闪烁）
+   结局 E — 矛盾崩溃线
 ════════════════════════════════════════════════════════ */
 
 .ending-e {
   background: #0a0a0f;
 }
 
-.ending-e--flicker {
-  animation: flickerBg 0.5s ease 3;
+.ending-e--glitch {
+  animation: rgbSplit 0.2s infinite;
 }
 
-@keyframes flickerBg {
-  0%, 100% { background: #0a0a0f; }
-  50% { background: #1a0000; }
+@keyframes rgbSplit {
+  0% { text-shadow: -2px 0 red, 2px 0 cyan; transform: translate(1px, 1px); }
+  50% { text-shadow: 2px 0 red, -2px 0 cyan; transform: translate(-1px, -1px); }
+  100% { text-shadow: none; transform: translate(0, 0); }
 }
 
 .ending-e-popup {
   position: fixed;
-  background: #c0392b;
+  background: #cc0000;
   color: white;
-  border-radius: 4px;
+  border: 1px solid #ff3333;
+  border-radius: 0;
   padding: 1rem 1.2rem;
-  box-shadow: 0 4px 20px rgba(192, 57, 43, 0.5);
+  box-shadow: 5px 5px 0px rgba(0,0,0,0.8);
   z-index: 200;
   min-width: 200px;
   max-width: 260px;
-  animation: popupIn 0.3s ease;
-}
-
-@keyframes popupIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to   { opacity: 1; transform: scale(1); }
+  transform: translate(-50%, -50%);
 }
 
 .ending-e-popup-title {
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-weight: 900;
+  font-size: 1rem;
   margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 0.3rem;
 }
 
 .ending-e-popup p {
-  margin: 0 0 0.8rem;
-  font-size: 0.9rem;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
   line-height: 1.4;
+  font-weight: bold;
 }
 
 .ending-e-popup button {
-  float: right;
-  padding: 0.2rem 0.8rem;
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: white;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-
-.ending-e-apology {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 0, 0, 0.95);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem;
-  z-index: 300;
-  animation: fadeIn 0.8s ease;
-}
-
-.ending-e-apology > p {
-  font-size: 1.3rem;
-  color: #f0a0a0;
-  text-align: center;
-}
-
-.ending-e-apology-input {
-  width: min(480px, 90vw);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid #800;
-  border-radius: 8px;
-  color: #eee;
-  padding: 1rem;
-  font-size: 0.95rem;
-  resize: none;
-  line-height: 1.6;
-}
-
-.ending-e-apology-btn {
-  padding: 0.7rem 2.5rem;
-  background: #8b0000;
-  color: white;
+  width: 100%;
+  padding: 0.4rem;
+  background: #fff;
+  color: #cc0000;
   border: none;
-  border-radius: 50px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.2s;
 }
-
-.ending-e-apology-btn:hover { background: #a00000; }
 
 /* ════════════════════════════════════════════════════════
-   结局 F — 同归于尽线（黑屏 / 控制台 / DOM溶解）
+   结局 F — 同归于尽线
 ════════════════════════════════════════════════════════ */
 
 .ending-f {
@@ -595,69 +693,22 @@
   align-items: flex-start;
   padding: 0;
   font-family: 'Courier New', monospace;
-}
-
-.ending-f-blank {
-  min-height: 100vh;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ending-f--dissolve {
-  animation: burnOut 3.5s ease-in forwards;
-  transform-origin: bottom center;
-}
-
-@keyframes burnOut {
-  0%   {
-    opacity: 1;
-    filter: none;
-    clip-path: inset(0 0 0 0);
-  }
-  15%  {
-    filter: brightness(1.4) sepia(0.6) hue-rotate(-20deg) saturate(3);
-  }
-  35%  {
-    filter: brightness(2) sepia(1) hue-rotate(-30deg) saturate(6) contrast(1.8);
-    clip-path: inset(0 0 0 0);
-  }
-  55%  {
-    filter: brightness(3) sepia(1) hue-rotate(-40deg) saturate(8) blur(1px) contrast(2);
-    clip-path: inset(0 0 20% 0);
-    opacity: 1;
-  }
-  75%  {
-    filter: brightness(4) sepia(1) hue-rotate(-50deg) saturate(10) blur(4px) contrast(3);
-    clip-path: inset(0 0 55% 0);
-    opacity: 0.8;
-  }
-  90%  {
-    filter: brightness(5) blur(10px) opacity(0.4);
-    clip-path: inset(0 0 85% 0);
-    opacity: 0.3;
-  }
-  100% {
-    filter: brightness(6) blur(20px);
-    clip-path: inset(0 0 100% 0);
-    opacity: 0;
-  }
+  overflow: hidden;
 }
 
 .ending-f-console {
   width: 100%;
-  max-width: 720px;
+  max-width: 800px;
   margin: 2rem auto;
-  background: #0d0d0d;
+  background: #050505;
   border: 1px solid #333;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(255, 60, 60, 0.1);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+  z-index: 10;
+  position: relative;
 }
 
 .ending-f-console-header {
-  background: #222;
+  background: #1a1a1a;
   padding: 0.6rem 1rem;
   display: flex;
   align-items: center;
@@ -676,32 +727,25 @@
 .ending-f-dot.green  { background: #27c93f; }
 
 .ending-f-console-body {
-  padding: 1rem 1.5rem;
-  min-height: 300px;
+  padding: 1.5rem;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 
 .ending-f-log-line {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.85rem;
-  animation: logAppear 0.3s ease;
-}
-
-@keyframes logAppear {
-  from { opacity: 0; transform: translateX(-8px); }
-  to   { opacity: 1; transform: translateX(0); }
+  font-size: 0.95rem;
 }
 
 .ending-f-timestamp {
   color: #555;
-  flex-shrink: 0;
+  margin-right: 1rem;
 }
 
 .ending-f-log-red {
-  color: #ff4444;
+  color: #ff3333;
+  font-weight: bold;
 }
 
 .ending-f-log-dim {
@@ -709,21 +753,69 @@
 }
 
 .ending-f-final-line {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: #ff6666;
-  letter-spacing: 0.05em;
-  border-left: 2px solid #ff4444;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #ff0000;
+  border-left: 3px solid #ff0000;
   padding-left: 1rem;
-  line-height: 1.8;
 }
 
-/* ════════════════════════════════════════════════════════
-   响应式兜底
-════════════════════════════════════════════════════════ */
+/* 失去重力掉落动画 */
+.ending-f--gravity * {
+  animation: fallDown 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards !important;
+}
+
+@keyframes fallDown {
+  to { transform: translateY(150vh) rotate(45deg); opacity: 0; }
+}
+
+.ending-f-destroyed {
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ending-f-crt-off {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: crtTurnOff 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  z-index: 99999;
+}
+
+@keyframes crtTurnOff {
+  0% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1, 0.005);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0, 0.005);
+    opacity: 0;
+  }
+}
+
+.ending-f-reddot {
+  width: 4px;
+  height: 4px;
+  background: red;
+  border-radius: 50%;
+  animation: pulseDot 2s infinite;
+  box-shadow: 0 0 10px red;
+
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
 
 @media (max-width: 768px) {
   .ending-monologue { font-size: 1rem; }
   .ending-f-console { margin: 1rem; }
-  .ending-e-popup { min-width: 160px; max-width: 200px; font-size: 0.85rem; }
 }

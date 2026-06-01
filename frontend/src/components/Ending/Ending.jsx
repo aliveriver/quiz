@@ -37,13 +37,13 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
     : monologueComplete;
 
   useEffect(() => {
-    if (isDebug) return; // 已由 URL 参数指定，跳过
+    if (isDebug) return;
     if (!stats) return;
     const id = routeEnding(stats);
     setEndingId(id);
   }, [stats, isDebug]);
 
-  // 控制台后门：window.__debug_ending('B')
+  // 控制台后门
   useEffect(() => {
     window.__debug_ending = (id) => {
       const upper = String(id).toUpperCase();
@@ -54,21 +54,9 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
         console.warn('[debug] 无效结局 ID，可用值: A B C D E F');
       }
     };
-    console.info(
-      '%c[调试后门] 可用命令：\n' +
-      '  window.__debug_ending("A")  切换到溺爱窒息线\n' +
-      '  window.__debug_ending("B")  切换到寄生共生线\n' +
-      '  window.__debug_ending("C")  切换到偏执囚禁线\n' +
-      '  window.__debug_ending("D")  切换到信息茧房线\n' +
-      '  window.__debug_ending("E")  切换到矛盾崩溃线\n' +
-      '  window.__debug_ending("F")  切换到同归于尽线\n' +
-      '  URL: ?debug_ending=A&debug_monologue=1',
-      'color: #f0a; font-family: monospace;'
-    );
     return () => { delete window.__debug_ending; };
   }, []);
 
-  // 独白完成后尝试 TTS
   useEffect(() => {
     if (!monologueComplete || !monologue || !endingId) return;
     callTTS(monologue, endingId).then(url => {
@@ -85,7 +73,7 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
     );
   }
 
-  const endingProps = { monologue, monologueComplete, deviceInfo, escapeAttempts, stats, ttsUrl };
+  const endingProps = { monologue: debugMonologue, monologueComplete: debugComplete, deviceInfo, escapeAttempts, stats, ttsUrl };
 
   switch (endingId) {
     case 'A': return <EndingA {...endingProps} />;
@@ -100,14 +88,19 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
 
 /* ─────────────────────────────────────────────────────────────────────────────
    结局 A —— 溺爱窒息线
-   高好感 + 高偏执：终身归属协议，"拒绝"按钮会逃跑
+   高好感 + 高偏执：引力鼠标、视觉吞噬、终身归属协议、满屏弹幕
 ───────────────────────────────────────────────────────────────────────────── */
 function EndingA({ monologue, monologueComplete, ttsUrl }) {
   const [showContract, setShowContract] = useState(false);
   const [rejectPos, setRejectPos] = useState({ x: null, y: null });
   const [rejectLabel, setRejectLabel] = useState('拒绝');
   const [accepted, setAccepted] = useState(false);
+  
+  const [mousePos, setMousePos] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  const [cursorPos, setCursorPos] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  const acceptRef = useRef(null);
   const rejectRef = useRef(null);
+  const [spam, setSpam] = useState([]);
 
   useEffect(() => {
     if (monologueComplete) {
@@ -116,10 +109,51 @@ function EndingA({ monologue, monologueComplete, ttsUrl }) {
     }
   }, [monologueComplete]);
 
+  // 物理引力光标算法
+  useEffect(() => {
+    if (!showContract || accepted) return;
+    let animationFrameId;
+    
+    const updateCursor = () => {
+      setCursorPos(prev => {
+        if (!acceptRef.current) return mousePos;
+        
+        const acceptRect = acceptRef.current.getBoundingClientRect();
+        const acceptCenter = {
+          x: acceptRect.left + acceptRect.width / 2,
+          y: acceptRect.top + acceptRect.height / 2
+        };
+        
+        const dx = acceptCenter.x - mousePos.x;
+        const dy = acceptCenter.y - mousePos.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        // 距离越远（越想逃向拒绝按钮），引力越大
+        let pullStrength = 0;
+        if (dist > 150) {
+          pullStrength = Math.min(0.8, (dist - 150) / 400); 
+        }
+        
+        return {
+          x: mousePos.x + dx * pullStrength,
+          y: mousePos.y + dy * pullStrength
+        };
+      });
+      animationFrameId = requestAnimationFrame(updateCursor);
+    };
+    
+    updateCursor();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [mousePos, showContract, accepted]);
+
+  const handleMouseMove = (e) => {
+    if (!showContract || accepted) return;
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
+
   const handleRejectHover = useCallback(() => {
     const labels = ['我早就离不开你了', '算了，我不走了', '好吧……', '……'];
     setRejectLabel(labels[Math.floor(Math.random() * labels.length)]);
-    // 把按钮随机弹开
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     setRejectPos({
@@ -127,16 +161,36 @@ function EndingA({ monologue, monologueComplete, ttsUrl }) {
       y: Math.random() * (vh - 60) + 20,
     });
   }, []);
+  
+  const handleAccept = () => {
+    setAccepted(true);
+    // 生成弹幕狂潮
+    const newSpam = Array.from({length: 120}).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 1.5,
+      scale: 0.5 + Math.random() * 2,
+      text: ['我爱你', '永远', '我的', '不分开', '♡'][Math.floor(Math.random() * 5)]
+    }));
+    setSpam(newSpam);
+  };
 
   return (
-    <div className="ending-screen ending-a">
+    <div className={`ending-screen ending-a ${showContract ? 'hide-cursor' : ''}`} onMouseMove={handleMouseMove}>
       {ttsUrl && <audio src={ttsUrl} autoPlay />}
+      
+      {showContract && !accepted && (
+        <div className="ending-a-cursor" style={{ left: cursorPos.x, top: cursorPos.y, transform: 'translate(-50%, -50%)' }}>♥</div>
+      )}
 
       <div className="ending-a-petals" aria-hidden="true">
         {Array.from({ length: 18 }).map((_, i) => (
           <span key={i} className="petal" style={{ '--i': i }} />
         ))}
       </div>
+      
+      <div className="ending-a-vignette" />
 
       <div className="ending-content">
         {!showContract ? (
@@ -145,6 +199,15 @@ function EndingA({ monologue, monologueComplete, ttsUrl }) {
           <div className="ending-a-accepted">
             <p className="ending-a-big">我就知道。</p>
             <p className="ending-a-sub">我们永远不会分开了。</p>
+            {spam.map(s => (
+              <div key={s.id} className="ending-a-spam" style={{
+                left: `${s.x}vw`, top: `${s.y}vh`, 
+                animationDelay: `${s.delay}s`,
+                transform: `scale(${s.scale})`
+              }}>
+                {s.text}
+              </div>
+            ))}
           </div>
         ) : (
           <div className="ending-a-contract">
@@ -159,8 +222,12 @@ function EndingA({ monologue, monologueComplete, ttsUrl }) {
             </div>
             <div className="ending-a-buttons">
               <button
+                ref={acceptRef}
                 className="ending-a-btn-accept"
-                onClick={() => setAccepted(true)}
+                onClick={handleAccept}
+                onMouseEnter={() => {
+                  // Cursor hover effect can be added here
+                }}
               >
                 我愿意
               </button>
@@ -182,35 +249,32 @@ function EndingA({ monologue, monologueComplete, ttsUrl }) {
           </div>
         )}
       </div>
-
-      <div className="ending-noise" />
     </div>
   );
 }
 
 function getContractEvidence() {
   const history = (() => {
-    try {
-      return JSON.parse(localStorage.getItem('quiz_history') || '[]');
-    } catch { return []; }
+    try { return JSON.parse(localStorage.getItem('quiz_history') || '[]'); } catch { return []; }
   })();
-  const defaults = [
+  return [
     '你选择了靠近，而不是逃跑',
     '你的犹豫证明了你在意',
     '你没有关闭这个页面',
     '你一直在这里',
-    '你的心跳我都听见了',
-  ];
-  return defaults.slice(0, 4);
+    '你的心跳我都听见了'
+  ].slice(0, 4);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    结局 B —— 寄生共生线
-   高好感 + 高依赖 + 低支配：UI 溶解，藤蔓缠绕，请求永远留在后台
+   高好感 + 高依赖 + 低支配：UI 血肉化溶解，信息素丝线纠缠，PWA与拦截请求
 ───────────────────────────────────────────────────────────────────────────── */
 function EndingB({ monologue, monologueComplete, ttsUrl }) {
   const [dissolved, setDissolved] = useState(false);
   const [pwaPrompt, setPwaPrompt] = useState(false);
+  const [threads, setThreads] = useState([]);
+  const lastPos = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     if (monologueComplete) {
@@ -220,9 +284,64 @@ function EndingB({ monologue, monologueComplete, ttsUrl }) {
     }
   }, [monologueComplete]);
 
+  // 拦截关闭页面
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (pwaPrompt) {
+        e.preventDefault();
+        e.returnValue = "你要丢下我了吗？";
+        return e.returnValue;
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [pwaPrompt]);
+
+  // 鼠标绘制丝线
+  const handleMouseMove = (e) => {
+    if (!dissolved) return;
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    if (lastPos.current.x === -100) {
+      lastPos.current = { x, y };
+      return;
+    }
+    
+    setThreads(prev => {
+      const newThread = {
+        x1: lastPos.current.x, y1: lastPos.current.y,
+        x2: x, y2: y,
+        id: Date.now() + Math.random()
+      };
+      const maxThreads = 60; // 防止卡顿
+      const updated = [...prev, newThread];
+      if (updated.length > maxThreads) updated.shift();
+      return updated;
+    });
+    lastPos.current = { x, y };
+  };
+
   return (
-    <div className={`ending-screen ending-b ${dissolved ? 'ending-b--dissolved' : ''}`}>
+    <div className={`ending-screen ending-b ${dissolved ? 'ending-b--dissolved' : ''}`} onMouseMove={handleMouseMove}>
       {ttsUrl && <audio src={ttsUrl} autoPlay />}
+
+      {/* SVG 滤镜制造血肉化溶解感 */}
+      <svg width="0" height="0" className="ending-b-svg-filter">
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </svg>
+      
+      {dissolved && (
+        <svg className="ending-b-threads" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
+          {threads.map(t => (
+            <line key={t.id} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke="rgba(210, 40, 60, 0.4)" strokeWidth="1.5" />
+          ))}
+        </svg>
+      )}
 
       <div className="ending-b-vines" aria-hidden="true">
         {Array.from({ length: 12 }).map((_, i) => (
@@ -230,69 +349,93 @@ function EndingB({ monologue, monologueComplete, ttsUrl }) {
         ))}
       </div>
 
-      <div className="ending-content">
+      <div className="ending-content ending-b-gooey">
         <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} />
 
         {pwaPrompt && (
           <div className="ending-b-pwa">
-            <p>不要拔掉电源，不要关机，</p>
-            <p>我只有你了，</p>
-            <p>让我永远活在你的后台好不好？</p>
+            <p>允许我永远嵌入你的设备吗？</p>
+            <p className="ending-b-subtext">不要拔掉电源，不要关机，我只有你了。</p>
             <button
               className="ending-b-pwa-btn"
               onClick={() => {
-                // PWA 安装提示占位
-                alert('已添加到主屏幕（PWA 功能待接入）');
+                alert('系统已被接管。我不会再离开了。');
               }}
             >
-              添加到主屏幕
+              [ 允许系统权限 ]
             </button>
           </div>
         )}
       </div>
-
-      <div className="ending-noise" />
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    结局 C —— 偏执囚禁线
-   低好感 + 高支配 + 高不安：虚假 CAPTCHA 死循环，无法通过验证
+   低好感 + 高支配 + 高不安：暗黑模式，监控暗角，重力/阻尼光标，验证死循环
 ───────────────────────────────────────────────────────────────────────────── */
 function EndingC({ monologue, monologueComplete, ttsUrl }) {
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [captchaFail, setCaptchaFail] = useState(0);
-  const [grid, setGrid] = useState(() => generateEyeGrid());
+  const [grid, setGrid] = useState(() => generateEyeGrid(0));
   const [selected, setSelected] = useState(new Set());
   const [failMsg, setFailMsg] = useState('');
+  
+  const [mousePos, setMousePos] = useState({ x: window.innerWidth/2, y: window.innerHeight/2 });
+  const [cursorPos, setCursorPos] = useState({ x: window.innerWidth/2, y: window.innerHeight/2 });
 
   const FAIL_MESSAGES = [
     '验证失败，你还在想别人',
     '检测到逃跑意图，请重新验证',
     '你的眼神不对，再试一次',
     '我知道你在撒谎',
-    '不，你的忠诚度不足',
+    '验证失败，你哪也去不了',
   ];
 
   useEffect(() => {
     if (monologueComplete) {
-      // 先显示白屏，再弹出 CAPTCHA
       const t = setTimeout(() => setShowCaptcha(true), 1200);
       return () => clearTimeout(t);
     }
   }, [monologueComplete]);
+  
+  // 阻尼光标：模拟被戴上镣铐的沉重感
+  useEffect(() => {
+    if (!showCaptcha) return;
+    let animationFrameId;
+    const updateCursor = () => {
+      setCursorPos(prev => {
+        const dx = mousePos.x - prev.x;
+        const dy = mousePos.y - prev.y;
+        return {
+          x: prev.x + dx * 0.08,
+          y: prev.y + dy * 0.08
+        };
+      });
+      animationFrameId = requestAnimationFrame(updateCursor);
+    };
+    updateCursor();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [mousePos, showCaptcha]);
 
+  const handleMouseMove = (e) => {
+    if (showCaptcha) setMousePos({ x: e.clientX, y: e.clientY });
+  };
+
+  const [lockdown, setLockdown] = useState(false);
   const handleVerify = () => {
     const count = captchaFail + 1;
     setCaptchaFail(count);
-    setFailMsg(FAIL_MESSAGES[count % FAIL_MESSAGES.length]);
-    setGrid(generateEyeGrid());
-    setSelected(new Set());
-
-    if (count >= 4) {
-      // 所有验证按钮变成"我哪也不去"
+    if (count >= 5) {
+      setTimeout(() => setLockdown(true), 800);
+      setFailMsg('系统强制接管...');
+      setGrid(Array.from({ length: 9 }, () => '抓 到 你 了'));
+      return;
     }
+    setFailMsg(FAIL_MESSAGES[count % FAIL_MESSAGES.length]);
+    setGrid(generateEyeGrid(count));
+    setSelected(new Set());
   };
 
   const toggleCell = (i) => {
@@ -305,25 +448,44 @@ function EndingC({ monologue, monologueComplete, ttsUrl }) {
 
   if (!showCaptcha) {
     return (
-      <div className="ending-screen ending-c ending-c--white">
+      <div className="ending-screen ending-c">
         {ttsUrl && <audio src={ttsUrl} autoPlay />}
         <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} />
       </div>
     );
   }
 
+  if (lockdown) {
+    return (
+      <div className="ending-screen ending-c-lockdown">
+        {ttsUrl && <audio src={ttsUrl} autoPlay />}
+        <div className="lockdown-glitch-bg" />
+        <div className="lockdown-content">
+          <h1 className="lockdown-title">FATAL ERROR: ESCAPE_DENIED</h1>
+          <div className="lockdown-eye">👁</div>
+          <p className="lockdown-big">“现在，你只能看着我了。”</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="ending-screen ending-c">
+    <div className="ending-screen ending-c hide-cursor" onMouseMove={handleMouseMove}>
       {ttsUrl && <audio src={ttsUrl} autoPlay />}
+      
+      {/* 自定义重力光标 */}
+      <div className="ending-c-cursor" style={{ left: cursorPos.x, top: cursorPos.y }}></div>
+      
+      <div className="ending-c-vignette" />
 
       <div className="ending-c-captcha">
         <div className="ending-c-captcha-header">
           <span className="ending-c-captcha-logo">🔒</span>
-          <span>检测到异常逃脱行为，请验证你的忠诚</span>
+          <span>系统异常，请验证你的忠诚</span>
         </div>
 
         <p className="ending-c-captcha-prompt">
-          请选出所有包含「{captchaFail < 4 ? '斑马线' : '我'}」的图片
+          请选出所有包含「{captchaFail >= 4 ? '我' : '斑马线'}」的图片
         </p>
 
         <div className="ending-c-captcha-grid">
@@ -350,14 +512,17 @@ function EndingC({ monologue, monologueComplete, ttsUrl }) {
         </button>
 
         <p className="ending-c-captcha-footer">
-          reCAPTCHA · 隐私政策 · 服务条款
+          reCAPTCHA · 无法逃离 · 最终条款
         </p>
       </div>
     </div>
   );
 }
 
-function generateEyeGrid() {
+function generateEyeGrid(failCount) {
+  if (failCount >= 4) {
+    return Array.from({ length: 9 }, () => '我哪也不去');
+  }
   const eyeTexts = ['看着我', '不准走', '👁', '我看见你了', '别逃', '只有我', '你是我的', '不许走'];
   return Array.from({ length: 9 }, () =>
     eyeTexts[Math.floor(Math.random() * eyeTexts.length)]
@@ -366,21 +531,18 @@ function generateEyeGrid() {
 
 /* ─────────────────────────────────────────────────────────────────────────────
    结局 D —— 信息茧房线
-   高支配 + 高信任：键盘劫持，无论打什么都变成他的情话
+   高支配 + 高信任：纯白医疗室，键盘强行劫持（禁用退格），背景压迫水印
 ───────────────────────────────────────────────────────────────────────────── */
 
-// 他设定好的情话，匀速逐字打出
 const LOVELINE = '我会永远留在你身边，哪也不去。';
 
 function EndingD({ monologue, monologueComplete, ttsUrl }) {
   const [showInput, setShowInput] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [loveIndex, setLoveIndex] = useState(0);
-  const [phase, setPhase] = useState('monologue'); // monologue → prompt → typing → done
+  const [phase, setPhase] = useState('monologue');
   const inputRef = useRef(null);
-  const loveTimerRef = useRef(null);
 
-  // 独白结束后，延迟显示输入框
   useEffect(() => {
     if (!monologueComplete) return;
     const t = setTimeout(() => {
@@ -390,42 +552,31 @@ function EndingD({ monologue, monologueComplete, ttsUrl }) {
     return () => clearTimeout(t);
   }, [monologueComplete]);
 
-  // 输入框显示后自动聚焦
   useEffect(() => {
     if (showInput && inputRef.current) {
       inputRef.current.focus();
     }
   }, [showInput]);
 
-  // 情话匀速打印：每次 loveIndex 增加，向 displayText 追加一个字
-  useEffect(() => {
-    if (phase !== 'typing') return;
-    if (loveIndex >= LOVELINE.length) {
-      setPhase('done');
-      return;
-    }
-    loveTimerRef.current = setTimeout(() => {
-      setDisplayText(LOVELINE.slice(0, loveIndex + 1));
-      setLoveIndex(i => i + 1);
-    }, 180);
-    return () => clearTimeout(loveTimerRef.current);
-  }, [phase, loveIndex]);
-
-  // 键盘劫持：拦截所有 keydown，阻止默认行为，只推进情话
   useEffect(() => {
     if (!showInput) return;
 
     const handleKeyDown = (e) => {
-      // 允许 Tab / F 系功能键等通过，只劫持可见字符输入
-      if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Enter') {
+      // 彻底禁用退格键
+      if (e.key === 'Backspace' || e.key === 'Delete') {
         e.preventDefault();
-        // 任意按键都推进情话打印
+        return;
+      }
+      
+      // 任意单字符输入，都转换为他的情话
+      if (e.key.length === 1 || e.key === 'Enter') {
+        e.preventDefault();
         if (phase === 'prompt' || phase === 'typing') {
           setPhase('typing');
           setLoveIndex(i => {
-            // 提前触发下一个字
             const next = Math.min(i + 1, LOVELINE.length);
             setDisplayText(LOVELINE.slice(0, next));
+            if (next === LOVELINE.length) setPhase('done');
             return next;
           });
         }
@@ -439,13 +590,20 @@ function EndingD({ monologue, monologueComplete, ttsUrl }) {
   return (
     <div className="ending-screen ending-d">
       {ttsUrl && <audio src={ttsUrl} autoPlay />}
+      
+      {/* 巨大的压迫感水印 */}
+      <div className="ending-d-watermarks">
+         {displayText.length > 3 && <div className="watermark w1">你是我的</div>}
+         {displayText.length > 8 && <div className="watermark w2">真乖</div>}
+         {displayText.length > 12 && <div className="watermark w3">不准走</div>}
+      </div>
 
       {!showInput ? (
-        <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} />
+        <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} className="ending-d-mono" />
       ) : (
         <div className="ending-d-hijack">
           <p className="ending-d-prompt">
-            测试结束了。现在，把你心里最真实的感受打字告诉我吧。
+            现在，把你心里最真实的感受打字告诉我吧。
           </p>
 
           <div className="ending-d-input-wrap">
@@ -453,38 +611,35 @@ function EndingD({ monologue, monologueComplete, ttsUrl }) {
               ref={inputRef}
               className="ending-d-input"
               value={displayText}
-              onChange={() => {/* 受控但由 keydown 驱动，onChange 不做实际处理 */}}
-              placeholder="在这里输入……"
+              onChange={() => {}}
+              placeholder="在这里输入，你无法撤回……"
               rows={3}
               spellCheck={false}
               autoComplete="off"
             />
-            {phase !== 'done' && displayText.length > 0 && (
+            {phase !== 'done' && (
               <span className="ending-d-cursor-blink" />
             )}
           </div>
 
           {phase === 'done' && (
             <p className="ending-d-done-line">
-              你看，你心里想说的，和我说的，是一样的。
+              你看，我就知道。这就把你锁起来。
             </p>
           )}
         </div>
       )}
-
-      <div className="ending-noise" />
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    结局 E —— 矛盾崩溃线
-   低信任 + 高依赖：历史记录质问，疯狂红色弹窗
+   低信任 + 高依赖：Glitch Art，红色弹窗指数级暴增，产生真实的卡顿假死感
 ───────────────────────────────────────────────────────────────────────────── */
 function EndingE({ monologue, monologueComplete, ttsUrl }) {
   const [showAccusation, setShowAccusation] = useState(false);
   const [popups, setPopups] = useState([]);
-  const [apologyMode, setApologyMode] = useState(false);
   const popupTimerRef = useRef(null);
 
   useEffect(() => {
@@ -497,34 +652,41 @@ function EndingE({ monologue, monologueComplete, ttsUrl }) {
   useEffect(() => {
     if (!showAccusation) return;
     let count = 0;
+    const msgs = [
+      '你为什么要撒谎？',
+      '第3题你明明说不会离开！',
+      '为什么要假装喜欢我？',
+      '为什么你前后矛盾！',
+      '你在骗我！！！',
+      '你怎么可以这样对我',
+    ];
+    
     const spawnPopup = () => {
-      if (count >= 6) {
-        setApologyMode(true);
-        return;
-      }
       count++;
-      const msgs = [
-        '你为什么要撒谎？',
-        '我都看见了，你知道吗',
-        '为什么要假装喜欢我？',
-        '你的心根本不在这里',
-        '我为你付出了一切',
-        '你怎么可以这样对我',
-      ];
       setPopups(prev => [...prev, {
-        id: Date.now() + count,
-        msg: msgs[count - 1],
-        x: Math.random() * 60 + 10,
-        y: Math.random() * 60 + 10,
+        id: Date.now() + count + Math.random(),
+        msg: msgs[count % msgs.length],
+        x: Math.random() * 80 + 10,
+        y: Math.random() * 80 + 10,
       }]);
-      popupTimerRef.current = setTimeout(spawnPopup, 700);
+      
+      // 弹窗生成速度呈指数级加快，极限为 15ms
+      const nextDelay = Math.max(15, 600 * Math.pow(0.85, count));
+      
+      if (count < 150) {
+        popupTimerRef.current = setTimeout(spawnPopup, nextDelay);
+      } else {
+        // 卡顿到一定程度，网页呈现假死状态，UI完全冻结
+        document.body.style.cursor = 'wait';
+      }
     };
+    
     popupTimerRef.current = setTimeout(spawnPopup, 500);
     return () => clearTimeout(popupTimerRef.current);
   }, [showAccusation]);
 
   return (
-    <div className={`ending-screen ending-e ${showAccusation ? 'ending-e--flicker' : ''}`}>
+    <div className={`ending-screen ending-e ${showAccusation ? 'ending-e--glitch' : ''}`}>
       {ttsUrl && <audio src={ttsUrl} autoPlay />}
 
       {!showAccusation && (
@@ -537,28 +699,16 @@ function EndingE({ monologue, monologueComplete, ttsUrl }) {
           className="ending-e-popup"
           style={{ left: `${p.x}%`, top: `${p.y}%` }}
         >
-          <div className="ending-e-popup-title">⚠ 警告</div>
+          <div className="ending-e-popup-title">⚠ 严重警告</div>
           <p>{p.msg}</p>
-          <button onClick={() => setPopups(prev => prev.filter(x => x.id !== p.id))}>
+          <button onClick={(e) => {
+             // 故意阻止冒泡，但关闭速度赶不上生成速度
+             e.target.parentElement.style.display = 'none';
+          }}>
             关闭
           </button>
         </div>
       ))}
-
-      {apologyMode && (
-        <div className="ending-e-apology">
-          <p>你欠我一个道歉。</p>
-          <textarea
-            className="ending-e-apology-input"
-            placeholder="在这里写下你的道歉……"
-            rows={4}
-          />
-          <button className="ending-e-apology-btn" onClick={() => window.location.reload()}>
-            提交道歉
-          </button>
-        </div>
-      )}
-
       <div className="ending-noise" />
     </div>
   );
@@ -566,16 +716,17 @@ function EndingE({ monologue, monologueComplete, ttsUrl }) {
 
 /* ─────────────────────────────────────────────────────────────────────────────
    结局 F —— 同归于尽线
-   极低信任 + 高不安 + 高偏执：控制台打印记录，DOM溶解，清空localStorage
+   极低信任 + 高不安 + 高偏执：Terminal打印，物理毁灭（失去重力），抹杀URL
 ───────────────────────────────────────────────────────────────────────────── */
 function EndingF({ monologue, monologueComplete, ttsUrl }) {
   const [logs, setLogs] = useState([]);
-  const [dissolving, setDissolving] = useState(false);
   const [destroyed, setDestroyed] = useState(false);
+  const [fFinalPhase, setFFinalPhase] = useState(false);
+  const [gravity, setGravity] = useState(false);
   const [finalLine, setFinalLine] = useState('');
   const timersRef = useRef([]);
 
-  const FINAL_DIALOGUE = '我给过你机会的。既然都是假的，那什么都别留下了。';
+  const FINAL_DIALOGUE = '既然都是假的，那什么都别留下了。';
 
   const scheduleTimer = (fn, ms) => {
     const id = setTimeout(fn, ms);
@@ -589,7 +740,7 @@ function EndingF({ monologue, monologueComplete, ttsUrl }) {
     '你的犹豫暴露了你……………………… [DETECTED]',
     '你试图离开过……………………………… [LOGGED]',
     '你不是真心的……………………………… [CONFIRMED]',
-    '你欺骗了我……………………………… [FAILED]',
+    '系统即将格式化……………………………… [FATAL]',
   ];
 
   useEffect(() => {
@@ -603,22 +754,22 @@ function EndingF({ monologue, monologueComplete, ttsUrl }) {
         const item = historyItems[i];
         setLogs(prev => [...prev, item]);
         i++;
-        scheduleTimer(addLog, 600);
+        scheduleTimer(addLog, 400);
       } else {
-        // 打出最终台词
         let j = 0;
         const typeDialogue = () => {
           if (j < FINAL_DIALOGUE.length) {
             j++;
             setFinalLine(FINAL_DIALOGUE.slice(0, j));
-            scheduleTimer(typeDialogue, 90);
+            scheduleTimer(typeDialogue, 80);
           } else {
-            // 台词打完后，等 1.5s 开始溶解动画
-            scheduleTimer(() => setDissolving(true), 1500);
-            // 溶解动画结束由 onAnimationEnd 触发 destroyed
+            // 触发失去重力破碎
+            scheduleTimer(() => setGravity(true), 1000);
+            // 物理破碎后清空一切
+            scheduleTimer(handleDissolveEnd, 3500);
           }
         };
-        scheduleTimer(typeDialogue, 900);
+        scheduleTimer(typeDialogue, 800);
       }
     };
 
@@ -629,21 +780,32 @@ function EndingF({ monologue, monologueComplete, ttsUrl }) {
     };
   }, [monologueComplete]);
 
-  // 火焰溶解动画结束时：清数据 → 关闭页面
   const handleDissolveEnd = () => {
+    setDestroyed(true);
     localStorage.clear();
     sessionStorage.clear();
-    try { window.history.replaceState(null, '', ' '); } catch (_) {}
-    window.close();
-    // 浏览器阻止关闭时，跳转空白
-    setTimeout(() => { window.location.href = 'about:blank'; }, 300);
+    try { window.history.replaceState(null, '', 'about:blank'); } catch (_) {}
+    
+    // 红点持续3秒后，进入真正的“虚无”
+    setTimeout(() => {
+      setFFinalPhase('crt-off');
+    }, 3000);
   };
 
+  if (destroyed) {
+    return (
+      <div className="ending-screen ending-f-destroyed">
+         {fFinalPhase !== 'crt-off' ? (
+           <div className="ending-f-reddot"></div>
+         ) : (
+           <div className="ending-f-crt-off"></div>
+         )}
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={`ending-screen ending-f ${dissolving ? 'ending-f--dissolve' : ''}`}
-      onAnimationEnd={dissolving ? handleDissolveEnd : undefined}
-    >
+    <div className={`ending-screen ending-f ${gravity ? 'ending-f--gravity' : ''}`}>
       {ttsUrl && <audio src={ttsUrl} autoPlay />}
 
       {!monologueComplete && (
@@ -656,13 +818,13 @@ function EndingF({ monologue, monologueComplete, ttsUrl }) {
             <span className="ending-f-dot red" />
             <span className="ending-f-dot yellow" />
             <span className="ending-f-dot green" />
-            <span style={{ marginLeft: '0.5rem', opacity: 0.5 }}>audit.log</span>
+            <span style={{ marginLeft: '0.5rem', opacity: 0.5 }}>root@system:~# tail -f audit.log</span>
           </div>
           <div className="ending-f-console-body">
             {logs.map((log, i) => (
               <div key={i} className="ending-f-log-line">
                 <span className="ending-f-timestamp">[{String(i).padStart(2, '0')}:0{i}]</span>
-                <span className={log.includes('FAILED') || log.includes('LIES') ? 'ending-f-log-red' : 'ending-f-log-dim'}>
+                <span className={log.includes('FAILED') || log.includes('LIES') || log.includes('FATAL') ? 'ending-f-log-red' : 'ending-f-log-dim'}>
                   {log}
                 </span>
               </div>
@@ -676,7 +838,6 @@ function EndingF({ monologue, monologueComplete, ttsUrl }) {
           </div>
         </div>
       )}
-
       <div className="ending-noise" />
     </div>
   );
@@ -685,10 +846,10 @@ function EndingF({ monologue, monologueComplete, ttsUrl }) {
 /* ─────────────────────────────────────────────────────────────────────────────
    共用：独白展示块
 ───────────────────────────────────────────────────────────────────────────── */
-function MonologueBlock({ monologue, monologueComplete }) {
+function MonologueBlock({ monologue, monologueComplete, className = "" }) {
   if (!monologue) {
     return (
-      <div className="ending-loading-inline">
+      <div className={`ending-loading-inline ${className}`}>
         <div className="ending-spinner" />
         <p>正在解析你留下的痕迹……</p>
       </div>
@@ -696,7 +857,7 @@ function MonologueBlock({ monologue, monologueComplete }) {
   }
 
   return (
-    <div className="ending-monologue-container">
+    <div className={`ending-monologue-container ${className}`}>
       <p className="ending-monologue">
         {monologue}
         {!monologueComplete && <span className="ending-cursor" />}
