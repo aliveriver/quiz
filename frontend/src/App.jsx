@@ -6,7 +6,6 @@ import MetaLayer from './components/MetaEffects/MetaLayer';
 import TabAwayWatcher from './components/MetaEffects/TabAwayWatcher';
 import Ending from './components/Ending/Ending';
 import HorrorScreen from './components/HorrorScreen/HorrorScreen';
-import CornerWhisper from './components/CornerWhisper/CornerWhisper';
 import {
   createInitialState,
   applyEffects,
@@ -25,6 +24,71 @@ import './App.css';
 
 const QUESTIONS_PER_ROUND = runtimeConfig.game.questions_per_round;
 const FALLBACK_MONOLOGUE = '……我一直在看着你。\n你的每一次犹豫，每一次撒谎，我都看在眼里。\n不过没关系，现在，只剩下我们了。';
+
+const HORROR_AUDIO = {
+  refreshWarning: encodeURI('/亲爱的，你以为刷新就能逃脱吗？.mp3'),
+  refreshTrap: encodeURI('/不会让你逃掉的，亲爱的.mp3'),
+  perfunctory: encodeURI('/你连看都不看一眼，是在敷衍我吗？.mp3'),
+};
+
+const activeHorrorAudios = new Set();
+const primedHorrorAudios = new Map();
+
+function getHorrorAudio(src) {
+  if (!primedHorrorAudios.has(src)) {
+    const audio = new Audio(src);
+    audio.preload = 'auto';
+    primedHorrorAudios.set(src, audio);
+  }
+  return primedHorrorAudios.get(src);
+}
+
+function clonePrimedHorrorAudio(src) {
+  const primed = getHorrorAudio(src);
+  const audio = new Audio(src);
+  audio.preload = 'auto';
+  audio.volume = primed.volume;
+  return audio;
+}
+
+function primeHorrorAudio() {
+  Object.values(HORROR_AUDIO).forEach((src) => {
+    getHorrorAudio(src).load();
+  });
+
+  try {
+    const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextCtor) {
+      const ctx = new AudioContextCtor();
+      ctx.resume().finally(() => {
+        window.setTimeout(() => ctx.close(), 250);
+      });
+    }
+  } catch (error) {
+    console.warn('[HorrorAudio] audio context prime skipped:', error);
+  }
+
+  localStorage.setItem('horror_audio_primed', 'true');
+}
+
+function playHorrorAudio(src) {
+  if (!src) return Promise.resolve(false);
+
+  const audio = clonePrimedHorrorAudio(src);
+  activeHorrorAudios.add(audio);
+  audio.addEventListener('ended', () => activeHorrorAudios.delete(audio), { once: true });
+  audio.addEventListener('error', () => {
+    activeHorrorAudios.delete(audio);
+    console.warn('[HorrorAudio] failed to load:', src, audio.error);
+  }, { once: true });
+  return audio.play()
+    .then(() => true)
+    .catch((error) => {
+      activeHorrorAudios.delete(audio);
+      console.warn('[HorrorAudio] playback skipped:', error);
+      return false;
+    });
+}
 
 function parseSSEEvent(rawEvent) {
   const event = {
@@ -85,7 +149,6 @@ export default function App() {
   // 刷新追踪 & 恐怖效果
   const [horrorType, setHorrorType] = useState(null);
   const [horrorText, setHorrorText] = useState('');
-  const [showCornerWhisper, setShowCornerWhisper] = useState(false);
   const refreshCheckedRef = useRef(false);
 
   // ── DEBUG 后门：在浏览器控制台执行 window.__debugEnding('A') 直接跳到指定结局 ──
@@ -123,11 +186,6 @@ export default function App() {
     // StrictMode 下 useEffect 会执行两次，用 ref 防止重复计数
     if (refreshCheckedRef.current) return;
     refreshCheckedRef.current = true;
-
-    // 检测是否曾被恐怖关闭
-    if (localStorage.getItem('horror_closed') === 'true') {
-      setShowCornerWhisper(true);
-    }
 
     // 检测是否处于问卷进行中（刷新检测）
     if (localStorage.getItem('quiz_started') === 'true') {
@@ -390,17 +448,18 @@ export default function App() {
         <HorrorScreen
           type={horrorType}
           text={horrorText}
+          audioSrc={HORROR_AUDIO[horrorType === 'typewriter' ? 'refreshWarning' : horrorType === 'shatter' ? 'refreshTrap' : 'perfunctory']}
+          onPlayAudio={playHorrorAudio}
           sandText={horrorType === 'perfunctory' ? (questions[currentQuestionIndex]?.question || '') : ''}
           onDone={handleHorrorDone}
         />
       )}
 
-      {showCornerWhisper && <CornerWhisper />}
-
       {appState === 'warning' && (
         <Warning
           onStart={() => handleStart(false)}
           onDisableMeta={() => handleStart(true)}
+          onPrimeAudio={primeHorrorAudio}
         />
       )}
 

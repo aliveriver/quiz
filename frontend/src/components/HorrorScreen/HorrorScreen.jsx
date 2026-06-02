@@ -7,13 +7,28 @@ import './HorrorScreen.css';
  * type: 'shatter' — 文字瞬间出现 → 屏幕破碎 → 回调 onDone
  * type: 'perfunctory' — 网页卡死(隐藏指针) → 题目像沙子掉落 → 中央敲字 → 回调 onDone
  */
-export default function HorrorScreen({ type, text, sandText = '', onDone }) {
+export default function HorrorScreen({
+  type,
+  text,
+  audioSrc,
+  onPlayAudio,
+  sandText = '',
+  onDone,
+}) {
   const [displayedText, setDisplayedText] = useState('');
   const [fadingOut, setFadingOut] = useState(false);
   const [shattering, setShattering] = useState(false);
   const [glitching, setGlitching] = useState(false);
   const [sandFalling, setSandFalling] = useState(false);
   const timerRef = useRef(null);
+  const audioPlayedRef = useRef(false);
+
+  const playAudioOnce = () => {
+    if (!audioSrc || audioPlayedRef.current) return true;
+    audioPlayedRef.current = true;
+    onPlayAudio?.(audioSrc);
+    return true;
+  };
 
   const COLS = 8;
   const ROWS = 6;
@@ -62,6 +77,7 @@ export default function HorrorScreen({ type, text, sandText = '', onDone }) {
     if (type === 'typewriter') {
       let i = 0;
       const timer = setTimeout(() => {
+        playAudioOnce();
         timerRef.current = setInterval(() => {
           if (i < text.length) {
             setDisplayedText(text.slice(0, i + 1));
@@ -79,6 +95,7 @@ export default function HorrorScreen({ type, text, sandText = '', onDone }) {
     }
 
     if (type === 'shatter') {
+      playAudioOnce();
       const t1 = setTimeout(() => setGlitching(true), 2000);
       const t2 = setTimeout(() => setShattering(true), 3000);
       const t3 = setTimeout(() => onDone?.(), 4500);
@@ -93,6 +110,7 @@ export default function HorrorScreen({ type, text, sandText = '', onDone }) {
       // 阶段 3: 沙子落完后，中央缓慢敲出质问文字
       let typeTimer = null;
       const tType = setTimeout(() => {
+        playAudioOnce();
         let i = 0;
         typeTimer = setInterval(() => {
           if (i < text.length) {
@@ -115,7 +133,7 @@ export default function HorrorScreen({ type, text, sandText = '', onDone }) {
         if (typeTimer) clearInterval(typeTimer);
       };
     }
-  }, [type, text, onDone]);
+  }, [type, text, audioSrc, onPlayAudio, onDone]);
 
   return (
     <div

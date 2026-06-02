@@ -6,10 +6,11 @@ import './Warning.css';
  * 内容警告页面
  * 深夜测试的入口，营造神秘氛围
  */
-export default function Warning({ onStart, onDisableMeta }) {
+export default function Warning({ onStart, onDisableMeta, onPrimeAudio }) {
   const [fading, setFading] = useState(false);
 
   const handleStart = (disableMeta) => {
+    onPrimeAudio?.();
     setFading(true);
     setTimeout(() => {
       if (disableMeta) {
