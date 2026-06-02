@@ -123,7 +123,7 @@ function EndingA({ monologue, monologueComplete }) {
     let animationFrameId;
     
     const updateCursor = () => {
-      setCursorPos(prev => {
+      setCursorPos(() => {
         if (!acceptRef.current) return mousePos;
         
         const acceptRect = acceptRef.current.getBoundingClientRect();
@@ -260,9 +260,6 @@ function EndingA({ monologue, monologueComplete }) {
 }
 
 function getContractEvidence() {
-  const history = (() => {
-    try { return JSON.parse(localStorage.getItem('quiz_history') || '[]'); } catch { return []; }
-  })();
   return [
     '你选择了靠近，而不是逃跑',
     '你的犹豫证明了你在意',
@@ -539,7 +536,6 @@ const LOVELINE = '我会永远留在你身边，哪也不去。';
 function EndingD({ monologue, monologueComplete }) {
   const [showInput, setShowInput] = useState(false);
   const [displayText, setDisplayText] = useState('');
-  const [loveIndex, setLoveIndex] = useState(0);
   const [phase, setPhase] = useState('monologue');
   const inputRef = useRef(null);
 
@@ -573,11 +569,10 @@ function EndingD({ monologue, monologueComplete }) {
         e.preventDefault();
         if (phase === 'prompt' || phase === 'typing') {
           setPhase('typing');
-          setLoveIndex(i => {
-            const next = Math.min(i + 1, LOVELINE.length);
-            setDisplayText(LOVELINE.slice(0, next));
+          setDisplayText(current => {
+            const next = Math.min(current.length + 1, LOVELINE.length);
             if (next === LOVELINE.length) setPhase('done');
-            return next;
+            return LOVELINE.slice(0, next);
           });
         }
       }
@@ -739,6 +734,21 @@ function EndingF({ monologue, monologueComplete }) {
     '系统即将格式化……………………………… [FATAL]',
   ];
 
+  const handleDissolveEnd = () => {
+    setDestroyed(true);
+    localStorage.clear();
+    sessionStorage.clear();
+    try {
+      window.history.replaceState(null, '', 'about:blank');
+    } catch {
+      // Some browsers reject about:blank history replacement.
+    }
+
+    setTimeout(() => {
+      setFFinalPhase('crt-off');
+    }, 3000);
+  };
+
   useEffect(() => {
     if (!monologueComplete) return;
 
@@ -775,18 +785,6 @@ function EndingF({ monologue, monologueComplete }) {
       timersRef.current = [];
     };
   }, [monologueComplete]);
-
-  const handleDissolveEnd = () => {
-    setDestroyed(true);
-    localStorage.clear();
-    sessionStorage.clear();
-    try { window.history.replaceState(null, '', 'about:blank'); } catch (_) {}
-    
-    // 红点持续3秒后，进入真正的“虚无”
-    setTimeout(() => {
-      setFFinalPhase('crt-off');
-    }, 3000);
-  };
 
   if (destroyed) {
     return (

@@ -18,14 +18,6 @@ const DIMENSIONS = ['affection', 'possessiveness', 'anxiety', 'obsession', 'trus
 // raw 分数达到此值时映射为 100%
 const RAW_MAX = 35;
 
-// 阶段阈值（基于所有维度的平均归一化值）
-const PHASE_THRESHOLDS = {
-  normal: 0,
-  awakening: 25,
-  obsessed: 50,
-  breaking: 75,
-};
-
 /**
  * 创建初始状态
  */
@@ -61,21 +53,6 @@ function getNormalizedStats(state) {
     result[dim] = normalize(state.raw[dim]);
   }
   return result;
-}
-
-/**
- * 获取当前阶段
- * 基于 "危险维度"（possessiveness, anxiety, obsession, dependency）的平均值
- */
-function getPhase(state) {
-  const stats = getNormalizedStats(state);
-  const dangerDims = ['possessiveness', 'anxiety', 'obsession', 'dependency'];
-  const avgDanger = dangerDims.reduce((sum, d) => sum + stats[d], 0) / dangerDims.length;
-
-  if (avgDanger >= PHASE_THRESHOLDS.breaking) return 'breaking';
-  if (avgDanger >= PHASE_THRESHOLDS.obsessed) return 'obsessed';
-  if (avgDanger >= PHASE_THRESHOLDS.awakening) return 'awakening';
-  return 'normal';
 }
 
 /**

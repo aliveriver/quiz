@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import './HorrorScreen.css';
 
 /**
@@ -23,16 +23,16 @@ export default function HorrorScreen({
   const timerRef = useRef(null);
   const audioPlayedRef = useRef(false);
 
-  const playAudioOnce = () => {
+  const playAudioOnce = useCallback(() => {
     if (!audioSrc || audioPlayedRef.current) return true;
     audioPlayedRef.current = true;
     onPlayAudio?.(audioSrc);
     return true;
-  };
+  }, [audioSrc, onPlayAudio]);
 
   const COLS = 8;
   const ROWS = 6;
-  const shards = useMemo(() => {
+  const [shards] = useState(() => {
     return Array.from({ length: COLS * ROWS }).map((_, i) => {
       const col = i % COLS;
       const row = Math.floor(i / COLS);
@@ -48,19 +48,21 @@ export default function HorrorScreen({
         delay: `${Math.random() * 0.3}s`,
       };
     });
-  }, []);
+  });
 
   // 将题目文本拆成单字"沙粒"，每个字随机重力下落参数
-  const sandChars = useMemo(() => {
+  const [sandChars, setSandChars] = useState([]);
+
+  useEffect(() => {
     const chars = (sandText || '问卷').split('');
-    return chars.map((ch, i) => ({
+    setSandChars(chars.map((ch, i) => ({
       id: i,
       ch: ch === ' ' ? ' ' : ch,
       tx: `${(Math.random() - 0.5) * 240}px`,
       rot: `${(Math.random() - 0.5) * 540}deg`,
       delay: `${i * 0.04 + Math.random() * 0.3}s`,
       dur: `${1.6 + Math.random() * 1.4}s`,
-    }));
+    })));
   }, [sandText]);
 
   useEffect(() => {
@@ -133,7 +135,7 @@ export default function HorrorScreen({
         if (typeTimer) clearInterval(typeTimer);
       };
     }
-  }, [type, text, audioSrc, onPlayAudio, onDone]);
+  }, [type, text, audioSrc, onPlayAudio, onDone, playAudioOnce]);
 
   return (
     <div

@@ -30,9 +30,9 @@ func NewTTSPipeline(svc *MonologueService, ttsClient *tts.Client) *TTSPipeline {
 
 // StreamCallbacks 定义管线回调。
 type StreamCallbacks struct {
-	OnText  func(text string)                       // LLM 文本片段
-	OnAudio func(audioBytes []byte, isFinal bool)   // TTS 音频片段
-	OnError func(err error)                          // 非致命错误
+	OnText  func(text string)                     // LLM 文本片段
+	OnAudio func(audioBytes []byte, isFinal bool) // TTS 音频片段
+	OnError func(err error)                       // 非致命错误
 }
 
 // Run 执行 LLM → TTS 管线。

@@ -19,7 +19,7 @@ async function getBatteryInfo() {
         level: Math.round(battery.level * 100),
       };
     }
-  } catch (e) {
+  } catch {
     // 部分浏览器不支持
   }
   return null;
@@ -73,7 +73,7 @@ function getTimeInfo() {
   const date = now.getDate();
   const hour = now.getHours();
   const minute = now.getMinutes();
-  let dayPeriod = '白天';
+  let dayPeriod;
 
   if (hour >= 5 && hour < 8) dayPeriod = '清晨';
   else if (hour >= 8 && hour < 12) dayPeriod = '上午';

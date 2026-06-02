@@ -5,7 +5,7 @@ import './QuizCard.css';
  * 答题卡片组件
  * 展示题目和选项，处理选择动画
  */
-export default function QuizCard({ question, currentIndex, totalQuestions, phase, onSelect }) {
+export default function QuizCard({ question, currentIndex, phase, onSelect }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [isExiting, setIsExiting] = useState(false);
   const [isEntering, setIsEntering] = useState(true);

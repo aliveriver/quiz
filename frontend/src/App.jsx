@@ -13,118 +13,19 @@ import {
   recordAnswer,
   getNormalizedStats,
 } from './core/stateMachine';
-import { detectConflict, getConflictMessage } from './core/conflictDetector';
+import { detectConflict } from './core/conflictDetector';
 import { drawQuestions, getConfrontationQuestion } from './core/questionPool';
 import { tryTriggerEffect, forceTriggerEffect } from './core/metaEngine';
 import { collectDeviceInfo } from './core/deviceProbe';
 import { runtimeConfig } from './core/runtimeConfig';
 import { routeEnding } from './core/endingRouter';
 import { useStreamingAudio } from './core/useStreamingAudio';
+import { getHorrorAudioSrc, playHorrorAudio, primeHorrorAudio } from './core/horrorAudio';
+import { base64ToBytes, parseSSEEvent } from './core/sse';
 import './App.css';
 
 const QUESTIONS_PER_ROUND = runtimeConfig.game.questions_per_round;
 const FALLBACK_MONOLOGUE = '……我一直在看着你。\n你的每一次犹豫，每一次撒谎，我都看在眼里。\n不过没关系，现在，只剩下我们了。';
-
-const HORROR_AUDIO = {
-  refreshWarning: encodeURI('/亲爱的，你以为刷新就能逃脱吗？.mp3'),
-  refreshTrap: encodeURI('/不会让你逃掉的，亲爱的.mp3'),
-  perfunctory: encodeURI('/你连看都不看一眼，是在敷衍我吗？.mp3'),
-};
-
-const activeHorrorAudios = new Set();
-const primedHorrorAudios = new Map();
-
-function getHorrorAudio(src) {
-  if (!primedHorrorAudios.has(src)) {
-    const audio = new Audio(src);
-    audio.preload = 'auto';
-    primedHorrorAudios.set(src, audio);
-  }
-  return primedHorrorAudios.get(src);
-}
-
-function clonePrimedHorrorAudio(src) {
-  const primed = getHorrorAudio(src);
-  const audio = new Audio(src);
-  audio.preload = 'auto';
-  audio.volume = primed.volume;
-  return audio;
-}
-
-function primeHorrorAudio() {
-  Object.values(HORROR_AUDIO).forEach((src) => {
-    getHorrorAudio(src).load();
-  });
-
-  try {
-    const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
-    if (AudioContextCtor) {
-      const ctx = new AudioContextCtor();
-      ctx.resume().finally(() => {
-        window.setTimeout(() => ctx.close(), 250);
-      });
-    }
-  } catch (error) {
-    console.warn('[HorrorAudio] audio context prime skipped:', error);
-  }
-
-  localStorage.setItem('horror_audio_primed', 'true');
-}
-
-function playHorrorAudio(src) {
-  if (!src) return Promise.resolve(false);
-
-  const audio = clonePrimedHorrorAudio(src);
-  activeHorrorAudios.add(audio);
-  audio.addEventListener('ended', () => activeHorrorAudios.delete(audio), { once: true });
-  audio.addEventListener('error', () => {
-    activeHorrorAudios.delete(audio);
-    console.warn('[HorrorAudio] failed to load:', src, audio.error);
-  }, { once: true });
-  return audio.play()
-    .then(() => true)
-    .catch((error) => {
-      activeHorrorAudios.delete(audio);
-      console.warn('[HorrorAudio] playback skipped:', error);
-      return false;
-    });
-}
-
-function parseSSEEvent(rawEvent) {
-  const event = {
-    type: 'message',
-    data: '',
-  };
-
-  for (const rawLine of rawEvent.split(/\r?\n/)) {
-    if (!rawLine || rawLine.startsWith(':')) continue;
-
-    const separatorIndex = rawLine.indexOf(':');
-    const field = separatorIndex === -1 ? rawLine : rawLine.slice(0, separatorIndex);
-    let value = separatorIndex === -1 ? '' : rawLine.slice(separatorIndex + 1);
-
-    if (value.startsWith(' ')) value = value.slice(1);
-
-    if (field === 'event') {
-      event.type = value || 'message';
-    } else if (field === 'data') {
-      event.data += event.data ? `\n${value}` : value;
-    }
-  }
-
-  return event.data ? event : null;
-}
-
-function base64ToBytes(base64) {
-  const binaryStr = atob(base64);
-  const bytes = new Uint8Array(binaryStr.length);
-
-  for (let i = 0; i < binaryStr.length; i++) {
-    bytes[i] = binaryStr.charCodeAt(i);
-  }
-
-  return bytes;
-}
 
 export default function App() {
   const [appState, setAppState] = useState('warning'); // 警告、答题、结局
@@ -137,14 +38,13 @@ export default function App() {
   
   // 演出状态
   const [currentMetaEffect, setCurrentMetaEffect] = useState(null);
-  const [confrontationOverlay, setConfrontationOverlay] = useState(null);
   const [monologue, setMonologue] = useState(null);
+  const [monologueComplete, setMonologueComplete] = useState(false);
+  const [audioChunks, setAudioChunks] = useState([]);
   const [deviceInfo, setDeviceInfo] = useState(null);
-  const [escapeAttempts, setEscapeAttempts] = useState(0);
   const [conflictCount, setConflictCount] = useState(0);
   const [showConflictWarning, setShowConflictWarning] = useState(false);
   const [finalStats, setFinalStats] = useState(null);
-  const [finalEndingId, setFinalEndingId] = useState(null);
 
   // 刷新追踪 & 恐怖效果
   const [horrorType, setHorrorType] = useState(null);
@@ -281,10 +181,6 @@ export default function App() {
         setShowConflictWarning(true);
       }
       
-      // 插入质问锚点题
-      const confrontationMsg = getConflictMessage(conflictResult);
-      setConfrontationOverlay(confrontationMsg);
-      
       // 强制触发严重视觉特效
       if (metaEnabled) {
         setCurrentMetaEffect(forceTriggerEffect(conflictResult.severity === 'severe' ? 'heavy' : 'medium'));
@@ -292,7 +188,6 @@ export default function App() {
 
       // 等待特效和提示后，插入特殊题目
       setTimeout(() => {
-        setConfrontationOverlay(null);
         const cq = getConfrontationQuestion();
         const newQuestions = [...questions];
         newQuestions.splice(currentQuestionIndex + 1, 0, cq);
@@ -309,7 +204,7 @@ export default function App() {
 
   }, [gameState, questions, currentQuestionIndex, metaEnabled, conflictCount]);
 
-  const proceedToNext = (newState, optionIndex, optionData) => {
+  function proceedToNext(newState, optionIndex, optionData) {
     const nextState = recordAnswer(newState, questions[currentQuestionIndex]._id, optionIndex, optionData.attitude_tag);
     setGameState(nextState);
 
@@ -325,10 +220,7 @@ export default function App() {
     } else {
       finishGame(nextState);
     }
-  };
-
-  const [monologueComplete, setMonologueComplete] = useState(false);
-  const [audioChunks, setAudioChunks] = useState([]);
+  }
 
   const finishGame = async (finalState) => {
     const profile = getNormalizedStats(finalState);
@@ -340,7 +232,6 @@ export default function App() {
     }
 
     setFinalStats(profile);
-    setFinalEndingId(endingId);
     setAppState('pre-ending');
     setMonologue(null);
     setMonologueComplete(false);
@@ -448,7 +339,7 @@ export default function App() {
         <HorrorScreen
           type={horrorType}
           text={horrorText}
-          audioSrc={HORROR_AUDIO[horrorType === 'typewriter' ? 'refreshWarning' : horrorType === 'shatter' ? 'refreshTrap' : 'perfunctory']}
+          audioSrc={getHorrorAudioSrc(horrorType)}
           onPlayAudio={playHorrorAudio}
           sandText={horrorType === 'perfunctory' ? (questions[currentQuestionIndex]?.question || '') : ''}
           onDone={handleHorrorDone}
@@ -519,7 +410,7 @@ export default function App() {
         <Ending
           monologue={monologue}
           deviceInfo={deviceInfo}
-          escapeAttempts={escapeAttempts}
+          escapeAttempts={Number(sessionStorage.getItem('escape_attempts') || 0)}
           monologueComplete={monologueComplete}
           stats={finalStats || getNormalizedStats(gameState)}
           audioChunks={[]}

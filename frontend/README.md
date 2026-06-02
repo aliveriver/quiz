@@ -1,16 +1,28 @@
-# React + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite 前端，负责问卷流程、Meta 视觉演出、结局展示、流式独白播放和前端 YAML 配置读取。
 
-Currently, two official plugins are available:
+## 运行
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```powershell
+npm install
+npm run dev
+```
 
-## React Compiler
+## 构建
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```powershell
+npm run build
+```
 
-## Expanding the ESLint configuration
+## 配置
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+`config.yaml` 存放可公开的前端运行参数，例如题目数量、冲突提示和 Meta 特效概率。不要在前端配置或源码中写入任何 API Key。
+
+## 目录
+
+- `src/App.jsx`：应用流程编排。
+- `src/components`：React UI 与演出组件。
+- `src/core`：状态机、路由、SSE、音频、设备探测等核心逻辑。
+- `src/data`：静态题库。
+- `src/styles`：全局样式与变量。

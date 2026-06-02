@@ -6,7 +6,7 @@ import './MetaLayer.css';
  * Meta 特效渲染层
  * 全屏覆盖层，用于渲染各种 Meta 干扰效果
  */
-export default function MetaLayer({ effect, phase, onEffectEnd }) {
+export default function MetaLayer({ effect, onEffectEnd }) {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -23,20 +23,20 @@ export default function MetaLayer({ effect, phase, onEffectEnd }) {
     }, effect.duration || 3000);
 
     return () => clearTimeout(timer);
-  }, [effect]);
+  }, [effect, onEffectEnd]);
 
   if (!effect || !active) return null;
 
   const content = (
-    <div className={`meta-layer meta-layer--${effect.id}`} data-phase={phase}>
-      {renderEffect(effect, phase)}
+    <div className={`meta-layer meta-layer--${effect.id}`}>
+      {renderEffect(effect)}
     </div>
   );
 
   return createPortal(content, document.body);
 }
 
-function renderEffect(effect, phase) {
+function renderEffect(effect) {
   switch (effect.id) {
     case 'screenFlicker':
       return <div className="meta-flicker" />;
@@ -62,17 +62,20 @@ function renderEffect(effect, phase) {
  * 故障画面效果
  */
 function GlitchOverlay() {
+  const [lines] = useState(() => Array.from({ length: 8 }).map((_, i) => ({
+    id: i,
+    top: `${Math.random() * 100}%`,
+    animationDelay: `${Math.random() * 0.5}s`,
+    height: `${1 + Math.random() * 3}px`,
+  })));
+
   return (
     <div className="meta-glitch">
-      {Array.from({ length: 8 }).map((_, i) => (
+      {lines.map((line) => (
         <div
-          key={i}
+          key={line.id}
           className="meta-glitch-line"
-          style={{
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 0.5}s`,
-            height: `${1 + Math.random() * 3}px`,
-          }}
+          style={line}
         />
       ))}
       <div className="meta-glitch-color" />
