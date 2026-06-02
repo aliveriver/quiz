@@ -20,6 +20,7 @@ import (
 	"ghost-relationship-test/internal/metrics"
 	"ghost-relationship-test/internal/middleware"
 	"ghost-relationship-test/internal/service"
+	"ghost-relationship-test/internal/tts"
 )
 
 func main() {
@@ -48,7 +49,30 @@ func main() {
 	monologueSvc := service.NewMonologueService(llmClient)
 	m := metrics.New()
 	h := handler.New(monologueSvc, cfg.Game)
-	sh := handler.NewStreamHandler(monologueSvc, m)
+
+	// ---- TTS（可选）----
+	// 仅当配置了 TTS_API_KEY 时才启用 TTS 管线。
+	var ttsPipeline *service.TTSPipeline
+	if cfg.TTS.APIKey != "" {
+		ttsClient := tts.NewClient(tts.Config{
+			WSURL:      cfg.TTS.WSURL,
+			APIKey:     cfg.TTS.APIKey,
+			Model:      cfg.TTS.Model,
+			Voice:      cfg.TTS.Voice,
+			Speed:      cfg.TTS.Speed,
+			Vol:        cfg.TTS.Vol,
+			Pitch:      cfg.TTS.Pitch,
+			Format:     cfg.TTS.Format,
+			SampleRate: cfg.TTS.SampleRate,
+			Bitrate:    cfg.TTS.Bitrate,
+		})
+		ttsPipeline = service.NewTTSPipeline(monologueSvc, ttsClient)
+		log.Println("TTS enabled (MiniMax WebSocket)")
+	} else {
+		log.Println("TTS disabled (TTS_API_KEY not set)")
+	}
+
+	sh := handler.NewStreamHandler(monologueSvc, ttsPipeline, m)
 
 	// ---- Router ----
 
@@ -68,6 +92,7 @@ func main() {
 	r.Post("/api/generate-monologue", h.GenerateMonologue)
 	r.Post("/api/generate-confrontation", h.GenerateConfrontation)
 	r.Post("/api/stream-monologue", sh.StreamMonologue)
+	r.Post("/api/stream-monologue-tts", sh.StreamMonologueWithTTS)
 
 	// ---- Server ----
 

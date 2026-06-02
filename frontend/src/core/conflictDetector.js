@@ -1,3 +1,5 @@
+import { runtimeConfig } from './runtimeConfig';
+
 /**
  * 态度冲突检测系统
  * 
@@ -19,7 +21,7 @@ const CONFLICT_PAIRS = [
 ];
 
 // 默认滑动窗口大小
-const DEFAULT_WINDOW_SIZE = 5;
+const DEFAULT_WINDOW_SIZE = runtimeConfig.game.conflict_window_size;
 
 /**
  * 获取最近 N 道题的态度标签

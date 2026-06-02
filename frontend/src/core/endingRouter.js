@@ -113,28 +113,49 @@ export function buildLLMPrompt(endingId, stats) {
   return prompts[endingId] ?? prompts['E'];
 }
 
-// ─── TTS API 占位 ──────────────────────────────────────────────────────────────
+// ─── TTS API ──────────────────────────────────────────────────────────────────
 /**
- * 调用 TTS 接口将文本转为音频 URL。
- * 目前为占位函数，后续在此对接真实 TTS API。
+ * 调用后端 TTS 接口将文本转为音频 URL。
+ * 后端会转发到 SiliconFlow TTS API（CosyVoice2），返回 mp3 音频流。
  *
  * @param {string} text        需要朗读的独白文本
  * @param {'A'|'B'|'C'|'D'|'E'|'F'} endingId  用于选择语音风格
- * @returns {Promise<string|null>}  返回可播放的音频 URL，失败时返回 null
+ * @returns {Promise<string|null>}  返回可播放的 blob URL，失败时返回 null
  */
 export async function callTTS(text, endingId) {
-  // ╔══════════════════════════════════════════════════╗
-  // ║   TODO: 在此对接 TTS API（如 ElevenLabs / 微软   ║
-  // ║   Azure TTS / OpenAI TTS）                       ║
-  // ║                                                  ║
-  // ║   示例结构（ElevenLabs）：                        ║
-  // ║   const res = await fetch(                       ║
-  // ║     `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_MAP[endingId]}`,
-  // ║     { method:'POST', headers:{...}, body:JSON.stringify({text}) }
-  // ║   );                                             ║
-  // ║   const blob = await res.blob();                 ║
-  // ║   return URL.createObjectURL(blob);              ║
-  // ╚══════════════════════════════════════════════════╝
-  console.log('[TTS 占位] 文本已就绪，待对接 API。endingId:', endingId, 'text:', text.slice(0, 30));
-  return null;
+  if (!text || text.length === 0) {
+    console.warn('[TTS] 文本为空，跳过语音合成');
+    return null;
+  }
+
+  try {
+    const response = await fetch('http://localhost:8080/api/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: text,
+        ending_id: endingId,
+      }),
+    });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      console.error('[TTS] API 错误:', response.status, errData);
+      return null;
+    }
+
+    const blob = await response.blob();
+    if (blob.size === 0) {
+      console.warn('[TTS] 返回的音频数据为空');
+      return null;
+    }
+
+    const audioUrl = URL.createObjectURL(blob);
+    console.log('[TTS] 语音合成成功，音频大小:', (blob.size / 1024).toFixed(1), 'KB');
+    return audioUrl;
+  } catch (error) {
+    console.error('[TTS] 语音合成失败:', error);
+    return null;
+  }
 }
+

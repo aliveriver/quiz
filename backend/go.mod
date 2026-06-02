@@ -9,3 +9,5 @@ require (
 )
 
 require github.com/sashabaranov/go-openai v1.41.2
+
+require github.com/gorilla/websocket v1.5.3 // indirect

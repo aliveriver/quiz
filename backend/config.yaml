@@ -13,6 +13,16 @@ llm:
   temperature: 0.9
   timeout: 500
 
+tts:
+  model: "speech-02-hd"
+  voice: "female-shaonv"
+  format: "mp3"
+  speed: 1.0
+  vol: 1.0
+  pitch: 0
+  sample_rate: 32000
+  bitrate: 128000
+
 rate_limit:
   requests_per_second: 5
   burst: 10

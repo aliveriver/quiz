@@ -16,6 +16,7 @@ import (
 type AppConfig struct {
 	Server    ServerConfig    `yaml:"server"`
 	LLM       LLMConfig       `yaml:"llm"`
+	TTS       TTSConfig       `yaml:"tts"`
 	RateLimit RateLimitConfig `yaml:"rate_limit"`
 	Game      GameConfig      `yaml:"game"`
 }
@@ -40,6 +41,23 @@ type LLMConfig struct {
 	// 在加载时从 .env 填充。
 	APIKey  string `yaml:"-"`
 	BaseURL string `yaml:"-"`
+}
+
+// TTSConfig 保存 MiniMax WebSocket TTS 配置。
+// API key 来自环境变量 TTS_API_KEY。
+type TTSConfig struct {
+	Model      string  `yaml:"model"`       // 模型名，如 speech-02-hd
+	Voice      string  `yaml:"voice"`       // 音色 ID，如 female-shaonv
+	Speed      float64 `yaml:"speed"`       // 语速 0.5~2.0
+	Vol        float64 `yaml:"vol"`         // 音量 0.1~10.0
+	Pitch      int     `yaml:"pitch"`       // 音调 -12~12
+	Format     string  `yaml:"format"`      // mp3, wav, pcm, opus
+	SampleRate int     `yaml:"sample_rate"` // 采样率，默认 32000
+	Bitrate    int     `yaml:"bitrate"`     // 比特率，默认 128000
+
+	// 在加载时从 .env 填充。
+	APIKey string `yaml:"-"`
+	WSURL  string `yaml:"-"` // WebSocket 端点
 }
 
 // RateLimitConfig 控制 token-bucket rate limiter。
@@ -95,6 +113,36 @@ func Load(configPath string) (*AppConfig, error) {
 	cfg.LLM.BaseURL = os.Getenv("LLM_BASE_URL")
 	if cfg.LLM.BaseURL == "" {
 		cfg.LLM.BaseURL = "https://api.openai.com/v1"
+	}
+
+	// TTS 密钥（MiniMax）：TTS_API_KEY 为可选，未设置则 TTS 功能不可用。
+	cfg.TTS.APIKey = os.Getenv("TTS_API_KEY")
+	cfg.TTS.WSURL = os.Getenv("TTS_WS_URL")
+	if cfg.TTS.WSURL == "" {
+		cfg.TTS.WSURL = "wss://api.minimaxi.com/ws/v1/t2a_v2"
+	}
+
+	// TTS 默认值
+	if cfg.TTS.Model == "" {
+		cfg.TTS.Model = "speech-02-hd"
+	}
+	if cfg.TTS.Voice == "" {
+		cfg.TTS.Voice = "female-shaonv"
+	}
+	if cfg.TTS.Format == "" {
+		cfg.TTS.Format = "mp3"
+	}
+	if cfg.TTS.Speed == 0 {
+		cfg.TTS.Speed = 1.0
+	}
+	if cfg.TTS.Vol == 0 {
+		cfg.TTS.Vol = 1.0
+	}
+	if cfg.TTS.SampleRate == 0 {
+		cfg.TTS.SampleRate = 32000
+	}
+	if cfg.TTS.Bitrate == 0 {
+		cfg.TTS.Bitrate = 128000
 	}
 
 	if err := cfg.validate(); err != nil {

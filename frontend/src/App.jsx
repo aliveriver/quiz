@@ -136,16 +136,11 @@ export default function App() {
     setTimeout(() => { window.location.href = 'about:blank'; }, 200);
   }, []);
 
-  // 配置: 冲突警告阈值
-  const CONFLICT_WARNING_THRESHOLD = 3;
-
   const handleStart = (disableMeta = false) => {
     setMetaEnabled(!disableMeta);
     setQuestions(drawQuestions(QUESTIONS_PER_ROUND));
     setAppState('quiz');
     localStorage.setItem('quiz_started', 'true');
-
-    // 提前在后台收集设备信息用于结局
     collectDeviceInfo().then(info => setDeviceInfo(info));
   };
 
@@ -178,6 +173,13 @@ export default function App() {
     if (conflictResult.conflict) {
       // 触发冲突惩罚
       newState = applyConflictPenalty(newState);
+      
+      const newConflictCount = conflictCount + 1;
+      setConflictCount(newConflictCount);
+
+      if (newConflictCount >= runtimeConfig.conflict.warning_threshold) {
+        setShowConflictWarning(true);
+      }
       
       // 插入质问锚点题
       const confrontationMsg = getConflictMessage(conflictResult);
@@ -226,9 +228,13 @@ export default function App() {
   };
 
   const [monologueComplete, setMonologueComplete] = useState(false);
+  const [audioChunks, setAudioChunks] = useState([]);
 
   const finishGame = async (finalState) => {
     setAppState('ending');
+    setMonologue(null);
+    setMonologueComplete(false);
+    setAudioChunks([]);
 
     // 清除逃离次数记录
     sessionStorage.removeItem('escape_attempts');
@@ -238,8 +244,8 @@ export default function App() {
     try {
       const profile = getNormalizedStats(finalState);
 
-      // 调用后端 SSE 流式生成结局独白
-      const response = await fetch('http://localhost:8080/api/stream-monologue', {
+      // 调用后端 SSE 流式生成结局独白 + TTS 语音
+      const response = await fetch('http://localhost:8080/api/stream-monologue-tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -263,22 +269,41 @@ export default function App() {
         const lines = buffer.split('\n');
         buffer = lines.pop(); // 保留不完整行
 
+        // 解析 SSE 事件（带 event: 字段）
+        let currentEvent = '';
         for (const line of lines) {
+          if (line.startsWith('event: ')) {
+            currentEvent = line.slice(7).trim();
+            continue;
+          }
           if (!line.startsWith('data: ')) continue;
           const payload = line.slice(6).trim();
-          if (payload === '[DONE]') {
+
+          if (currentEvent === 'done' || payload === '[DONE]') {
             setMonologueComplete(true);
             break;
           }
+
           try {
             const parsed = JSON.parse(payload);
-            if (parsed.text) {
+
+            if (currentEvent === 'text' || (!currentEvent && parsed.text)) {
+              // LLM 文本片段
               fullText += parsed.text;
               setMonologue(fullText);
+            } else if (currentEvent === 'audio' && parsed.audio) {
+              // TTS 音频片段（base64 编码）
+              const binaryStr = atob(parsed.audio);
+              const bytes = new Uint8Array(binaryStr.length);
+              for (let i = 0; i < binaryStr.length; i++) {
+                bytes[i] = binaryStr.charCodeAt(i);
+              }
+              setAudioChunks(prev => [...prev, bytes]);
             }
           } catch {
             // 忽略解析错误
           }
+          currentEvent = '';
         }
       }
 
@@ -336,10 +361,12 @@ export default function App() {
           {showConflictWarning && (
             <div style={{
               position: 'fixed',
-              bottom: '1.5rem',
-              right: '1.5rem',
-              fontSize: '0.75rem',
-              color: 'rgba(255, 255, 255, 0.15)',
+              bottom: (runtimeConfig.conflict.warning_position || '').includes('bottom') ? '1.5rem' : 'auto',
+              top: (runtimeConfig.conflict.warning_position || '').includes('top') ? '1.5rem' : 'auto',
+              right: (runtimeConfig.conflict.warning_position || '').includes('right') ? '1.5rem' : 'auto',
+              left: (runtimeConfig.conflict.warning_position || '').includes('left') ? '1.5rem' : 'auto',
+              fontSize: `${runtimeConfig.conflict.warning_font_size || 0.75}rem`,
+              color: `rgba(255, 255, 255, ${runtimeConfig.conflict.warning_opacity ?? 0.15})`,
               letterSpacing: '0.05em',
               pointerEvents: 'none',
               zIndex: 100,
@@ -359,6 +386,7 @@ export default function App() {
           escapeAttempts={escapeAttempts}
           monologueComplete={monologueComplete}
           stats={getNormalizedStats(gameState)}
+          audioChunks={audioChunks}
         />
       )}
 

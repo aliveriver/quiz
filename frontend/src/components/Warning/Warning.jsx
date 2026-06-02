@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { runtimeConfig } from '../../core/runtimeConfig';
 import './Warning.css';
 
 /**
@@ -13,6 +14,8 @@ export default function Warning({ onStart, onDisableMeta }) {
     if (disableMeta) onDisableMeta?.();
     setTimeout(() => onStart(), 800);
   };
+
+  const totalQuestions = runtimeConfig.game.questions_per_round;
 
   return (
     <div className={`warning-screen ${fading ? 'warning-screen--fading' : ''}`}>
@@ -54,7 +57,7 @@ export default function Warning({ onStart, onDisableMeta }) {
           </button>
         </div>
 
-        <p className="warning-footer">约需 3-5 分钟 · 共 20 题</p>
+        <p className="warning-footer">约需 3-5 分钟 · 共 {totalQuestions} 题</p>
       </div>
 
       <div className="warning-ambient" />

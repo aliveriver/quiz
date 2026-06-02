@@ -1,3 +1,5 @@
+import { runtimeConfig } from './runtimeConfig';
+
 /**
  * Meta 特效引擎
  * 
@@ -78,9 +80,9 @@ const EFFECTS = {
 };
 
 // 基础触发概率
-const BASE_PROBABILITY = 0.05;
+const BASE_PROBABILITY = runtimeConfig.meta.base_probability;
 // 偏执值系数
-const OBSESSION_FACTOR = 0.003;
+const OBSESSION_FACTOR = runtimeConfig.meta.obsession_factor;
 
 /**
  * 计算当前触发概率

@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { routeEnding, buildLLMPrompt, callTTS } from '../../core/endingRouter';
+import { routeEnding } from '../../core/endingRouter';
+import { useStreamingAudio } from '../../core/useStreamingAudio';
 import './Ending.css';
 
 /**
  * 结局演出总控组件
  * 根据 getNormalizedStats() 的六维数值路由到对应的结局子组件
+ * 
+ * audioChunks: 从 App.jsx SSE 接收的 TTS 音频片段（Uint8Array[]），
+ *              通过 useStreamingAudio hook 实时播放。
  */
 // ─── 调试后门 ────────────────────────────────────────────────────────────────
 // URL 参数: ?debug_ending=A  (A/B/C/D/E/F)
@@ -21,9 +25,11 @@ function getDebugEndingId() {
 
 const DEBUG_MONOLOGUE = '【调试独白】这是用于测试结局演出的占位文本。\n一切都在正常运行中。';
 
-export default function Ending({ monologue, deviceInfo, escapeAttempts, monologueComplete, stats }) {
+export default function Ending({ monologue, deviceInfo, escapeAttempts, monologueComplete, stats, audioChunks = [] }) {
   const [endingId, setEndingId] = useState(() => getDebugEndingId());
-  const [ttsUrl, setTtsUrl] = useState(null);
+
+  // 流式音频播放
+  const { isPlaying, hasAudio } = useStreamingAudio(audioChunks);
 
   // 调试模式：若 URL 有 ?debug_ending=X，跳过正常路由
   const isDebug = !!getDebugEndingId();
@@ -57,13 +63,6 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
     return () => { delete window.__debug_ending; };
   }, []);
 
-  useEffect(() => {
-    if (!monologueComplete || !monologue || !endingId) return;
-    callTTS(monologue, endingId).then(url => {
-      if (url) setTtsUrl(url);
-    });
-  }, [monologueComplete, monologue, endingId]);
-
   if (!endingId) {
     return (
       <div className="ending-loading">
@@ -73,7 +72,15 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
     );
   }
 
-  const endingProps = { monologue: debugMonologue, monologueComplete: debugComplete, deviceInfo, escapeAttempts, stats, ttsUrl };
+  const endingProps = {
+    monologue: debugMonologue,
+    monologueComplete: debugComplete,
+    deviceInfo,
+    escapeAttempts,
+    stats,
+    isAudioPlaying: isPlaying,
+    hasAudio,
+  };
 
   switch (endingId) {
     case 'A': return <EndingA {...endingProps} />;
@@ -86,11 +93,12 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
   }
 }
 
+
 /* ─────────────────────────────────────────────────────────────────────────────
    结局 A —— 溺爱窒息线
    高好感 + 高偏执：引力鼠标、视觉吞噬、终身归属协议、满屏弹幕
 ───────────────────────────────────────────────────────────────────────────── */
-function EndingA({ monologue, monologueComplete, ttsUrl }) {
+function EndingA({ monologue, monologueComplete }) {
   const [showContract, setShowContract] = useState(false);
   const [rejectPos, setRejectPos] = useState({ x: null, y: null });
   const [rejectLabel, setRejectLabel] = useState('拒绝');
@@ -178,8 +186,6 @@ function EndingA({ monologue, monologueComplete, ttsUrl }) {
 
   return (
     <div className={`ending-screen ending-a ${showContract ? 'hide-cursor' : ''}`} onMouseMove={handleMouseMove}>
-      {ttsUrl && <audio src={ttsUrl} autoPlay />}
-      
       {showContract && !accepted && (
         <div className="ending-a-cursor" style={{ left: cursorPos.x, top: cursorPos.y, transform: 'translate(-50%, -50%)' }}>♥</div>
       )}
@@ -270,7 +276,7 @@ function getContractEvidence() {
    结局 B —— 寄生共生线
    高好感 + 高依赖 + 低支配：UI 血肉化溶解，信息素丝线纠缠，PWA与拦截请求
 ───────────────────────────────────────────────────────────────────────────── */
-function EndingB({ monologue, monologueComplete, ttsUrl }) {
+function EndingB({ monologue, monologueComplete }) {
   const [dissolved, setDissolved] = useState(false);
   const [pwaPrompt, setPwaPrompt] = useState(false);
   const [threads, setThreads] = useState([]);
@@ -324,8 +330,6 @@ function EndingB({ monologue, monologueComplete, ttsUrl }) {
 
   return (
     <div className={`ending-screen ending-b ${dissolved ? 'ending-b--dissolved' : ''}`} onMouseMove={handleMouseMove}>
-      {ttsUrl && <audio src={ttsUrl} autoPlay />}
-
       {/* SVG 滤镜制造血肉化溶解感 */}
       <svg width="0" height="0" className="ending-b-svg-filter">
         <filter id="goo">
@@ -375,7 +379,7 @@ function EndingB({ monologue, monologueComplete, ttsUrl }) {
    结局 C —— 偏执囚禁线
    低好感 + 高支配 + 高不安：暗黑模式，监控暗角，重力/阻尼光标，验证死循环
 ───────────────────────────────────────────────────────────────────────────── */
-function EndingC({ monologue, monologueComplete, ttsUrl }) {
+function EndingC({ monologue, monologueComplete }) {
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [captchaFail, setCaptchaFail] = useState(0);
   const [grid, setGrid] = useState(() => generateEyeGrid(0));
@@ -449,7 +453,6 @@ function EndingC({ monologue, monologueComplete, ttsUrl }) {
   if (!showCaptcha) {
     return (
       <div className="ending-screen ending-c">
-        {ttsUrl && <audio src={ttsUrl} autoPlay />}
         <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} />
       </div>
     );
@@ -458,7 +461,6 @@ function EndingC({ monologue, monologueComplete, ttsUrl }) {
   if (lockdown) {
     return (
       <div className="ending-screen ending-c-lockdown">
-        {ttsUrl && <audio src={ttsUrl} autoPlay />}
         <div className="lockdown-glitch-bg" />
         <div className="lockdown-content">
           <h1 className="lockdown-title">FATAL ERROR: ESCAPE_DENIED</h1>
@@ -471,8 +473,6 @@ function EndingC({ monologue, monologueComplete, ttsUrl }) {
 
   return (
     <div className="ending-screen ending-c hide-cursor" onMouseMove={handleMouseMove}>
-      {ttsUrl && <audio src={ttsUrl} autoPlay />}
-      
       {/* 自定义重力光标 */}
       <div className="ending-c-cursor" style={{ left: cursorPos.x, top: cursorPos.y }}></div>
       
@@ -536,7 +536,7 @@ function generateEyeGrid(failCount) {
 
 const LOVELINE = '我会永远留在你身边，哪也不去。';
 
-function EndingD({ monologue, monologueComplete, ttsUrl }) {
+function EndingD({ monologue, monologueComplete }) {
   const [showInput, setShowInput] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [loveIndex, setLoveIndex] = useState(0);
@@ -589,8 +589,6 @@ function EndingD({ monologue, monologueComplete, ttsUrl }) {
 
   return (
     <div className="ending-screen ending-d">
-      {ttsUrl && <audio src={ttsUrl} autoPlay />}
-      
       {/* 巨大的压迫感水印 */}
       <div className="ending-d-watermarks">
          {displayText.length > 3 && <div className="watermark w1">你是我的</div>}
@@ -637,7 +635,7 @@ function EndingD({ monologue, monologueComplete, ttsUrl }) {
    结局 E —— 矛盾崩溃线
    低信任 + 高依赖：Glitch Art，红色弹窗指数级暴增，产生真实的卡顿假死感
 ───────────────────────────────────────────────────────────────────────────── */
-function EndingE({ monologue, monologueComplete, ttsUrl }) {
+function EndingE({ monologue, monologueComplete }) {
   const [showAccusation, setShowAccusation] = useState(false);
   const [popups, setPopups] = useState([]);
   const popupTimerRef = useRef(null);
@@ -687,8 +685,6 @@ function EndingE({ monologue, monologueComplete, ttsUrl }) {
 
   return (
     <div className={`ending-screen ending-e ${showAccusation ? 'ending-e--glitch' : ''}`}>
-      {ttsUrl && <audio src={ttsUrl} autoPlay />}
-
       {!showAccusation && (
         <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} />
       )}
@@ -718,7 +714,7 @@ function EndingE({ monologue, monologueComplete, ttsUrl }) {
    结局 F —— 同归于尽线
    极低信任 + 高不安 + 高偏执：Terminal打印，物理毁灭（失去重力），抹杀URL
 ───────────────────────────────────────────────────────────────────────────── */
-function EndingF({ monologue, monologueComplete, ttsUrl }) {
+function EndingF({ monologue, monologueComplete }) {
   const [logs, setLogs] = useState([]);
   const [destroyed, setDestroyed] = useState(false);
   const [fFinalPhase, setFFinalPhase] = useState(false);
@@ -806,8 +802,6 @@ function EndingF({ monologue, monologueComplete, ttsUrl }) {
 
   return (
     <div className={`ending-screen ending-f ${gravity ? 'ending-f--gravity' : ''}`}>
-      {ttsUrl && <audio src={ttsUrl} autoPlay />}
-
       {!monologueComplete && (
         <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} />
       )}
