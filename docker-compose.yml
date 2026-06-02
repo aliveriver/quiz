@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    environment:
+      CONFIG_PATH: /app/config.yaml
+      SERVER_PORT: ${BACKEND_CONTAINER_PORT:-8080}
+    expose:
+      - "${BACKEND_CONTAINER_PORT:-8080}"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-}
+        VITE_BASE_PATH: ${VITE_BASE_PATH:-/}
+    depends_on:
+      - backend
+    environment:
+      BACKEND_UPSTREAM: backend:${BACKEND_CONTAINER_PORT:-8080}
+    ports:
+      - "${FRONTEND_HOST:-127.0.0.1}:${FRONTEND_PORT:-8088}:80"
+    restart: unless-stopped

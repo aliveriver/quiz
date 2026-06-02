@@ -22,6 +22,7 @@ import { routeEnding } from './core/endingRouter';
 import { useStreamingAudio } from './core/useStreamingAudio';
 import { getHorrorAudioSrc, playHorrorAudio, primeHorrorAudio } from './core/horrorAudio';
 import { base64ToBytes, parseSSEEvent } from './core/sse';
+import { apiUrl } from './core/apiClient';
 import './App.css';
 
 const QUESTIONS_PER_ROUND = runtimeConfig.game.questions_per_round;
@@ -244,7 +245,7 @@ export default function App() {
 
     try {
       // 调用后端 SSE 流式生成结局独白 + TTS 语音
-      const response = await fetch('http://localhost:8080/api/stream-monologue-tts', {
+      const response = await fetch(apiUrl('/api/stream-monologue-tts'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -22,6 +22,12 @@ docker build -t ghost-backend .
 docker run --env-file .env -p 8080:8080 ghost-backend
 ```
 
+如需修改容器内部监听端口，可设置 `SERVER_PORT`：
+
+```powershell
+docker run --env-file .env -e SERVER_PORT=9000 -p 9000:9000 ghost-backend
+```
+
 ## 目录
 
 - `cmd/server`：启动入口和路由注册。

@@ -6,6 +6,8 @@ package config
 import (
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/joho/godotenv"
@@ -167,11 +169,35 @@ func Load(configPath string) (*AppConfig, error) {
 	cfg.GeoIP.URL = os.Getenv("GEOIP_URL")
 	cfg.GeoIP.APIKey = os.Getenv("GEOIP_API_KEY")
 
+	if port := os.Getenv("SERVER_PORT"); port != "" {
+		parsedPort, err := strconv.Atoi(port)
+		if err != nil {
+			return nil, fmt.Errorf("config: SERVER_PORT must be an integer: %w", err)
+		}
+		cfg.Server.Port = parsedPort
+	}
+
+	if origins := os.Getenv("CORS_ORIGINS"); origins != "" {
+		cfg.Server.CORSOrigins = splitCSV(origins)
+	}
+
 	if err := cfg.validate(); err != nil {
 		return nil, err
 	}
 
 	return &cfg, nil
+}
+
+func splitCSV(value string) []string {
+	parts := strings.Split(value, ",")
+	result := make([]string, 0, len(parts))
+	for _, part := range parts {
+		trimmed := strings.TrimSpace(part)
+		if trimmed != "" {
+			result = append(result, trimmed)
+		}
+	}
+	return result
 }
 
 // validate 检查必填字段是否具有合理值。

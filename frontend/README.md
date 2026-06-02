@@ -15,6 +15,8 @@ npm run dev
 npm run build
 ```
 
+开发环境下，Vite 会把 `/api` 代理到 `http://localhost:8080`。部署环境下默认使用同源 `/api`，由 Nginx 反代到后端容器。
+
 ## 配置
 
 `config.yaml` 存放可公开的前端运行参数，例如题目数量、冲突提示和 Meta 特效概率。不要在前端配置或源码中写入任何 API Key。

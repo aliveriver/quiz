@@ -35,6 +35,50 @@ npm run dev
 
 默认前端地址为 `http://localhost:5173`，后端地址为 `http://localhost:8080`。
 
+## Docker 部署
+
+1. 复制部署环境变量：
+
+```powershell
+copy .env.deploy.example .env
+copy backend\.env.example backend\.env
+```
+
+2. 编辑 `.env` 指定服务器对外端口，例如 `FRONTEND_PORT=8088`。
+
+3. 编辑 `backend/.env` 填入 `LLM_API_KEY`，不要把真实 key 提交到仓库。
+
+4. 构建并启动：
+
+```powershell
+docker compose up -d --build
+```
+
+部署后访问 `http://你的服务器IP:FRONTEND_PORT`。默认前端 Nginx 会把 `/api/*` 反代到后端容器，后端无需单独暴露到公网。
+
+如果你的服务器已经有 Nginx 和站点，例如 `aliveriver.xyz`，建议把本项目部署到子路径：
+
+- 页面：`https://aliveriver.xyz/love/`
+- API：`https://aliveriver.xyz/love-api/`
+
+根目录 `.env` 使用：
+
+```env
+FRONTEND_HOST=127.0.0.1
+FRONTEND_PORT=8088
+BACKEND_CONTAINER_PORT=8080
+VITE_BASE_PATH=/love/
+VITE_API_BASE_URL=/love-api
+```
+
+然后把 `deploy/nginx-aliveriver-love.conf` 里的 location 加到现有 HTTPS `server` 块中，再执行：
+
+```bash
+nginx -t
+systemctl reload nginx
+docker compose up -d --build
+```
+
 ## 目录结构
 
 - `frontend/src/components`：React UI 组件与演出组件。

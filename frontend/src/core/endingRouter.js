@@ -1,4 +1,5 @@
 import { getEndingSystemPrompt } from './endingPrompts';
+import { apiUrl } from './apiClient';
 
 /**
  * 结局路由器 — 六维雷达图面积判定法
@@ -116,7 +117,7 @@ export async function callTTS(text, endingId) {
   }
 
   try {
-    const response = await fetch('http://localhost:8080/api/tts', {
+    const response = await fetch(apiUrl('/api/tts'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
