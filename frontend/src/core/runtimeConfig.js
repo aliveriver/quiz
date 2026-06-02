@@ -9,8 +9,8 @@ const DEFAULT_CONFIG = {
     warning_font_size: 0.75,
   },
   meta: {
-    base_probability: 0.05,
-    obsession_factor: 0.003,
+    base_probability: 0.1,
+    obsession_factor: 0.5,
   },
   game: {
     questions_per_round: 20,

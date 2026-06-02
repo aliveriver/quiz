@@ -9,13 +9,13 @@ server:
 llm:
   provider: "openai"
   model: "Pro/moonshotai/Kimi-K2.6"
-  max_tokens: 2048
+  max_tokens: 128
   temperature: 0.9
   timeout: 500
 
 tts:
-  model: "speech-02-hd"
-  voice: "female-shaonv"
+  model: "speech-2.6-turbo"
+  voice: "wumei_yujie"
   format: "mp3"
   speed: 1.0
   vol: 1.0

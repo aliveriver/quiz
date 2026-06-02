@@ -182,3 +182,119 @@
     border-right-color: var(--border);
   }
 }
+
+.pre-ending-screen {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  color: #ece7e9;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(176, 38, 78, 0.22), transparent 38%),
+    linear-gradient(145deg, #07070b 0%, #151018 52%, #050507 100%);
+}
+
+.pre-ending-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 42%, rgba(0, 0, 0, 0.72) 100%);
+}
+
+.pre-ending-panel {
+  width: min(42rem, 100%);
+  min-height: 18rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.pre-ending-monologue {
+  margin: 0;
+  white-space: pre-wrap;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 2;
+  color: #f0e9ec;
+  text-shadow: 0 0 18px rgba(232, 107, 173, 0.18);
+}
+
+.pre-ending-loading {
+  min-height: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  color: rgba(236, 231, 233, 0.72);
+}
+
+.pre-ending-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-top-color: #e86bad;
+  border-radius: 50%;
+  animation: preEndingSpin 1s linear infinite;
+}
+
+.pre-ending-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: preEndingBlink 1s infinite;
+}
+
+.pre-ending-button {
+  min-width: 9rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid rgba(232, 107, 173, 0.55);
+  border-radius: 6px;
+  background: rgba(232, 107, 173, 0.12);
+  color: #ffeef6;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 0;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.pre-ending-button:not(:disabled):hover {
+  transform: translateY(-1px);
+  background: rgba(232, 107, 173, 0.2);
+  border-color: rgba(232, 107, 173, 0.9);
+}
+
+.pre-ending-button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+@keyframes preEndingSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes preEndingBlink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .pre-ending-monologue {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .pre-ending-panel {
+    min-height: 22rem;
+  }
+}

@@ -19,6 +19,9 @@ import { drawQuestions, getConfrontationQuestion } from './core/questionPool';
 import { tryTriggerEffect, forceTriggerEffect } from './core/metaEngine';
 import { collectDeviceInfo } from './core/deviceProbe';
 import { runtimeConfig } from './core/runtimeConfig';
+import { routeEnding } from './core/endingRouter';
+import { useStreamingAudio } from './core/useStreamingAudio';
+import './App.css';
 
 const QUESTIONS_PER_ROUND = runtimeConfig.game.questions_per_round;
 
@@ -39,6 +42,8 @@ export default function App() {
   const [escapeAttempts, setEscapeAttempts] = useState(0);
   const [conflictCount, setConflictCount] = useState(0);
   const [showConflictWarning, setShowConflictWarning] = useState(false);
+  const [finalStats, setFinalStats] = useState(null);
+  const [finalEndingId, setFinalEndingId] = useState(null);
 
   // 刷新追踪 & 恐怖效果
   const [horrorType, setHorrorType] = useState(null);
@@ -231,7 +236,12 @@ export default function App() {
   const [audioChunks, setAudioChunks] = useState([]);
 
   const finishGame = async (finalState) => {
-    setAppState('ending');
+    const profile = getNormalizedStats(finalState);
+    const endingId = routeEnding(profile);
+
+    setFinalStats(profile);
+    setFinalEndingId(endingId);
+    setAppState('pre-ending');
     setMonologue(null);
     setMonologueComplete(false);
     setAudioChunks([]);
@@ -242,14 +252,13 @@ export default function App() {
     localStorage.removeItem('refresh_count');
 
     try {
-      const profile = getNormalizedStats(finalState);
-
       // 调用后端 SSE 流式生成结局独白 + TTS 语音
       const response = await fetch('http://localhost:8080/api/stream-monologue-tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           profile,
+          ending_id: endingId,
           device: deviceInfo || {},
         }),
       });
@@ -316,6 +325,11 @@ export default function App() {
     }
   };
 
+  const enterEnding = () => {
+    setAudioChunks([]);
+    setAppState('ending');
+  };
+
   return (
     <>
       {horrorType && (
@@ -379,14 +393,23 @@ export default function App() {
         </>
       )}
 
+      {appState === 'pre-ending' && (
+        <PreEndingMonologue
+          monologue={monologue}
+          monologueComplete={monologueComplete}
+          audioChunks={audioChunks}
+          onEnterEnding={enterEnding}
+        />
+      )}
+
       {appState === 'ending' && (
         <Ending
           monologue={monologue}
           deviceInfo={deviceInfo}
           escapeAttempts={escapeAttempts}
           monologueComplete={monologueComplete}
-          stats={getNormalizedStats(gameState)}
-          audioChunks={audioChunks}
+          stats={finalStats || getNormalizedStats(gameState)}
+          audioChunks={[]}
         />
       )}
 
@@ -395,5 +418,38 @@ export default function App() {
         onEffectEnd={() => setCurrentMetaEffect(null)}
       />
     </>
+  );
+}
+
+function PreEndingMonologue({ monologue, monologueComplete, audioChunks, onEnterEnding }) {
+  const { isPlaying, hasAudio } = useStreamingAudio(audioChunks);
+  const canEnter = monologueComplete && (!hasAudio || !isPlaying);
+
+  return (
+    <main className="pre-ending-screen">
+      <div className="pre-ending-vignette" />
+      <section className="pre-ending-panel">
+        {!monologue ? (
+          <div className="pre-ending-loading">
+            <div className="pre-ending-spinner" />
+            <p>正在解析你留下的痕迹...</p>
+          </div>
+        ) : (
+          <p className="pre-ending-monologue">
+            {monologue}
+            {!monologueComplete && <span className="pre-ending-cursor" />}
+          </p>
+        )}
+
+        <button
+          type="button"
+          className="pre-ending-button"
+          disabled={!canEnter}
+          onClick={onEnterEnding}
+        >
+          {canEnter ? '进入结局' : (hasAudio ? '听完这段话...' : '请等我说完...')}
+        </button>
+      </section>
+    </main>
   );
 }

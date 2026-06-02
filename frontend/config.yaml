@@ -14,9 +14,9 @@ conflict:
 # Meta 特效配置
 meta:
   # 基础触发概率
-  base_probability: 0.05
+  base_probability: 0.1
   # 偏执因子
-  obsession_factor: 0.003
+  obsession_factor: 0.5
 
 # 游戏流程配置
 game:

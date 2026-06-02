@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import TextRain from './TextRain';
-import FakeDialog from './FakeDialog';
 import './MetaLayer.css';
 
 /**
@@ -49,66 +47,15 @@ function renderEffect(effect, phase) {
     case 'colorShift':
       return <div className="meta-color-shift" />;
 
-    case 'textRain':
-      return <TextRain duration={effect.duration} />;
-
-    case 'cursorDrift':
-      return <CursorDrift />;
-
     case 'optionShake':
       return <div className="meta-shake-trigger" />;
 
     case 'glitchOverlay':
       return <GlitchOverlay />;
 
-    case 'fakeDialog':
-      return <FakeDialog />;
-
     default:
       return null;
   }
-}
-
-/**
- * 光标漂移效果
- */
-function CursorDrift() {
-  const [trails, setTrails] = useState([]);
-
-  useEffect(() => {
-    const handleMove = (e) => {
-      const id = Date.now() + Math.random();
-      setTrails(prev => [...prev.slice(-12), { id, x: e.clientX, y: e.clientY }]);
-    };
-
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
-  }, []);
-
-  // 清理旧轨迹
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTrails(prev => prev.slice(-6));
-    }, 200);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="meta-cursor-drift">
-      {trails.map((t, i) => (
-        <div
-          key={t.id}
-          className="meta-cursor-trail"
-          style={{
-            left: t.x,
-            top: t.y,
-            opacity: (i + 1) / trails.length * 0.6,
-            transform: `scale(${(i + 1) / trails.length})`,
-          }}
-        />
-      ))}
-    </div>
-  );
 }
 
 /**
