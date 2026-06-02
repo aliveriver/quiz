@@ -283,6 +283,9 @@ func (s *Session) readLoop() {
 			return
 		case "task_finished":
 			log.Printf("[TTS] task finished, session=%s", evt.SessionID)
+			if s.onAudio != nil {
+				s.onAudio(nil, true)
+			}
 			return
 		}
 	}

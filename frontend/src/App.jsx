@@ -275,6 +275,11 @@ export default function App() {
   const finishGame = async (finalState) => {
     const profile = getNormalizedStats(finalState);
     const endingId = routeEnding(profile);
+    const currentDeviceInfo = deviceInfo || await collectDeviceInfo();
+
+    if (!deviceInfo) {
+      setDeviceInfo(currentDeviceInfo);
+    }
 
     setFinalStats(profile);
     setFinalEndingId(endingId);
@@ -296,7 +301,7 @@ export default function App() {
         body: JSON.stringify({
           profile,
           ending_id: endingId,
-          device: deviceInfo || {},
+          device: currentDeviceInfo || {},
         }),
       });
 
@@ -333,8 +338,11 @@ export default function App() {
         if ((event.type === 'text' || event.type === 'message') && typeof parsed.text === 'string') {
           fullText += parsed.text;
           if (fullText) setMonologue(fullText);
-        } else if (event.type === 'audio' && parsed.audio) {
-          setAudioChunks(prev => [...prev, base64ToBytes(parsed.audio)]);
+        } else if (event.type === 'audio' && (parsed.audio || parsed.final)) {
+          setAudioChunks(prev => [...prev, {
+            bytes: parsed.audio ? base64ToBytes(parsed.audio) : new Uint8Array(),
+            isFinal: Boolean(parsed.final),
+          }]);
         }
 
         return false;

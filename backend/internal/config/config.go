@@ -17,6 +17,7 @@ type AppConfig struct {
 	Server    ServerConfig    `yaml:"server"`
 	LLM       LLMConfig       `yaml:"llm"`
 	TTS       TTSConfig       `yaml:"tts"`
+	GeoIP     GeoIPConfig     `yaml:"geoip"`
 	RateLimit RateLimitConfig `yaml:"rate_limit"`
 	Game      GameConfig      `yaml:"game"`
 }
@@ -60,6 +61,16 @@ type TTSConfig struct {
 	WSURL  string `yaml:"-"` // WebSocket 端点
 }
 
+// GeoIPConfig controls optional backend IP-based coarse location lookup.
+// URL/API key are loaded from .env to avoid committing service credentials.
+type GeoIPConfig struct {
+	Enabled bool `yaml:"enabled"`
+	Timeout int  `yaml:"timeout"` // seconds
+
+	URL    string `yaml:"-"`
+	APIKey string `yaml:"-"`
+}
+
 // RateLimitConfig 控制 token-bucket rate limiter。
 type RateLimitConfig struct {
 	RequestsPerSecond float64 `yaml:"requests_per_second"`
@@ -87,6 +98,14 @@ func (s ServerConfig) WriteTimeoutDuration() time.Duration {
 // LLMTimeout 将 LLM HTTP client timeout 转为 time.Duration。
 func (l LLMConfig) LLMTimeout() time.Duration {
 	return time.Duration(l.Timeout) * time.Second
+}
+
+// GeoIPTimeout converts geoip timeout seconds to time.Duration.
+func (g GeoIPConfig) GeoIPTimeout() time.Duration {
+	if g.Timeout <= 0 {
+		return 2 * time.Second
+	}
+	return time.Duration(g.Timeout) * time.Second
 }
 
 // Load 先从 configPath 读取 config.yaml，再加载 .env（如果存在）
@@ -144,6 +163,9 @@ func Load(configPath string) (*AppConfig, error) {
 	if cfg.TTS.Bitrate == 0 {
 		cfg.TTS.Bitrate = 128000
 	}
+
+	cfg.GeoIP.URL = os.Getenv("GEOIP_URL")
+	cfg.GeoIP.APIKey = os.Getenv("GEOIP_API_KEY")
 
 	if err := cfg.validate(); err != nil {
 		return nil, err

@@ -14,13 +14,13 @@ conflict:
 # Meta 特效配置
 meta:
   # 基础触发概率
-  base_probability: 0.1
+  base_probability: 0.2
   # 偏执因子
-  obsession_factor: 0.5
+  obsession_factor: 0.8
 
 # 游戏流程配置
 game:
   # 每轮题目数量
-  questions_per_round: 1
+  questions_per_round: 25
   # 冲突检测滑动窗口大小
   conflict_window_size: 5

@@ -3,19 +3,19 @@ import { useEffect, useRef, useState } from 'react';
 const AUDIO_MIME_TYPE = 'audio/mpeg';
 
 /**
- * Plays audio chunks as a FIFO queue.
+ * Plays finalized audio segments as a FIFO queue.
  *
- * The backend sends MiniMax TTS audio through SSE as Uint8Array chunks. Creating
- * one ever-growing Blob causes playback to restart/rebuild as the stream grows,
- * so this hook only enqueues chunks that have not been seen yet and starts the
- * next Audio element as soon as the previous one finishes.
+ * The backend sends one MP3 as multiple Uint8Array chunks. Those chunks are not
+ * individually playable MP3 files, so the hook buffers them until the backend
+ * marks the segment as final, then plays one combined Blob.
  *
- * @param {Uint8Array[]} audioChunks
+ * @param {(Uint8Array|{bytes: Uint8Array, isFinal: boolean})[]} audioChunks
  * @returns {{ isPlaying: boolean, hasAudio: boolean }}
  */
 export function useStreamingAudio(audioChunks) {
   const audioRef = useRef(null);
   const queueRef = useRef([]);
+  const pendingChunkPartsRef = useRef([]);
   const nextChunkIndexRef = useRef(0);
   const objectUrlRef = useRef(null);
   const playingRef = useRef(false);
@@ -41,15 +41,15 @@ export function useStreamingAudio(audioChunks) {
   const playNext = () => {
     if (cancelledRef.current || playingRef.current) return;
 
-    const chunk = queueRef.current.shift();
-    if (!chunk) {
+    const audioParts = queueRef.current.shift();
+    if (!audioParts) {
       setIsPlaying(false);
       return;
     }
 
     cleanupCurrentAudio();
 
-    const blob = new Blob([chunk], { type: AUDIO_MIME_TYPE });
+    const blob = new Blob(audioParts, { type: AUDIO_MIME_TYPE });
     const url = URL.createObjectURL(blob);
     const audio = new Audio(url);
 
@@ -86,6 +86,7 @@ export function useStreamingAudio(audioChunks) {
   useEffect(() => {
     if (!audioChunks || audioChunks.length === 0) {
       queueRef.current = [];
+      pendingChunkPartsRef.current = [];
       nextChunkIndexRef.current = 0;
       setHasAudio(false);
       return;
@@ -96,7 +97,20 @@ export function useStreamingAudio(audioChunks) {
     const nextChunks = audioChunks.slice(nextChunkIndexRef.current);
     if (nextChunks.length === 0) return;
 
-    queueRef.current.push(...nextChunks);
+    for (const chunk of nextChunks) {
+      const bytes = chunk?.bytes || chunk;
+      const isFinal = Boolean(chunk?.isFinal);
+
+      if (bytes && bytes.length > 0) {
+        pendingChunkPartsRef.current.push(bytes);
+      }
+
+      if (isFinal && pendingChunkPartsRef.current.length > 0) {
+        queueRef.current.push(pendingChunkPartsRef.current);
+        pendingChunkPartsRef.current = [];
+      }
+    }
+
     nextChunkIndexRef.current = audioChunks.length;
     playNext();
   }, [audioChunks]);
@@ -107,6 +121,7 @@ export function useStreamingAudio(audioChunks) {
     return () => {
       cancelledRef.current = true;
       queueRef.current = [];
+      pendingChunkPartsRef.current = [];
       playingRef.current = false;
       cleanupCurrentAudio();
     };

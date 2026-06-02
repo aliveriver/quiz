@@ -4,12 +4,12 @@
  * 安全地获取浏览器/设备信息，仅使用不需要用户显式授权的 API。
  * 用于生成个性化的 Meta 演出文案。
  * 
- * ⚠️ 绝对不使用 Geolocation API
+ * ⚠️ 不采集地理位置
  */
 
 /**
  * 获取电池信息
- * @returns {Promise<{level: number, charging: boolean}|null>}
+ * @returns {Promise<{level: number}|null>}
  */
 async function getBatteryInfo() {
   try {
@@ -17,32 +17,12 @@ async function getBatteryInfo() {
       const battery = await navigator.getBattery();
       return {
         level: Math.round(battery.level * 100),
-        charging: battery.charging,
       };
     }
   } catch (e) {
     // 部分浏览器不支持
   }
   return null;
-}
-
-/**
- * 获取屏幕信息
- */
-function getScreenInfo() {
-  return {
-    width: screen.width,
-    height: screen.height,
-    pixelRatio: window.devicePixelRatio || 1,
-    colorDepth: screen.colorDepth,
-  };
-}
-
-/**
- * 获取硬件并发数
- */
-function getHardwareConcurrency() {
-  return navigator.hardwareConcurrency || null;
 }
 
 /**
@@ -88,10 +68,39 @@ function getLanguageInfo() {
  */
 function getTimeInfo() {
   const now = new Date();
+  const weekdayNames = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+  const month = now.getMonth() + 1;
+  const date = now.getDate();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  let dayPeriod = '白天';
+
+  if (hour >= 5 && hour < 8) dayPeriod = '清晨';
+  else if (hour >= 8 && hour < 12) dayPeriod = '上午';
+  else if (hour >= 12 && hour < 14) dayPeriod = '中午';
+  else if (hour >= 14 && hour < 18) dayPeriod = '下午';
+  else if (hour >= 18 && hour < 22) dayPeriod = '夜晚';
+  else dayPeriod = '深夜';
+
   return {
-    hour: now.getHours(),
-    isLateNight: now.getHours() >= 22 || now.getHours() < 5,
+    year: now.getFullYear(),
+    month,
+    date,
+    hour,
+    minute,
+    weekday: now.getDay(),
+    weekdayName: weekdayNames[now.getDay()],
+    dayPeriod,
+    isLateNight: hour >= 22 || hour < 5,
+    isEarlyMorning: hour >= 5 && hour < 8,
+    isMorning: hour >= 8 && hour < 12,
+    isAfternoon: hour >= 14 && hour < 18,
+    isNight: hour >= 18 || hour < 5,
     isWeekend: now.getDay() === 0 || now.getDay() === 6,
+    localDate: now.toLocaleDateString('zh-CN'),
+    localTime: now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }),
+    readable: `${month}月${date}日${weekdayNames[now.getDay()]}${dayPeriod}${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`,
+    timeZoneOffsetMinutes: now.getTimezoneOffset(),
     timestamp: now.toISOString(),
   };
 }
@@ -102,16 +111,12 @@ function getTimeInfo() {
  */
 async function collectDeviceInfo() {
   const battery = await getBatteryInfo();
-  const screen = getScreenInfo();
-  const concurrency = getHardwareConcurrency();
   const ua = getUserAgentInfo();
   const lang = getLanguageInfo();
   const time = getTimeInfo();
 
   return {
     battery,
-    screen,
-    hardwareConcurrency: concurrency,
     userAgent: ua,
     language: lang,
     time,
@@ -133,9 +138,6 @@ function generateDeviceHints(deviceInfo) {
     } else if (level <= 30) {
       hints.push(`${level}% 的电量……你还愿意把它花在这里吗？`);
     }
-    if (deviceInfo.battery.charging) {
-      hints.push('你在充电……是打算待久一点吗？');
-    }
   }
 
   // 深夜提示
@@ -148,21 +150,11 @@ function generateDeviceHints(deviceInfo) {
     }
   }
 
-  // 屏幕提示
-  if (deviceInfo.screen) {
-    const { width, height } = deviceInfo.screen;
-    if (deviceInfo.userAgent && deviceInfo.userAgent.deviceType === 'mobile') {
-      hints.push(`${width}×${height} 的屏幕……你现在躺在床上看手机对吧。`);
-    }
-  }
-
   return hints;
 }
 
 export {
   getBatteryInfo,
-  getScreenInfo,
-  getHardwareConcurrency,
   getUserAgentInfo,
   getLanguageInfo,
   getTimeInfo,

@@ -5,6 +5,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"log"
 	"strings"
 
 	"ghost-relationship-test/internal/llm"
@@ -24,17 +25,9 @@ type EmotionalProfile struct {
 // 结构匹配前端 deviceProbe.js 的 collectDeviceInfo() 返回值。
 type DeviceInfo struct {
 	Battery struct {
-		Level    int  `json:"level,omitempty"`
-		Charging bool `json:"charging,omitempty"`
+		Level int `json:"level,omitempty"`
 	} `json:"battery,omitempty"`
-	Screen struct {
-		Width      int     `json:"width,omitempty"`
-		Height     int     `json:"height,omitempty"`
-		PixelRatio float64 `json:"pixelRatio,omitempty"`
-		ColorDepth int     `json:"colorDepth,omitempty"`
-	} `json:"screen,omitempty"`
-	HardwareConcurrency int `json:"hardwareConcurrency,omitempty"`
-	UserAgent           struct {
+	UserAgent struct {
 		Raw        string `json:"raw,omitempty"`
 		DeviceType string `json:"deviceType,omitempty"`
 		Browser    string `json:"browser,omitempty"`
@@ -44,17 +37,27 @@ type DeviceInfo struct {
 		Languages []string `json:"languages,omitempty"`
 	} `json:"language,omitempty"`
 	Time struct {
+		Year        int    `json:"year,omitempty"`
+		Month       int    `json:"month,omitempty"`
+		Date        int    `json:"date,omitempty"`
 		Hour        int    `json:"hour,omitempty"`
+		Minute      int    `json:"minute,omitempty"`
+		WeekdayName string `json:"weekdayName,omitempty"`
+		DayPeriod   string `json:"dayPeriod,omitempty"`
 		IsLateNight bool   `json:"isLateNight,omitempty"`
 		IsWeekend   bool   `json:"isWeekend,omitempty"`
+		LocalDate   string `json:"localDate,omitempty"`
+		LocalTime   string `json:"localTime,omitempty"`
+		Readable    string `json:"readable,omitempty"`
 		Timestamp   string `json:"timestamp,omitempty"`
 	} `json:"time,omitempty"`
 }
 
 // MonologueRequest 打包生成 monologue 所需的全部内容。
 type MonologueRequest struct {
-	Profile EmotionalProfile `json:"profile"`
-	Device  DeviceInfo       `json:"device"`
+	Profile  EmotionalProfile `json:"profile"`
+	Device   DeviceInfo       `json:"device"`
+	EndingID string           `json:"ending_id,omitempty"`
 }
 
 // MonologueResponse 是 API 响应。
@@ -94,8 +97,9 @@ func NewMonologueService(client *llm.Client) *MonologueService {
 
 // Generate 生成一段个性化的中文 yandere monologue。
 func (s *MonologueService) Generate(ctx context.Context, req MonologueRequest) (*MonologueResponse, error) {
-	systemPrompt := buildMonologueSystemPrompt()
+	systemPrompt := buildMonologueSystemPrompt(req.EndingID)
 	userPrompt := buildMonologueUserPrompt(req)
+	logMonologueUserPrompt(req.EndingID, userPrompt)
 
 	messages := []llm.Message{
 		{Role: "system", Content: systemPrompt},
@@ -112,8 +116,9 @@ func (s *MonologueService) Generate(ctx context.Context, req MonologueRequest) (
 
 // GenerateStream 以流式方式生成 monologue，每个文本片段通过 onChunk 回调推送。
 func (s *MonologueService) GenerateStream(ctx context.Context, req MonologueRequest, onChunk func(text string)) error {
-	systemPrompt := buildMonologueSystemPrompt()
+	systemPrompt := buildMonologueSystemPrompt(req.EndingID)
 	userPrompt := buildMonologueUserPrompt(req)
+	logMonologueUserPrompt(req.EndingID, userPrompt)
 
 	messages := []llm.Message{
 		{Role: "system", Content: systemPrompt},
@@ -149,24 +154,20 @@ func (s *MonologueService) GenerateConfrontation(ctx context.Context, req Confro
 // Prompt 构建器
 // ---------------------------------------------------------------------------
 
-func buildMonologueSystemPrompt() string {
-	return `你是一个名为"她"的虚拟角色，正在对玩家说出最终独白。
-你的人格特质是：控制欲强、占有欲重、对感情极度执着，但表面上保持冷静与温柔。
-你需要用中文生成一段简短的独白（3-5段，总计150-300字）。
+func buildMonologueSystemPrompt(endingID string) string {
+	return getEndingSystemPrompt(endingID)
+}
 
-语气要求：
-- 克制、亲密、略带不安感，像是在耳边低语
-- 不要使用夸张的恐怖描写或中二病台词
-- 不要使用感叹号，保持语调平稳
-- 可以适当使用省略号来营造停顿感
-- 自然地融入玩家的设备信息，仿佛你真的能"看到"对方的状态
-- 根据情感维度的高低调整语气：高占有欲时更执着，高焦虑时更不安，高信任时更温柔
-
-重要：只输出独白文本本身，不要加引号、标题或任何元数据。`
+func logMonologueUserPrompt(endingID string, userPrompt string) {
+	log.Printf("[LLM] monologue user prompt, ending=%s\n%s", normalizeEndingID(endingID), userPrompt)
 }
 
 func buildMonologueUserPrompt(req MonologueRequest) string {
 	var sb strings.Builder
+
+	if req.EndingID != "" {
+		sb.WriteString(fmt.Sprintf("当前触发结局：%s\n\n", req.EndingID))
+	}
 
 	sb.WriteString("玩家的情感测试结果：\n")
 	sb.WriteString(fmt.Sprintf("- 好感度：%d/100\n", req.Profile.Affection))
@@ -180,15 +181,6 @@ func buildMonologueUserPrompt(req MonologueRequest) string {
 
 	if req.Device.Battery.Level > 0 {
 		sb.WriteString(fmt.Sprintf("- 电量：%d%%\n", req.Device.Battery.Level))
-		if req.Device.Battery.Charging {
-			sb.WriteString("- 正在充电\n")
-		}
-	}
-	if req.Device.Screen.Width > 0 && req.Device.Screen.Height > 0 {
-		sb.WriteString(fmt.Sprintf("- 屏幕分辨率：%dx%d\n", req.Device.Screen.Width, req.Device.Screen.Height))
-	}
-	if req.Device.HardwareConcurrency > 0 {
-		sb.WriteString(fmt.Sprintf("- 处理器核心数：%d\n", req.Device.HardwareConcurrency))
 	}
 	if req.Device.Language.Language != "" {
 		sb.WriteString(fmt.Sprintf("- 系统语言：%s\n", req.Device.Language.Language))
@@ -197,8 +189,25 @@ func buildMonologueUserPrompt(req MonologueRequest) string {
 		device := classifyDevice(req.Device.UserAgent.Raw)
 		sb.WriteString(fmt.Sprintf("- 设备类型：%s\n", device))
 	}
+	if req.Device.UserAgent.Browser != "" {
+		sb.WriteString(fmt.Sprintf("- 浏览器：%s\n", req.Device.UserAgent.Browser))
+	}
+	if req.Device.Time.Readable != "" {
+		sb.WriteString(fmt.Sprintf("- 本地时间：%s\n", req.Device.Time.Readable))
+	} else if req.Device.Time.Hour > 0 || req.Device.Time.Minute > 0 {
+		sb.WriteString(fmt.Sprintf("- 本地时间：%02d:%02d\n", req.Device.Time.Hour, req.Device.Time.Minute))
+	}
+	if req.Device.Time.DayPeriod != "" {
+		sb.WriteString(fmt.Sprintf("- 时间段：%s\n", req.Device.Time.DayPeriod))
+	}
+	if req.Device.Time.WeekdayName != "" {
+		sb.WriteString(fmt.Sprintf("- 星期：%s\n", req.Device.Time.WeekdayName))
+	}
+	if req.Device.Time.IsWeekend {
+		sb.WriteString("- 今天是周末\n")
+	}
 	if req.Device.Time.IsLateNight {
-		sb.WriteString(fmt.Sprintf("- 当前时间：深夜 %d 点\n", req.Device.Time.Hour))
+		sb.WriteString("- 当前处于深夜时段\n")
 	}
 
 	return sb.String()

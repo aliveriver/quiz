@@ -11,8 +11,13 @@ export default function Warning({ onStart, onDisableMeta }) {
 
   const handleStart = (disableMeta) => {
     setFading(true);
-    if (disableMeta) onDisableMeta?.();
-    setTimeout(() => onStart(), 800);
+    setTimeout(() => {
+      if (disableMeta) {
+        onDisableMeta?.();
+      } else {
+        onStart?.();
+      }
+    }, 800);
   };
 
   const totalQuestions = runtimeConfig.game.questions_per_round;
@@ -36,7 +41,7 @@ export default function Warning({ onStart, onDisableMeta }) {
         <div className="warning-divider" />
 
         <p className="warning-notice">
-          本测试包含轻微视觉效果<br />
+          本测试包含轻微恐怖元素与视觉效果<br />
           建议在安静环境下完成
         </p>
 

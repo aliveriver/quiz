@@ -1,3 +1,5 @@
+import { getEndingSystemPrompt } from './endingPrompts';
+
 /**
  * 结局路由器 — 六维雷达图面积判定法
  *
@@ -77,40 +79,25 @@ export function routeEnding(stats) {
   return 'E';
 }
 
-// ─── LLM 提示词占位（后续填充）────────────────────────────────────────────────
+// ─── LLM 提示词 ───────────────────────────────────────────────────────────────
 /**
  * 根据结局 ID 与六维数值，生成传给 LLM 的 system prompt。
- * 目前为占位结构，后续在此填写完整 prompt。
  *
  * @param {'A'|'B'|'C'|'D'|'E'|'F'} endingId
  * @param {object} stats
  * @returns {string}  system prompt 字符串
  */
 export function buildLLMPrompt(endingId, stats) {
-  // ╔══════════════════════════════════════════════════╗
-  // ║   TODO: 在此填写各结局的 LLM System Prompt       ║
-  // ╚══════════════════════════════════════════════════╝
-  const prompts = {
-    A: `【占位】结局A「溺爱窒息线」LLM Prompt —— 请在此填写病娇角色的独白生成指令。
-维度参考：好感${stats.affection}，偏执${stats.obsession}`,
+  const prompt = getEndingSystemPrompt(endingId);
+  return `${prompt}
 
-    B: `【占位】结局B「寄生共生线」LLM Prompt —— 请在此填写病娇角色的独白生成指令。
-维度参考：好感${stats.affection}，依赖${stats.dependency}，支配${stats.possessiveness}`,
-
-    C: `【占位】结局C「偏执囚禁线」LLM Prompt —— 请在此填写病娇角色的独白生成指令。
-维度参考：好感${stats.affection}，支配${stats.possessiveness}，不安${stats.anxiety}`,
-
-    D: `【占位】结局D「信息茧房线」LLM Prompt —— 请在此填写病娇角色的独白生成指令。
-维度参考：支配${stats.possessiveness}，信任${stats.trust}`,
-
-    E: `【占位】结局E「矛盾崩溃线」LLM Prompt —— 请在此填写病娇角色的独白生成指令。
-维度参考：信任${stats.trust}，依赖${stats.dependency}`,
-
-    F: `【占位】结局F「同归于尽线」LLM Prompt —— 请在此填写病娇角色的独白生成指令。
-维度参考：信任${stats.trust}，不安${stats.anxiety}，偏执${stats.obsession}`,
-  };
-
-  return prompts[endingId] ?? prompts['E'];
+【当前六维数值】
+- 好感度：${stats.affection}/100
+- 占有欲：${stats.possessiveness}/100
+- 不安感：${stats.anxiety}/100
+- 执念度：${stats.obsession}/100
+- 信任度：${stats.trust}/100
+- 依赖度：${stats.dependency}/100`;
 }
 
 // ─── TTS API ──────────────────────────────────────────────────────────────────
@@ -158,4 +145,3 @@ export async function callTTS(text, endingId) {
     return null;
   }
 }
-

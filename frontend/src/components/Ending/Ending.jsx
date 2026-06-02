@@ -841,6 +841,10 @@ function EndingF({ monologue, monologueComplete }) {
    共用：独白展示块
 ───────────────────────────────────────────────────────────────────────────── */
 function MonologueBlock({ monologue, monologueComplete, className = "" }) {
+  if (monologueComplete) {
+    return null;
+  }
+
   if (!monologue) {
     return (
       <div className={`ending-loading-inline ${className}`}>
