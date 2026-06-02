@@ -24,6 +24,43 @@ import { useStreamingAudio } from './core/useStreamingAudio';
 import './App.css';
 
 const QUESTIONS_PER_ROUND = runtimeConfig.game.questions_per_round;
+const FALLBACK_MONOLOGUE = '……我一直在看着你。\n你的每一次犹豫，每一次撒谎，我都看在眼里。\n不过没关系，现在，只剩下我们了。';
+
+function parseSSEEvent(rawEvent) {
+  const event = {
+    type: 'message',
+    data: '',
+  };
+
+  for (const rawLine of rawEvent.split(/\r?\n/)) {
+    if (!rawLine || rawLine.startsWith(':')) continue;
+
+    const separatorIndex = rawLine.indexOf(':');
+    const field = separatorIndex === -1 ? rawLine : rawLine.slice(0, separatorIndex);
+    let value = separatorIndex === -1 ? '' : rawLine.slice(separatorIndex + 1);
+
+    if (value.startsWith(' ')) value = value.slice(1);
+
+    if (field === 'event') {
+      event.type = value || 'message';
+    } else if (field === 'data') {
+      event.data += event.data ? `\n${value}` : value;
+    }
+  }
+
+  return event.data ? event : null;
+}
+
+function base64ToBytes(base64) {
+  const binaryStr = atob(base64);
+  const bytes = new Uint8Array(binaryStr.length);
+
+  for (let i = 0; i < binaryStr.length; i++) {
+    bytes[i] = binaryStr.charCodeAt(i);
+  }
+
+  return bytes;
+}
 
 export default function App() {
   const [appState, setAppState] = useState('warning'); // 警告、答题、结局
@@ -264,63 +301,72 @@ export default function App() {
       });
 
       if (!response.ok) throw new Error('API Error');
+      if (!response.body) throw new Error('Streaming response body is empty');
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
       let fullText = '';
+      let streamDone = false;
+
+      const handleStreamEvent = (rawEvent) => {
+        const event = parseSSEEvent(rawEvent);
+        if (!event) return false;
+
+        const payload = event.data.trim();
+        if (event.type === 'done' || payload === '[DONE]') {
+          return true;
+        }
+
+        let parsed;
+        try {
+          parsed = JSON.parse(payload);
+        } catch (error) {
+          console.warn('[SSE] Failed to parse event payload:', event, error);
+          return false;
+        }
+
+        if (event.type === 'error' || parsed.error) {
+          throw new Error(parsed.error || 'Stream returned an error event');
+        }
+
+        if ((event.type === 'text' || event.type === 'message') && typeof parsed.text === 'string') {
+          fullText += parsed.text;
+          if (fullText) setMonologue(fullText);
+        } else if (event.type === 'audio' && parsed.audio) {
+          setAudioChunks(prev => [...prev, base64ToBytes(parsed.audio)]);
+        }
+
+        return false;
+      };
 
       while (true) {
         const { done, value } = await reader.read();
-        if (done) break;
+        buffer += done ? decoder.decode() : decoder.decode(value, { stream: true });
 
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n');
-        buffer = lines.pop(); // 保留不完整行
+        const events = buffer.split(/\r?\n\r?\n/);
+        buffer = events.pop() || '';
 
-        // 解析 SSE 事件（带 event: 字段）
-        let currentEvent = '';
-        for (const line of lines) {
-          if (line.startsWith('event: ')) {
-            currentEvent = line.slice(7).trim();
-            continue;
-          }
-          if (!line.startsWith('data: ')) continue;
-          const payload = line.slice(6).trim();
-
-          if (currentEvent === 'done' || payload === '[DONE]') {
-            setMonologueComplete(true);
-            break;
-          }
-
-          try {
-            const parsed = JSON.parse(payload);
-
-            if (currentEvent === 'text' || (!currentEvent && parsed.text)) {
-              // LLM 文本片段
-              fullText += parsed.text;
-              setMonologue(fullText);
-            } else if (currentEvent === 'audio' && parsed.audio) {
-              // TTS 音频片段（base64 编码）
-              const binaryStr = atob(parsed.audio);
-              const bytes = new Uint8Array(binaryStr.length);
-              for (let i = 0; i < binaryStr.length; i++) {
-                bytes[i] = binaryStr.charCodeAt(i);
-              }
-              setAudioChunks(prev => [...prev, bytes]);
-            }
-          } catch {
-            // 忽略解析错误
-          }
-          currentEvent = '';
+        for (const rawEvent of events) {
+          streamDone = handleStreamEvent(rawEvent);
+          if (streamDone) break;
         }
+
+        if (done || streamDone) break;
       }
 
+      if (!streamDone && buffer.trim()) {
+        streamDone = handleStreamEvent(buffer);
+      }
+
+      if (!fullText.trim()) {
+        throw new Error('Stream completed without text');
+      }
       setMonologueComplete(true);
     } catch (error) {
       console.error('Failed to generate monologue:', error);
       // 降级文案
-      setMonologue("……我一直在看着你。\n你的每一次犹豫，每一次撒谎，我都看在眼里。\n不过没关系，现在，只剩下我们了。");
+      setMonologue(FALLBACK_MONOLOGUE);
       setMonologueComplete(true);
     }
   };
@@ -423,7 +469,8 @@ export default function App() {
 
 function PreEndingMonologue({ monologue, monologueComplete, audioChunks, onEnterEnding }) {
   const { isPlaying, hasAudio } = useStreamingAudio(audioChunks);
-  const canEnter = monologueComplete && (!hasAudio || !isPlaying);
+  const hasMonologue = Boolean(monologue && monologue.trim());
+  const canEnter = hasMonologue && monologueComplete && (!hasAudio || !isPlaying);
 
   return (
     <main className="pre-ending-screen">

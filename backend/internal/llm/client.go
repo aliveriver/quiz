@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"time"
 
@@ -35,6 +36,18 @@ type Client struct {
 	maxTokens    int
 	temperature  float64
 	timeout      time.Duration
+}
+
+func toOpenAIMessages(messages []Message) []openai.ChatCompletionMessage {
+	openaiMessages := make([]openai.ChatCompletionMessage, len(messages))
+	for i, msg := range messages {
+		openaiMessages[i] = openai.ChatCompletionMessage{
+			Role:    msg.Role,
+			Content: msg.Content,
+		}
+	}
+
+	return openaiMessages
 }
 
 // NewClient 根据给定配置创建 Client。
@@ -70,13 +83,7 @@ func (c *Client) CompleteWithParams(
 	temperature float64,
 ) (string, error) {
 	// 转换自定义 Message 类型到 openai.ChatCompletionMessage
-	openaiMessages := make([]openai.ChatCompletionMessage, len(messages))
-	for i, msg := range messages {
-		openaiMessages[i] = openai.ChatCompletionMessage{
-			Role:    msg.Role,
-			Content: msg.Content,
-		}
-	}
+	openaiMessages := toOpenAIMessages(messages)
 
 	// 构建请求
 	req := openai.ChatCompletionRequest{
@@ -118,13 +125,7 @@ func (c *Client) CompleteStreamWithParams(
 	temperature float64,
 	onChunk func(delta string),
 ) error {
-	openaiMessages := make([]openai.ChatCompletionMessage, len(messages))
-	for i, msg := range messages {
-		openaiMessages[i] = openai.ChatCompletionMessage{
-			Role:    msg.Role,
-			Content: msg.Content,
-		}
-	}
+	openaiMessages := toOpenAIMessages(messages)
 
 	req := openai.ChatCompletionRequest{
 		Model:       model,
@@ -140,9 +141,20 @@ func (c *Client) CompleteStreamWithParams(
 	}
 	defer stream.Close()
 
+	sentText := false
 	for {
 		resp, err := stream.Recv()
 		if err == io.EOF {
+			if !sentText {
+				log.Printf("[LLM] stream returned no text; retrying with non-stream completion")
+				text, fallbackErr := c.CompleteWithParams(ctx, messages, model, maxTokens, temperature)
+				if fallbackErr != nil {
+					return fmt.Errorf("llm: stream returned no text; fallback completion: %w", fallbackErr)
+				}
+				if text != "" {
+					onChunk(text)
+				}
+			}
 			return nil
 		}
 		if err != nil {
@@ -151,6 +163,7 @@ func (c *Client) CompleteStreamWithParams(
 		if len(resp.Choices) > 0 {
 			delta := resp.Choices[0].Delta.Content
 			if delta != "" {
+				sentText = true
 				onChunk(delta)
 			}
 		}

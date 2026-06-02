@@ -8,8 +8,8 @@ server:
 
 llm:
   provider: "openai"
-  model: "Pro/moonshotai/Kimi-K2.6"
-  max_tokens: 128
+  model: "deepseek-v4-flash"
+  max_tokens: 512
   temperature: 0.9
   timeout: 500
 
