@@ -141,7 +141,7 @@ export async function callTTS(text, endingId) {
   }
 
   try {
-    const response = await fetch(apiUrl('/api/tts'), {
+    const response = await fetch(apiUrl('/tts'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

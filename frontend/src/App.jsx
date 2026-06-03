@@ -245,7 +245,7 @@ export default function App() {
 
     try {
       // 调用后端 SSE 流式生成结局独白 + TTS 语音
-      const response = await fetch(apiUrl('/api/stream-monologue-tts'), {
+      const response = await fetch(apiUrl('/stream-monologue-tts'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
