@@ -1,7 +1,9 @@
+const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 const HORROR_AUDIO = {
-  refreshWarning: encodeURI('/亲爱的，你以为刷新就能逃脱吗？.mp3'),
-  refreshTrap: encodeURI('/不会让你逃掉的，亲爱的.mp3'),
-  perfunctory: encodeURI('/你连看都不看一眼，是在敷衍我吗？.mp3'),
+  refreshWarning: encodeURI(assetUrl('亲爱的，你以为刷新就能逃脱吗？.mp3')),
+  refreshTrap: encodeURI(assetUrl('不会让你逃掉的，亲爱的.mp3')),
+  perfunctory: encodeURI(assetUrl('你连看都不看一眼，是在敷衍我吗？.mp3')),
 };
 
 const activeHorrorAudios = new Set();

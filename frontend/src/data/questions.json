@@ -6,17 +6,38 @@
       {
         "text": "微信，看看有没有没回的消息",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "短视频或微博，随便刷一会儿",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": 0, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": -1
+        }
       },
       {
         "text": "什么都不看，直接关掉睡觉",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -27,17 +48,38 @@
       {
         "text": "立刻拿起来看是不是那个人",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "瞄一眼，不急，明天再看",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "多半是推送，翻身继续睡",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -48,17 +90,38 @@
       {
         "text": "会，而且会等对方听完后的反应",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 1,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "想分享，但怕打扰，就存进收藏夹",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，自己听完就算了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -69,17 +132,38 @@
       {
         "text": "和某个人的聊天框",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "朋友圈或空间动态",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "随便哪个页面，锁屏就睡",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -90,17 +174,38 @@
       {
         "text": "会，主要看有没有他的消息",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "会，看一眼时间就放下",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，直接接着睡",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -111,17 +216,38 @@
       {
         "text": "经常翻，还会反复看某几条",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔翻一下，看几眼就关掉",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，过去就过去了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -132,17 +258,38 @@
       {
         "text": "心里有固定的一两个人选",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "看内容适合谁就@谁",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "很少@人，自己看看就好",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -153,17 +300,38 @@
       {
         "text": "会，发的时候就只给他看",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，但发完又觉得有点刻意",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，公开就公开",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -174,17 +342,38 @@
       {
         "text": "会，而且会第一时间看是不是他",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "会紧张一下，但很快平静",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，消息而已",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -195,17 +384,38 @@
       {
         "text": "等他先发，不然显得太粘人",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "想到什么就直接发，不管多晚",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 1
+        }
       },
       {
         "text": "太晚了就不聊了，明天再说",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -216,17 +426,38 @@
       {
         "text": "会，改来改去想找一个最合适的",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔改一次，但不会反复纠结",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，备注就是备注",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -237,17 +468,38 @@
       {
         "text": "会，有时还点进朋友圈看很久",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，看一会儿就退出了",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没什么好看的",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -258,17 +510,38 @@
       {
         "text": "是，手机闹钟响之前就先看消息",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "会先关闹钟，然后顺便看一眼",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会特意看，该干嘛干嘛",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -279,17 +552,38 @@
       {
         "text": "经常这样，也不知道自己在等什么",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，但很快就意识到该睡了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，打开了就会说话",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -300,17 +594,38 @@
       {
         "text": "会，每次上线都会留意他在不在",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "如果刚好看到就看一下，不特意",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "不看，在不在线不重要",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -321,22 +636,50 @@
       {
         "text": "反复看手机，检查网络和通知",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "放下手机去做别的，但心里不太踏实",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "五分钟很正常，不急",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "我发完经常忘了等回复",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -347,17 +690,38 @@
       {
         "text": "一直盯着屏幕等那句话",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "猜他是不是打了又删",
         "attitude_tag": "emotional",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "先退出去刷别的，过会儿再看",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -368,17 +732,38 @@
       {
         "text": "会，补一个表情包或问号试探",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "想发但忍住了，不想显得太急",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，等他看到自然会回",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 2, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 2,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -389,17 +774,38 @@
       {
         "text": "会，怕错过任何提示",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "本来就不静音，无所谓",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，该响总会响",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -410,17 +816,38 @@
       {
         "text": "有点失落，但假装没看见",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -2,
+          "dependency": 0
+        }
       },
       {
         "text": "直接问“你是不是在忙”",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "觉得他可能有更重要的事",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -431,17 +858,38 @@
       {
         "text": "会，反复看最近几条，找有没有说错话",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "会随便翻翻，打发时间",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，发了就不回头看",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -452,17 +900,38 @@
       {
         "text": "会，不想显得自己太在乎",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": -1, "possessiveness": 1, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔会，但坚持不了多久",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，看到就正常回",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -473,17 +942,38 @@
       {
         "text": "经常这样，来回切换",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔，等得不耐烦就会",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，发了就去做自己的事",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -494,17 +984,38 @@
       {
         "text": "会，脑子里演了好几场戏",
         "attitude_tag": "emotional",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "会往坏处想，但很快打住",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没回就是没看到",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -515,17 +1026,38 @@
       {
         "text": "会，反复看，试图推测他在干嘛",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔看一下，没什么特别的",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，朋友圈是朋友圈",
         "attitude_tag": "respectful",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -536,17 +1068,38 @@
       {
         "text": "会，但过几分钟又忍不住翻过来",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "会，扣过去就强迫自己别看",
         "attitude_tag": "avoidant",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没必要这样",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -557,17 +1110,38 @@
       {
         "text": "几乎秒回，没忍住",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": -1, "obsession": 0, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "看内容，不重要就稍等一下回",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "正常回，该什么时候看到就什么时候回",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -578,17 +1152,38 @@
       {
         "text": "会，逐字逐句检查语气",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔看一遍，确认没打错",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，发就发了",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -599,17 +1194,38 @@
       {
         "text": "会，反复点开头像确认",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "会看一次，然后就不管了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，看了也没意义",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -620,17 +1236,38 @@
       {
         "text": "经常这样，最后只发一个表情或“嗯”",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔，觉得不太合适就会删",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "很少，打了就发出去",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -641,17 +1278,38 @@
       {
         "text": "会，改标点、改语气，纠结很久",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔改一下错别字",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，想到什么说什么",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -662,17 +1320,38 @@
       {
         "text": "经常，然后想撤回但怕被发现",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔，但说过就算了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，发了就发了",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -683,17 +1362,38 @@
       {
         "text": "会，手头的事都停了",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "会留意，但继续做自己的事",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "不会特意等",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -704,17 +1404,38 @@
       {
         "text": "会，收集了很多觉得他会喜欢的",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "有一些是特意留的，但不多",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，表情包通用",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -725,17 +1446,38 @@
       {
         "text": "会，不知不觉就和他很像",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，觉得这样更合拍",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，我保持自己的风格",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -746,17 +1488,38 @@
       {
         "text": "经常，害怕沉默就是结束",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "偶尔，实在没话说就算了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没话就自然结束",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -767,17 +1530,38 @@
       {
         "text": "会，反复分析是不是冷淡了",
         "attitude_tag": "emotional",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "会有一瞬间的在意，但很快就过去了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，就是个语气词",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -788,17 +1572,38 @@
       {
         "text": "会，甚至存下来",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔觉得好听会再听一遍",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，听一遍就够了",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -809,17 +1614,38 @@
       {
         "text": "会，向上翻好几次确认",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔往上翻一下回顾话题",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，聊到哪儿是哪儿",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -830,17 +1656,38 @@
       {
         "text": "会，而且选了很久",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "换过一次普通的，没什么特别意义",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，默认背景就好",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -851,17 +1698,38 @@
       {
         "text": "会，免打扰是为了不让自己太期待",
         "attitude_tag": "avoidant",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "设过，但发现更焦虑就取消了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，要么正常提醒要么干脆拉黑",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -872,17 +1740,38 @@
       {
         "text": "经常，千言万语变成一张图",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔，觉得没必要说那么多",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，想说什么就发什么",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -893,17 +1782,38 @@
       {
         "text": "会，不想让对话悬在那里",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "有时会，看聊到哪儿了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，聊完就自然沉默",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -914,17 +1824,38 @@
       {
         "text": "会，追问或自己脑补很久",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "好奇一下，但不会追问",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不在意，撤回了就是不想说",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -935,17 +1866,38 @@
       {
         "text": "不断看手机，怕是自己做错了什么",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -2, "dependency": 2 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -2,
+          "dependency": 2
+        }
       },
       {
         "text": "有点不习惯，但觉得他可能在忙",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "无所谓，谁都有不想说话的时候",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 2, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 2,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -956,17 +1908,38 @@
       {
         "text": "心里介意但不说，假装没事",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "直接问“最近很忙吗”",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "不在意，回得晚很正常",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -977,17 +1950,38 @@
       {
         "text": "反复回想最近聊天，看哪里不对劲",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "觉得他可能状态不好，先不打扰",
         "attitude_tag": "respectful",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "也开始敷衍，看谁先受不了",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": -1, "possessiveness": 2, "anxiety": 0, "obsession": 0, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": -2,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -998,17 +1992,38 @@
       {
         "text": "不停翻以前他主动发过的消息",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "有点失落，但自己也不主动了",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "顺其自然，关系总有起伏",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1019,17 +2034,38 @@
       {
         "text": "注意到，发动态时会特意观察他来没来",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "有点奇怪，但不会太纠结",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "没注意，点赞评论不重要",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1040,17 +2076,38 @@
       {
         "text": "心里堵得慌，但等他先开口",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 2, "obsession": 1, "trust": -2, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -2,
+          "dependency": 1
+        }
       },
       {
         "text": "发个问号或者表情试探",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 1, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "觉得他在忙别的，很正常",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1061,17 +2118,38 @@
       {
         "text": "晚上发消息时会犹豫，打了又删",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "理解成他可能睡得早，就不发了",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "无所谓，深夜消息本来就该第二天回",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1082,17 +2160,38 @@
       {
         "text": "会，发完反复看他有没有看",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "想过，但最终没发",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没必要试探",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1103,17 +2202,38 @@
       {
         "text": "心里很不舒服，但不会说",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 2, "obsession": 1, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -2,
+          "dependency": 0
+        }
       },
       {
         "text": "直接开玩笑说“有空点赞没空回我”",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "没注意，那是他的自由",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1124,17 +2244,38 @@
       {
         "text": "会，删了又后悔，再从通讯录找回来",
         "attitude_tag": "avoidant",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "会删掉对话框，但保留聊天记录",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，放着就放着",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1145,17 +2286,38 @@
       {
         "text": "立刻热情回应，好像什么都没发生",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 2, "possessiveness": -1, "anxiety": -1, "obsession": 0, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "先冷淡一下，让他知道我在意",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": -1, "possessiveness": 2, "anxiety": 0, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "正常聊天，不提前段时间",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -1166,17 +2328,38 @@
       {
         "text": "会，甚至会去数以前的条数",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "心里有感觉，但不刻意数",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，随缘",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1187,17 +2370,38 @@
       {
         "text": "问不出口，害怕听到答案",
         "attitude_tag": "avoidant",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -2, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -2,
+          "dependency": 1
+        }
       },
       {
         "text": "会试探性地问最近怎么样",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "会直接问，有事说清楚",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 2, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 2,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -1208,17 +2412,38 @@
       {
         "text": "会，来回折腾好几次",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "设过置顶，后来取消了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没那个习惯",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1229,17 +2454,38 @@
       {
         "text": "会，而且只有他一个人置顶",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "会，但好几个重要的人都置顶了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，不喜欢置顶功能",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1250,17 +2496,38 @@
       {
         "text": "会，一响就知道是他",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "设过，但觉得没必要又改回去了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，所有消息一个声音",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1271,17 +2538,38 @@
       {
         "text": "会，记在备忘录或者心里",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "重要的事会记住，闲聊就忘了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不太记，过去就忘了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1292,17 +2580,38 @@
       {
         "text": "会，还不止一次",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "翻过，但只看了一部分",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没什么兴趣",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1313,17 +2622,38 @@
       {
         "text": "会，建了一个专门的文件夹",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "存过几张，但没整理",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，看完就没了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1334,17 +2664,38 @@
       {
         "text": "会，必须第一时间看到他的消息",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "开过一段时间，后来关了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，太打扰了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1355,17 +2706,38 @@
       {
         "text": "几乎每条都互动，想让他注意到我",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "感兴趣的就赞，不刻意",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "很少互动，看看而已",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1376,17 +2748,38 @@
       {
         "text": "会，想半天是不是和谁有关",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "注意到了，但没深想",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "经常注意不到",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1397,17 +2790,38 @@
       {
         "text": "会，他在列表里是最特别的那个",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "分了组，但没什么特殊意义",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，所有人一个列表",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1418,17 +2832,38 @@
       {
         "text": "会，差不多知道他几点出现",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "大概有感觉，但不会特意记",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，他什么时候在都行",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1439,17 +2874,38 @@
       {
         "text": "会，每一首都认真听，想了解他的品味",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "挑几首听一下",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "很少点开分享链接",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1460,17 +2916,38 @@
       {
         "text": "会，想和他有一样的",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "如果刚好需要就买",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，听听就过去了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1481,17 +2958,38 @@
       {
         "text": "会，让他看起来不一样",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "设过，但没什么特别感觉",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，默认的就很好",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1502,17 +3000,38 @@
       {
         "text": "会，只是看看名字也觉得近一点",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔手滑打出来过",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没什么理由打名字",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1523,17 +3042,38 @@
       {
         "text": "介意，希望我对他是特别的",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "有一点，但知道这很正常",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不介意，大家聊天方式都差不多",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1544,17 +3084,38 @@
       {
         "text": "有点酸，但不会说什么",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "觉得他人缘好，没什么",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "不看评论，所以不清楚",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1565,17 +3126,38 @@
       {
         "text": "很想，但知道不该问",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔好奇，但能控制",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不想，那是他的隐私",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 2, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 2,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1586,17 +3168,38 @@
       {
         "text": "有点受伤，但点了个赞",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 1, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -2,
+          "dependency": 0
+        }
       },
       {
         "text": "评论一句“原来你在啊”",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "无所谓，可能是忘了回",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1607,17 +3210,38 @@
       {
         "text": "会在意，希望是特别靠前的位置",
         "attitude_tag": "jealous",
-        "effects": { "affection": 1, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔想到，但觉得顺其自然",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不在意，朋友不是排名的",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1628,17 +3252,38 @@
       {
         "text": "心里默默比较，有点不是滋味",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "正常接话，但也想多了解那个人",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "无所谓，他朋友多很正常",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1649,17 +3294,38 @@
       {
         "text": "会，不想显得太紧密",
         "attitude_tag": "avoidant",
-        "effects": { "affection": -1, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "没注意过，随缘点赞",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，该赞就赞",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -1670,17 +3336,38 @@
       {
         "text": "特别在意，私聊都不想回了",
         "attitude_tag": "jealous",
-        "effects": { "affection": -1, "possessiveness": 2, "anxiety": 2, "obsession": 2, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 3,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -2,
+          "dependency": 0
+        }
       },
       {
         "text": "注意到了，但也许他刚好没看到",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "可能消息被刷上去了，理解",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1691,17 +3378,38 @@
       {
         "text": "会，翻评论区或动态下的互动",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "刚好看到就瞄一眼",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会特意去看",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1712,17 +3420,38 @@
       {
         "text": "有些失落，但不会问",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "觉得可能关系还没到那步",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不在意，备注又不能说明什么",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1733,17 +3462,38 @@
       {
         "text": "会，仔细辨认是谁",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "会看一眼，但不会细究",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，看整体就好",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1754,17 +3504,38 @@
       {
         "text": "会，怕别人多想，也怕他不喜欢",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "会注意分寸，但不会刻意回避",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，想说什么就说什么",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -1775,17 +3546,38 @@
       {
         "text": "心里咯噔一下，反复确认是不是自己误会了",
         "attitude_tag": "jealous",
-        "effects": { "affection": -1, "possessiveness": 2, "anxiety": 2, "obsession": 2, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 3,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -2,
+          "dependency": 0
+        }
       },
       {
         "text": "直接问“诶你和谁用情头啊”",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "没注意到，或者觉得只是巧合",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1796,17 +3588,38 @@
       {
         "text": "在意，会通过各种细节推测",
         "attitude_tag": "jealous",
-        "effects": { "affection": 1, "possessiveness": 2, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔想到，但不会求证",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不在意，聊天质量才重要",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1817,17 +3630,38 @@
       {
         "text": "有点难过，但安慰自己下次可能就约了",
         "attitude_tag": "jealous",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 3,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "评论“看起来好好玩”，装不在意",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 0, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "无所谓，他有他的圈子",
         "attitude_tag": "respectful",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1838,17 +3672,38 @@
       {
         "text": "经常这样，但对方真的看不出来",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔，但很快自己就好了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，有事就说事",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1859,17 +3714,38 @@
       {
         "text": "想让他知道我没在等，其实很在意",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "刚好有开心事，就发了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "发朋友圈和等消息无关",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1880,17 +3756,38 @@
       {
         "text": "这就是我的日常",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会这样，有点矛盾",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，说不在意就是不在意",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1901,17 +3798,38 @@
       {
         "text": "会，怕习惯后又变冷淡",
         "attitude_tag": "avoidant",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -2,
+          "dependency": 0
+        }
       },
       {
         "text": "有点不习惯，但会慢慢接受",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，热情就热情回应",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 1
+        }
       }
     ]
   },
@@ -1922,17 +3840,38 @@
       {
         "text": "会，想看他会不会主动发现我不在",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔会，但没什么意义就上线了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，想找就直接找",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -1943,17 +3882,38 @@
       {
         "text": "会，反复琢磨是不是自己哪里不好",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "会想一会儿，但很快翻篇",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，可能就是随口一说",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -1964,17 +3924,38 @@
       {
         "text": "会，太好的时候反而担心失去",
         "attitude_tag": "avoidant",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔闪过念头，但继续聊",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，开心就享受当下",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -1985,17 +3966,38 @@
       {
         "text": "经常这样测试",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 0, "possessiveness": 2, "anxiety": 2, "obsession": 1, "trust": -2, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -2,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔试过，但觉得没意思",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，想找就找，不测试",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 2, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 2,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -2006,17 +4008,38 @@
       {
         "text": "对，每次都这样纠结",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，但最后忍不住先开口",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，该怎样就怎样",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2027,17 +4050,38 @@
       {
         "text": "经常，说完就后悔",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔，看对方是不是真的在忙",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，需要就直说",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -2048,17 +4092,38 @@
       {
         "text": "会，在输入框犹豫很久",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，但最后还是发个表情",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，点个赞而已",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2069,17 +4134,38 @@
       {
         "text": "经常在撤回与不撤回间挣扎",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔撤回，不管他怎么想",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "很少撤回，发就发了",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2090,17 +4176,38 @@
       {
         "text": "会，想保护自己",
         "attitude_tag": "avoidant",
-        "effects": { "affection": -1, "possessiveness": 1, "anxiety": 1, "obsession": 0, "trust": -2, "dependency": 0 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": -2,
+          "dependency": 0
+        }
       },
       {
         "text": "会有点受影响，但保持正常",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，可能他今天心情不好",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -2111,17 +4218,38 @@
       {
         "text": "经常，不想太主动",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔，但憋不住多久",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，想了就找",
         "attitude_tag": "rational",
-        "effects": { "affection": 1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -2132,17 +4260,38 @@
       {
         "text": "会，怕秒回显得太在乎",
         "attitude_tag": "passive_aggressive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔，看心情",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，看到就回",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -2153,17 +4302,38 @@
       {
         "text": "会，全部备份，怕丢失",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "重要的几条收藏了",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，换手机就没了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2174,17 +4344,38 @@
       {
         "text": "会，特别是不开心的时候",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔找以前的某句话会翻",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会刻意回看",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2195,17 +4386,38 @@
       {
         "text": "会，建了个专门的收藏夹",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "收藏过一些特别的",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "没这个习惯",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2216,17 +4428,38 @@
       {
         "text": "记得很清楚，甚至截图了",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "大概记得，但记不清具体日期",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不记得，过去太久了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2237,17 +4470,38 @@
       {
         "text": "会，翻到最早一条",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔翻到比较早的",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会特意翻",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2258,17 +4512,38 @@
       {
         "text": "立刻注意到，心里不太舒服",
         "attitude_tag": "jealous",
-        "effects": { "affection": 1, "possessiveness": 2, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 3,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "注意到了，但觉得换个头像没什么",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "可能没留意",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2279,17 +4554,38 @@
       {
         "text": "会，手机里存了好多",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "当时截了，后来清理时删了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，看完就过去了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2300,17 +4596,38 @@
       {
         "text": "会，歌单循环",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔放到时会想起",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，歌是歌，人是人",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2321,17 +4638,38 @@
       {
         "text": "会，某些条甚至能背下来",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔翻到会看一下",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，看新动态就够了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2342,17 +4680,38 @@
       {
         "text": "会，反复听",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "收藏过，但很少再打开",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，语音听过就算了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2363,17 +4722,38 @@
       {
         "text": "会，记在心里，想以后实现",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "当时记得，久了可能会忘",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不太记这些",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2384,17 +4764,38 @@
       {
         "text": "有，还存在手机里",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "曾经截过，后来找不到了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "没截过",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2405,17 +4806,38 @@
       {
         "text": "会，感觉一部分记忆消失了",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "会难过，但尊重他的选择",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "账号而已，人还在就行",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2426,17 +4848,38 @@
       {
         "text": "会，每次翻到都停在那儿",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔翻到会心一笑",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "会快速划过，清理掉",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2447,17 +4890,38 @@
       {
         "text": "记得，好几个用过的都记得",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "刚换会有点印象，久了就忘了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不注意头像",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2468,17 +4932,38 @@
       {
         "text": "会，一天看好几次",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，想找他时看一眼",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，不在意在不在线",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2489,17 +4974,38 @@
       {
         "text": "会，心里默念快回快回",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 2, "obsession": 2, "trust": -2, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 1,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -2,
+          "dependency": 1
+        }
       },
       {
         "text": "看一会儿，然后就去做别的事",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，他可能在忙别的",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2510,17 +5016,38 @@
       {
         "text": "会，但又想知道他在不在",
         "attitude_tag": "avoidant",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "偶尔隐身，不想被打扰",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，永远在线",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": 0
+        }
       }
     ]
   },
@@ -2531,17 +5058,38 @@
       {
         "text": "会，忍不住猜测他的动向",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "注意到了，但没细想",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，这能看出什么",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2552,17 +5100,38 @@
       {
         "text": "会，然后开始等他找我",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "会有点，但很快平静",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，上线很正常",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2573,17 +5142,38 @@
       {
         "text": "会，顺着歌单找",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "会看一眼，但不会特意搜",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，听歌是私事",
         "attitude_tag": "respectful",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2594,17 +5184,38 @@
       {
         "text": "经常，来回切换好多次",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 1,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，但不多",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，切走就是切走了",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2615,17 +5226,38 @@
       {
         "text": "会，脑补各种意外",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "有点担心，但觉得可能忙",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，断网几天很正常",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2636,17 +5268,38 @@
       {
         "text": "会，手机电脑iPad都看一遍",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 2,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，一个设备就够了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "根本不会特意看在线状态",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": -1, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": -1,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2657,17 +5310,38 @@
       {
         "text": "会，刷新好几次怕网络延迟",
         "attitude_tag": "clingy",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "刷新一两次就算了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没有就没有",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2678,17 +5352,38 @@
       {
         "text": "会，打了又删，最后可能没发",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "会犹豫，但想发就发了",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，深夜不打扰",
         "attitude_tag": "respectful",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2699,17 +5394,38 @@
       {
         "text": "会，在线时间短就觉得他在忙",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会联想，但知道不准",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，在线状态说明不了什么",
         "attitude_tag": "rational",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2720,17 +5436,38 @@
       {
         "text": "有点失落，觉得他可能不感兴趣了",
         "attitude_tag": "emotional",
-        "effects": { "affection": 0, "possessiveness": 1, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 1,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 0
+        }
       },
       {
         "text": "可能没刷到，再发一条别的",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不在意，动态是发给自己看的",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2741,17 +5478,38 @@
       {
         "text": "会，算好时间发",
         "attitude_tag": "obsessive",
-        "effects": { "affection": 1, "possessiveness": 1, "anxiety": 0, "obsession": 2, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 2,
+          "anxiety": 0,
+          "obsession": 2,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "偶尔会，但不刻意",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，想什么时候发就发",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2762,17 +5520,38 @@
       {
         "text": "经常会这么想，然后翻聊天记录",
         "attitude_tag": "pleasing",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -2, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -2,
+          "dependency": 1
+        }
       },
       {
         "text": "会闪过这个念头，但很快否定",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，下线理由很多",
         "attitude_tag": "rational",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2783,17 +5562,38 @@
       {
         "text": "会，一整天都不太对劲",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "有点不习惯，但能正常生活",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，不说话很正常",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2804,17 +5604,38 @@
       {
         "text": "会，总走神看手机",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "有点影响，但能逼自己集中",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，该干嘛干嘛",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2825,17 +5646,38 @@
       {
         "text": "会，翻来覆去等消息",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "有点难入睡，但最后还是会睡",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，睡得很香",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2846,17 +5688,38 @@
       {
         "text": "已经成了习惯，不说就像缺了仪式感",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "偶尔说，但没形成习惯",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "没这个习惯",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2867,17 +5730,38 @@
       {
         "text": "会，用旧消息缓解想念",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 1, "obsession": 2, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "偶尔会翻几下",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，没消息就做别的",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2888,17 +5772,38 @@
       {
         "text": "会，看到就能踏实睡觉",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": -1, "obsession": 0, "trust": 1, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 2
+        }
       },
       {
         "text": "会有点安心，但没晚安也能睡",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，晚安只是个词",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2909,17 +5814,38 @@
       {
         "text": "是，永远先想到那一个人",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "有几个备选，看事情类型",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不一定，谁方便就找谁",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2930,17 +5856,38 @@
       {
         "text": "会，完全无法适应",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -2, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -2,
+          "dependency": 2
+        }
       },
       {
         "text": "会难受，但能慢慢调整",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，该怎样还怎样",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2951,17 +5898,38 @@
       {
         "text": "会，只愿意跟他说心里话",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 2, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 2,
+          "dependency": 2
+        }
       },
       {
         "text": "大部分跟他说，但也保留一些",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，我有多个倾诉对象",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2972,17 +5940,38 @@
       {
         "text": "会，第一件事就是看手机",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 1, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 1,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "有点影响心情，但该起还得起",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，起床和消息无关",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -2993,17 +5982,38 @@
       {
         "text": "经常，聊到凌晨也愿意",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "偶尔，聊得开心就晚点睡",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，到点就睡",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -3014,17 +6024,38 @@
       {
         "text": "会，整个人都被影响了",
         "attitude_tag": "clingy",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 2, "obsession": 2, "trust": -1, "dependency": 2 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 2,
+          "obsession": 2,
+          "trust": -1,
+          "dependency": 2
+        }
       },
       {
         "text": "会低落一阵，但能自我调节",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 1, "obsession": 0, "trust": 0, "dependency": 1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 1,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，情绪分开管理",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -3035,17 +6066,38 @@
       {
         "text": "会，甚至计划要说什么",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 0, "anxiety": 0, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "有点期待，但不会太当回事",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 0, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 0,
+          "dependency": 0
+        }
       },
       {
         "text": "不会，明天的事明天说",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -3056,17 +6108,38 @@
       {
         "text": "是，别人的话都听不进去",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 0, "obsession": 1, "trust": 2, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 0,
+          "obsession": 1,
+          "trust": 2,
+          "dependency": 2
+        }
       },
       {
         "text": "他是重要的安慰来源，但不是唯一",
         "attitude_tag": "",
-        "effects": { "affection": 1, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 1 }
+        "effects": {
+          "affection": 1,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 1
+        }
       },
       {
         "text": "不会，我自己能消化",
         "attitude_tag": "independent",
-        "effects": { "affection": -1, "possessiveness": 0, "anxiety": -1, "obsession": -1, "trust": 0, "dependency": -1 }
+        "effects": {
+          "affection": -1,
+          "possessiveness": 0,
+          "anxiety": -1,
+          "obsession": -1,
+          "trust": 0,
+          "dependency": -1
+        }
       }
     ]
   },
@@ -3077,17 +6150,38 @@
       {
         "text": "会，立刻搜索添加",
         "attitude_tag": "clingy",
-        "effects": { "affection": 2, "possessiveness": 1, "anxiety": 1, "obsession": 1, "trust": 0, "dependency": 2 }
+        "effects": {
+          "affection": 2,
+          "possessiveness": 1,
+          "anxiety": 1,
+          "obsession": 1,
+          "trust": 0,
+          "dependency": 2
+        }
       },
       {
         "text": "会问他要新号，但不会很急",
         "attitude_tag": "",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": 0, "trust": 1, "dependency": 0 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": 0,
+          "trust": 1,
+          "dependency": 0
+        }
       },
       {
         "text": "顺其自然，他给就加",
         "attitude_tag": "independent",
-        "effects": { "affection": 0, "possessiveness": 0, "anxiety": 0, "obsession": -1, "trust": 1, "dependency": -1 }
+        "effects": {
+          "affection": 0,
+          "possessiveness": 0,
+          "anxiety": 0,
+          "obsession": -1,
+          "trust": 1,
+          "dependency": -1
+        }
       }
     ]
   }

@@ -36,12 +36,16 @@ export function routeEnding(stats) {
     dependency,
   } = stats;
 
-  // ── 信任一票否决：信任归零时强制进入崩溃线 ──────────────────────────
-  if (trust < 20 && anxiety > 80 && obsession > 80) return 'F';
-  if (trust < 30 && dependency > 70)               return 'E';
+  // 先判定有明确数值签名的路线，避免默认低信任或偏执把 B/C/D 吃掉。
+  if (affection >= 60 && dependency >= 55 && possessiveness < 35 && obsession < 75) return 'B';
+  if (possessiveness >= 45 && trust >= 45 && anxiety < 70) return 'D';
+  if (affection >= 65 && obsession >= 60) return 'A';
 
-  // ── 主导情绪 × 催化剂情绪复合判定 ────────────────────────────────────
-  // 1. 找最高峰值
+  // 低信任结局需要玩家把 trust 从中性值真正打低。
+  if (trust <= 30 && dependency >= 55 && affection >= 40 && anxiety >= 45) return 'E';
+  if (trust <= 25 && anxiety >= 80 && obsession >= 85 && dependency >= 35) return 'F';
+  if (possessiveness >= 55 && anxiety >= 60 && affection < 45) return 'C';
+
   const peak = Math.max(affection, possessiveness, anxiety, obsession, trust, dependency);
 
   // 好感主导
@@ -63,21 +67,41 @@ export function routeEnding(stats) {
 
   // 偏执主导 → 信任是否还在
   if (obsession === peak) {
-    if (trust < 30) return 'F';
+    if (trust <= 25 && anxiety >= 60) return 'F';
     return 'A';
   }
 
   // 依赖主导
   if (dependency === peak) {
-    if (trust < 30) return 'E';
+    if (trust <= 30 && affection >= 35 && anxiety >= 35) return 'E';
     return 'B';
   }
 
-  // 兜底：以好感/信任均值判断
-  const warmth = (affection + trust) / 2;
-  if (warmth >= 50) return 'B';
-  if (warmth >= 30) return 'A';
-  return 'E';
+  // 兜底：低强度局用评分竞争分流，避免某个结局成为默认垃圾桶。
+  // B 仍只由高好感 + 高依赖 + 低支配的强签名触发。
+  return routeByWeakProfile(stats);
+}
+
+function routeByWeakProfile(stats) {
+  const {
+    affection,
+    possessiveness,
+    anxiety,
+    obsession,
+    trust,
+    dependency,
+  } = stats;
+
+  const scores = {
+    A: affection * 1.1 + obsession * 0.75 + trust * 0.25 + 12,
+    C: possessiveness * 1.05 + anxiety * 0.85 - affection * 0.35 - dependency * 0.2 + 10,
+    D: possessiveness * 0.95 + trust * 1.0 - anxiety * 0.25 + 12,
+    E: dependency * 1.45 + (38 - trust) * 0.85 + affection * 0.15 + anxiety * 0.15 + 22,
+    F: anxiety * 0.8 + obsession * 0.85 + (30 - trust) * 0.4 - dependency * 0.35 - 18,
+  };
+
+  return Object.entries(scores)
+    .sort(([, left], [, right]) => right - left)[0][0];
 }
 
 // ─── LLM 提示词 ───────────────────────────────────────────────────────────────

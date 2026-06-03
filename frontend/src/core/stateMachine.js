@@ -9,7 +9,8 @@
  * - trust (信任度)
  * - dependency (依赖度)
  * 
- * 每个维度范围 0-100，初始值 0。
+ * 每个维度范围 0-100。trust 使用中性初始值，避免低信任结局
+ * 在玩家尚未作答时天然占优。
  * 根据累积的 raw 分数映射到 0-100 的刻度。
  */
 
@@ -17,6 +18,7 @@ const DIMENSIONS = ['affection', 'possessiveness', 'anxiety', 'obsession', 'trus
 
 // raw 分数达到此值时映射为 100%
 const RAW_MAX = 35;
+const INITIAL_TRUST = 15;
 
 /**
  * 创建初始状态
@@ -28,7 +30,7 @@ function createInitialState() {
       possessiveness: 0,
       anxiety: 0,
       obsession: 0,
-      trust: 0,
+      trust: INITIAL_TRUST,
       dependency: 0,
     },
     answeredCount: 0,
@@ -84,9 +86,9 @@ function applyConflictPenalty(state) {
     raw: { ...state.raw },
   };
 
-  newState.raw.trust = Math.max(0, newState.raw.trust - 10);
-  newState.raw.anxiety = newState.raw.anxiety + 7;
-  newState.raw.obsession = newState.raw.obsession + 7;
+  newState.raw.trust = Math.max(0, newState.raw.trust - 3);
+  newState.raw.anxiety = newState.raw.anxiety + 3;
+  newState.raw.obsession = newState.raw.obsession + 3;
 
   return newState;
 }
