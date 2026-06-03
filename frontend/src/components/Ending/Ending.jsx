@@ -537,6 +537,8 @@ function EndingD({ monologue, monologueComplete }) {
   const [showInput, setShowInput] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [phase, setPhase] = useState('monologue');
+  // 记录上一次 displayText 长度，用于检测"有新内容输入"
+  const prevLenRef = useRef(0);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -554,33 +556,35 @@ function EndingD({ monologue, monologueComplete }) {
     }
   }, [showInput]);
 
+  // 禁用退格 / Delete（PC & 移动端均需要）
   useEffect(() => {
     if (!showInput) return;
-
     const handleKeyDown = (e) => {
-      // 彻底禁用退格键
       if (e.key === 'Backspace' || e.key === 'Delete') {
         e.preventDefault();
-        return;
-      }
-      
-      // 任意单字符输入，都转换为他的情话
-      if (e.key.length === 1 || e.key === 'Enter') {
-        e.preventDefault();
-        if (phase === 'prompt' || phase === 'typing') {
-          setPhase('typing');
-          setDisplayText(current => {
-            const next = Math.min(current.length + 1, LOVELINE.length);
-            if (next === LOVELINE.length) setPhase('done');
-            return LOVELINE.slice(0, next);
-          });
-        }
       }
     };
-
     window.addEventListener('keydown', handleKeyDown, true);
     return () => window.removeEventListener('keydown', handleKeyDown, true);
-  }, [showInput, phase]);
+  }, [showInput]);
+
+  // 统一用 onChange 捕获所有输入（PC 键盘 / IME 中文 / 手机虚拟键盘）
+  const handleChange = (e) => {
+    if (phase === 'done') return;
+
+    const newVal = e.target.value;
+    // 新值比当前展示文本更长 → 有新字符输入（无论来自键盘、IME还是虚拟键盘）
+    if (newVal.length > displayText.length) {
+      setPhase('typing');
+      setDisplayText(current => {
+        const next = Math.min(current.length + 1, LOVELINE.length);
+        const nextText = LOVELINE.slice(0, next);
+        if (next >= LOVELINE.length) setPhase('done');
+        return nextText;
+      });
+    }
+    // value 由 React 受控（始终等于 displayText），用户无法真正删除
+  };
 
   return (
     <div className="ending-screen ending-d">
@@ -604,7 +608,7 @@ function EndingD({ monologue, monologueComplete }) {
               ref={inputRef}
               className="ending-d-input"
               value={displayText}
-              onChange={() => {}}
+              onChange={handleChange}
               placeholder="在这里输入，你无法撤回……"
               rows={3}
               spellCheck={false}
