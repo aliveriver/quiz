@@ -166,36 +166,39 @@ export default function App() {
       return;
     }
 
-    // 1. 态度冲突检测
-    const conflictResult = detectConflict(gameState.history, optionData.attitude_tag);
-    
+    // 质问锚点题本身不触发冲突检测，避免连锁反应
+    const isConfrontationQuestion = questions[currentQuestionIndex]?.isConfrontation;
+
+    // 1. 态度冲突检测（质问锚点题跳过）
+    const conflictResult = isConfrontationQuestion
+      ? { conflict: false }
+      : detectConflict(gameState.history, optionData.attitude_tag);
+
     let newState = gameState;
 
     if (conflictResult.conflict) {
       // 触发冲突惩罚
       newState = applyConflictPenalty(newState);
-      
+
       const newConflictCount = conflictCount + 1;
       setConflictCount(newConflictCount);
 
       if (newConflictCount >= runtimeConfig.conflict.warning_threshold) {
         setShowConflictWarning(true);
       }
-      
-      // 强制触发严重视觉特效
+
+      // 强制触发视觉特效（非阻塞，立刻继续流程）
       if (metaEnabled) {
         setCurrentMetaEffect(forceTriggerEffect(conflictResult.severity === 'severe' ? 'heavy' : 'medium'));
       }
 
-      // 等待特效和提示后，插入特殊题目
-      setTimeout(() => {
-        const cq = getConfrontationQuestion();
-        const newQuestions = [...questions];
-        newQuestions.splice(currentQuestionIndex + 1, 0, cq);
-        setQuestions(newQuestions);
-        proceedToNext(newState, optionIndex, optionData);
-      }, 3000);
-      
+      // 插入质问锚点题，然后立即推进（不再延迟3秒）
+      const cq = getConfrontationQuestion();
+      const newQuestions = [...questions];
+      newQuestions.splice(currentQuestionIndex + 1, 0, cq);
+      setQuestions(newQuestions);
+      newState = applyEffects(newState, optionData.effects || {});
+      proceedToNext(newState, optionIndex, optionData, newQuestions);
       return;
     }
 
@@ -205,8 +208,9 @@ export default function App() {
 
   }, [gameState, questions, currentQuestionIndex, metaEnabled, conflictCount]);
 
-  function proceedToNext(newState, optionIndex, optionData) {
-    const nextState = recordAnswer(newState, questions[currentQuestionIndex]._id, optionIndex, optionData.attitude_tag);
+  function proceedToNext(newState, optionIndex, optionData, questionsOverride) {
+    const activeQuestions = questionsOverride || questions;
+    const nextState = recordAnswer(newState, activeQuestions[currentQuestionIndex]._id, optionIndex, optionData.attitude_tag);
     setGameState(nextState);
 
     // 尝试触发常规 Meta 特效
@@ -216,7 +220,7 @@ export default function App() {
     }
 
     // 进入下一题或结局
-    if (currentQuestionIndex + 1 < questions.length) {
+    if (currentQuestionIndex + 1 < activeQuestions.length) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       finishGame(nextState);
