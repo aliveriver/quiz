@@ -56,10 +56,10 @@ docker compose up -d --build
 
 部署后访问 `http://你的服务器IP:FRONTEND_PORT`。默认前端 Nginx 会把 `/api/*` 反代到后端容器，后端无需单独暴露到公网。
 
-如果你的服务器已经有 Nginx 和站点，例如 `aliveriver.xyz`，建议把本项目部署到子路径：
+如果你的服务器已经有 Nginx 和站点，例如 `XXX.xyz`，建议把本项目部署到子路径：
 
-- 页面：`https://aliveriver.xyz/love/`
-- API：`https://aliveriver.xyz/love-api/`
+- 页面：`https://XXX.xyz/love/`
+- API：`https://XXX.xyz/love-api/`
 
 根目录 `.env` 使用：
 
