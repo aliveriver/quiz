@@ -25,7 +25,7 @@ function getDebugEndingId() {
 
 const DEBUG_MONOLOGUE = '【调试独白】这是用于测试结局演出的占位文本。\n一切都在正常运行中。';
 
-export default function Ending({ monologue, deviceInfo, escapeAttempts, monologueComplete, stats, audioChunks = [] }) {
+export default function Ending({ monologue, deviceInfo, escapeAttempts, monologueComplete, stats, audioChunks = [], deferredPwaPrompt }) {
   const [endingId, setEndingId] = useState(() => getDebugEndingId());
 
   // 流式音频播放
@@ -80,6 +80,7 @@ export default function Ending({ monologue, deviceInfo, escapeAttempts, monologu
     stats,
     isAudioPlaying: isPlaying,
     hasAudio,
+    deferredPwaPrompt,
   };
 
   switch (endingId) {
@@ -273,14 +274,12 @@ function getContractEvidence() {
    结局 B —— 寄生共生线
    高好感 + 高依赖 + 低支配：UI 血肉化溶解，信息素丝线纠缠，PWA与拦截请求
 ───────────────────────────────────────────────────────────────────────────── */
-function EndingB({ monologue, monologueComplete }) {
+function EndingB({ monologue, monologueComplete, deferredPwaPrompt }) {
   const [dissolved, setDissolved] = useState(false);
   const [pwaPrompt, setPwaPrompt] = useState(false);
   const [pwaInstalled, setPwaInstalled] = useState(false);
   const [threads, setThreads] = useState([]);
   const lastPos = useRef({ x: -100, y: -100 });
-  // 存储 beforeinstallprompt 事件，稍后触发真实安装
-  const deferredInstallPrompt = useRef(null);
 
   useEffect(() => {
     if (monologueComplete) {
@@ -290,22 +289,11 @@ function EndingB({ monologue, monologueComplete }) {
     }
   }, [monologueComplete]);
 
-  // 捕获系统级 PWA 安装事件
+  // 监听安装成功
   useEffect(() => {
-    const handler = (e) => {
-      e.preventDefault();
-      deferredInstallPrompt.current = e;
-    };
-    window.addEventListener('beforeinstallprompt', handler);
-
-    // 监听安装成功
     const installedHandler = () => setPwaInstalled(true);
     window.addEventListener('appinstalled', installedHandler);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handler);
-      window.removeEventListener('appinstalled', installedHandler);
-    };
+    return () => window.removeEventListener('appinstalled', installedHandler);
   }, []);
 
   // 拦截关闭页面
@@ -322,17 +310,18 @@ function EndingB({ monologue, monologueComplete }) {
   }, [pwaPrompt, pwaInstalled]);
 
   // 点击"允许系统权限"——触发真实 PWA 安装或降级提示
+  // deferredPwaPrompt 由 App.jsx 在页面最早阶段捕获，这里直接使用
   const handleInstallClick = async () => {
-    if (deferredInstallPrompt.current) {
-      // 触发系统原生安装对话框
-      deferredInstallPrompt.current.prompt();
-      const { outcome } = await deferredInstallPrompt.current.userChoice;
-      deferredInstallPrompt.current = null;
+    const prompt = deferredPwaPrompt?.current;
+    if (prompt) {
+      prompt.prompt();
+      const { outcome } = await prompt.userChoice;
+      deferredPwaPrompt.current = null;
       if (outcome === 'accepted') {
         setPwaInstalled(true);
       }
     } else {
-      // 已安装 / 不支持时的叙事降级
+      // 未收到 beforeinstallprompt（已安装 / 浏览器不支持）→ 叙事降级
       setPwaInstalled(true);
     }
   };

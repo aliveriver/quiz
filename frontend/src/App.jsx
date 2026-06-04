@@ -430,6 +430,7 @@ export default function App() {
           monologueComplete={monologueComplete}
           stats={finalStats || getNormalizedStats(gameState)}
           audioChunks={[]}
+          deferredPwaPrompt={deferredPwaPrompt}
         />
       )}
 
