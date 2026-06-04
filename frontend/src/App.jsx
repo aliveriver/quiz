@@ -52,6 +52,17 @@ export default function App() {
   const [horrorText, setHorrorText] = useState('');
   const refreshCheckedRef = useRef(false);
 
+  // PWA 安装事件（尽早捕获，避免 EndingB 挂载前错过）
+  const deferredPwaPrompt = useRef(null);
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      deferredPwaPrompt.current = e;
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
   // ── DEBUG 后门：在浏览器控制台执行 window.__debugEnding('A') 直接跳到指定结局 ──
   useEffect(() => {
     window.__debugEnding = (id) => {

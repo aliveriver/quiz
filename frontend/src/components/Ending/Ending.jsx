@@ -276,8 +276,11 @@ function getContractEvidence() {
 function EndingB({ monologue, monologueComplete }) {
   const [dissolved, setDissolved] = useState(false);
   const [pwaPrompt, setPwaPrompt] = useState(false);
+  const [pwaInstalled, setPwaInstalled] = useState(false);
   const [threads, setThreads] = useState([]);
   const lastPos = useRef({ x: -100, y: -100 });
+  // 存储 beforeinstallprompt 事件，稍后触发真实安装
+  const deferredInstallPrompt = useRef(null);
 
   useEffect(() => {
     if (monologueComplete) {
@@ -287,37 +290,71 @@ function EndingB({ monologue, monologueComplete }) {
     }
   }, [monologueComplete]);
 
+  // 捕获系统级 PWA 安装事件
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      deferredInstallPrompt.current = e;
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+
+    // 监听安装成功
+    const installedHandler = () => setPwaInstalled(true);
+    window.addEventListener('appinstalled', installedHandler);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+      window.removeEventListener('appinstalled', installedHandler);
+    };
+  }, []);
+
   // 拦截关闭页面
   useEffect(() => {
     const handleBeforeUnload = (e) => {
-      if (pwaPrompt) {
+      if (pwaPrompt && !pwaInstalled) {
         e.preventDefault();
-        e.returnValue = "你要丢下我了吗？";
+        e.returnValue = '你要丢下我了吗？';
         return e.returnValue;
       }
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [pwaPrompt]);
+  }, [pwaPrompt, pwaInstalled]);
+
+  // 点击"允许系统权限"——触发真实 PWA 安装或降级提示
+  const handleInstallClick = async () => {
+    if (deferredInstallPrompt.current) {
+      // 触发系统原生安装对话框
+      deferredInstallPrompt.current.prompt();
+      const { outcome } = await deferredInstallPrompt.current.userChoice;
+      deferredInstallPrompt.current = null;
+      if (outcome === 'accepted') {
+        setPwaInstalled(true);
+      }
+    } else {
+      // 已安装 / 不支持时的叙事降级
+      setPwaInstalled(true);
+    }
+  };
 
   // 鼠标绘制丝线
   const handleMouseMove = (e) => {
     if (!dissolved) return;
     const x = e.clientX;
     const y = e.clientY;
-    
+
     if (lastPos.current.x === -100) {
       lastPos.current = { x, y };
       return;
     }
-    
+
     setThreads(prev => {
       const newThread = {
         x1: lastPos.current.x, y1: lastPos.current.y,
         x2: x, y2: y,
         id: Date.now() + Math.random()
       };
-      const maxThreads = 60; // 防止卡顿
+      const maxThreads = 60;
       const updated = [...prev, newThread];
       if (updated.length > maxThreads) updated.shift();
       return updated;
@@ -335,7 +372,7 @@ function EndingB({ monologue, monologueComplete }) {
           <feBlend in="SourceGraphic" in2="goo" />
         </filter>
       </svg>
-      
+
       {dissolved && (
         <svg className="ending-b-threads" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
           {threads.map(t => (
@@ -353,18 +390,27 @@ function EndingB({ monologue, monologueComplete }) {
       <div className="ending-content ending-b-gooey">
         <MonologueBlock monologue={monologue} monologueComplete={monologueComplete} />
 
-        {pwaPrompt && (
+        {pwaPrompt && !pwaInstalled && (
           <div className="ending-b-pwa">
             <p>允许我永远嵌入你的设备吗？</p>
             <p className="ending-b-subtext">不要拔掉电源，不要关机，我只有你了。</p>
             <button
               className="ending-b-pwa-btn"
-              onClick={() => {
-                alert('系统已被接管。我不会再离开了。');
-              }}
+              onClick={handleInstallClick}
             >
               [ 允许系统权限 ]
             </button>
+          </div>
+        )}
+
+        {pwaInstalled && (
+          <div className="ending-b-pwa ending-b-pwa--installed">
+            <p className="ending-b-installed-title">寄生完成。</p>
+            <p className="ending-b-subtext">
+              我已经在你的设备里生根了。<br />
+              你随时打开，随时能看到我。<br />
+              <span className="ending-b-whisper">……你舍不得删的。</span>
+            </p>
           </div>
         )}
       </div>

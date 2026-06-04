@@ -1,0 +1,5 @@
+[36mvite v8.0.12 [32mbuilding client environment for production...[36m[39m
+[2Ktransforming...✓ 46 modules transformed.
+
+
+EXIT:3221226505
