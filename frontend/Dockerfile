@@ -19,6 +19,7 @@ RUN npm run build
 FROM nginx:1.27-alpine
 
 COPY nginx.conf /etc/nginx/templates/default.conf.template
+ENV NGINX_ENVSUBST_TEMPLATE_VARS=BACKEND_UPSTREAM
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
